@@ -4,15 +4,17 @@ body {
     background-color: $gray-custom;
 }
 
-.navbar-custom-bg {
-    background-color: $primary-color;
+.navbar-custom {
+    background-color: $white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
+    justify-content: left;
 }
 
 #sidebar {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: $secondary-color;
+    background: $primary-color;
     overflow-y: scroll;
     transition: .5s;
     -webkit-transition: .5s;
@@ -22,22 +24,27 @@ body {
         margin: 15px auto;
     }
 
+    .sidebar-menu {
+        padding-top: 50px;
+    }
+
     ul, li {
         list-style: none;
-        // padding: 10px;
-
-        a {
-            border-left: 4px solid transparent;
-            display: block;
-            padding: 15px 30px 15px 30px;
-            white-space: nowrap;
-    
-            &:hover {
-                background-color: $white;
-                border-left: 4px solid blue;
-                text-decoration: none;
-            }
         }
+    
+    a {
+        border-left: 5px solid transparent;
+        color: $white;
+        display: block;
+        padding: 15px 30px 15px 30px;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: $secondary-color;
+            border-left: 5px solid $dark-blue;
+            text-decoration: none;
+        }
+    
     }
 
     ul.sub {
@@ -101,7 +108,7 @@ body {
 }
   
 .custom-toggle span {
-    background: $dark-gray;
+    background: $dark-blue;
     border-radius: 9px;
     display: block;
     height: 3px;
@@ -121,16 +128,30 @@ body {
 
 /* Icon 3 */
 
-.custom-toggle span:nth-child(1) {
+#nav-icon-open span:nth-child(1) {
     top: 0px;
 }
 
-.custom-toggle span:nth-child(2) {
+#nav-icon-open span:nth-child(2) {
     top: 9px;
 }
 
-.custom-toggle span:nth-child(3) {
+#nav-icon-open span:nth-child(3) {
     top: 19px;
+}
+
+#nav-icon-close span:nth-child(1) {
+    top: 15px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#nav-icon-close span:nth-child(2) { 
+    top: 15px;  
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 // .custom-toggle.open span:nth-child(1) {

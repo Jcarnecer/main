@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" > -->
 		<link rel="stylesheet" type="text/css" href="assets/css/flavored-reset-and-normalize.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
+		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
 	</head>
 	<body>
@@ -18,9 +19,8 @@
 			<div id="nav-icon-close" class="custom-toggle">
 				<span></span>
 				<span></span>
-				<span></span>
 			</div>
-			<a class="logo" href="#">Navbar</a>
+
 			<ul class="sidebar-menu">
 					
 				<li class="">
@@ -62,14 +62,14 @@
 		</div>
 		<div class="main-content">
 			<div class="topbar">
-				<nav class="navbar navbar-expand-lg navbar-light navbar-custom-bg">
+				<nav class="navbar navbar-custom">
 				<div id="nav-icon-open" class="custom-toggle hidden-toggle">
 					<span></span>
 					<span></span>
 					<span></span>
 				</div>
 					<a class="navbar-brand" href="#">Navbar</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					
@@ -89,10 +89,10 @@
 						<input class="form-control mr-sm-2" type="text" placeholder="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 						</form>
-					</div>
+					</div> -->
 				</nav>
 			</div>
-			<div class="container">
+			<div class="container-fluid">
 				Content goes here
 			</div>
 		</div>
