@@ -11,9 +11,7 @@ class Authenticate {
 		$this->CI =& get_instance();
 	}
 
-	/*
-	 *	Save user to session
-	 */
+
 	public function login_user($user) {
 		$this->CI->session->set_userdata('user', $user);
 	}
@@ -23,7 +21,9 @@ class Authenticate {
 		$this->CI->session->unset_userdata('user');
 	}
 
+
 	public function current_user() {
 		return $this->CI->session->userdata('user');
 	}
+	
 }
