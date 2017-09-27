@@ -8,14 +8,16 @@ class User_Model extends CI_Model {
 	public $last_name;
 	public $username;
 	public $password;
+	public $role;
 
-	public function authenticate_user($email_address, $password, $company_id) {
-		$user = $this->db->get_where('users', [
-			'email_address' => $email_address, 
-			'password' => $password, 
-			'company_id' => $company_id
-		], 1);
-		return $user->row();
+	public function authenticate_user($email_address, $password) {
+		$user = $this->db->get_where('users', ['email_address' => $email_address])->row();
+		if ($user && 
+			$this->encryption->decrypt($user->password) === $password) {
+			$this->authenticate->login_user($user);
+			return true;
+		}
+		return false;
 	}
 	
 
@@ -24,7 +26,7 @@ class User_Model extends CI_Model {
 	}
 
 
-	public function get_user($query) {
+	public function get_users($query) {
 		return $this->db->get_where('users', $query)->result();
 	}
 }

@@ -13,6 +13,7 @@ class Authenticate {
 
 
 	public function login_user($user) {
+		unset($user->password);
 		$this->CI->session->set_userdata('user', $user);
 	}
 
@@ -25,5 +26,18 @@ class Authenticate {
 	public function current_user() {
 		return $this->CI->session->userdata('user');
 	}
-	
+
+
+	public function is_login() {
+		if (!$this->CI->session->userdata('user')) {
+			return redirect('users/login');
+		}
+	}
+
+
+	public function is_guest() {
+		if ($this->CI->session->userdata('user')) {
+			return redirect('/');
+		}
+	}	
 }

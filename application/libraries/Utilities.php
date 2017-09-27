@@ -12,9 +12,8 @@ class Utilities {
 	}
 
 
-	public function create_random_string($length=5) {
+	public function create_random_string($length=11) {
 		$string = "";
-
 	    $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 	    for ($i = 0; $i < $length; $i++) {
@@ -30,8 +29,8 @@ class Utilities {
 
 		if (empty($company_details['name'])) {
 			$errors['name'] = 'Name field is required';
-		} else if (strlen($company_details['name'] > 20) || strlen($company_details['name']) < 8) {
-			$errors['name'] = 'Name field must be 8-20 characters long';
+		} else if (strlen($company_details['name'] > 20) || strlen($company_details['name']) < 5) {
+			$errors['name'] = 'Name field must be 5-20 characters long';
 		} else if (preg_match('/[^a-zA-Z0-9 ]/', $company_details['name'])) {
 			$errors['name'] = 'Name field must contain letters, numbers, and spaces only';
 		} else if ($this->CI->company->get_company(['name' => $company_details['name']]) != null) {
@@ -61,7 +60,7 @@ class Utilities {
 			$errors['email_address'] = 'E-mail address field is required';
 		} else if (!filter_var($user_details['email_address'], FILTER_VALIDATE_EMAIL)) {
 			$errors['email_address'] = 'E-mail address is not valid';
-		} else if ($this->CI->user->get_user(['email_address' => $user_details['email_address']]) != null) {
+		} else if ($this->CI->user->get_users(['email_address' => $user_details['email_address']]) != null) {
 			$errors['email_address'] = 'E-mail address must be unique';
 		}
 

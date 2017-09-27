@@ -98,7 +98,11 @@
 				</nav>
 			</div>
 			<div class="container-fluid">
-
+				<div class="row">
+					<div class="col-sm-3">
+						<a href="<?= base_url('users/profile/update') ?>">Update Profile</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--  -->

@@ -53,8 +53,12 @@ $route['default_controller'] = 'site_controller/index';
 
 $route['companies/register'] = 'company_controller/register';
 
-$route['(:any)/users/login'] = 'user_controller/login/$1';
+$route['users/login'] = 'user_controller/login';
 $route['users/logout'] = 'user_controller/logout';
+
+$route['users/create'] = 'user_controller/create';
+$route['users'] = 'user_controller/all';
+$route['users/profile'] = 'user_controller/profile';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

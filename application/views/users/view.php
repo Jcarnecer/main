@@ -98,7 +98,42 @@
 				</nav>
 			</div>
 			<div class="container-fluid">
-
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card mt-3">
+							<div class="card-body">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>E-mail Address</th>
+											<th>Role</th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php foreach($users as $user): ?>
+										<tr>
+											<td><?= $user->first_name ?></td>
+											<td><?= $user->last_name ?></td>
+											<td><?= $user->email_address ?></td>
+											<td>
+												<?php if ($user->role == "1"): ?>
+													Root
+												<?php elseif ($user->role == "2"): ?>
+													Admin
+												<?php elseif ($user->role == "3"): ?>
+													Normal
+												<?php endif; ?>	
+											</td>
+										</tr>
+									<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--  -->

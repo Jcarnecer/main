@@ -15,11 +15,22 @@
 	</head>
 	<body>
 
-		<h1>
-			Welcome to Small Apps
-		</h1>
+		<nav class="navbar bg-white">
+			<ul class="navbar-nav">
+				<li class="navbar-item">
+					<a class="btn btn-secondary" href="<?= base_url('users/login') ?>">Login</a>
+					<a class="btn btn-primary" href="<?= base_url('companies/register') ?>">Register</a>
+				</li>
+			</ul>
+		</nav>
 
-		<a href="<?= base_url('companies/register') ?>">Register your company</a>
+		<div class="container-fluid mt-3">
+			<div class="jumbotron">
+				<h1>Welcome to Small Apps</h1>
+				<span>Astrid Technologies</span>
+			</div>
+		</div>
+
 
 		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>

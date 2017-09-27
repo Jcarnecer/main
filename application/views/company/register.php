@@ -16,8 +16,8 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
-					<div class="card card-primary">
-						<div class="card-header">Register your company</div>
+					<div class="card">
+						<div class="card-header bg-primary text-white">Register your company</div>
 						<div class="card-body">
 							<form id="registerCompany" method="POST">
 								<div class="form-group row">
@@ -27,10 +27,13 @@
 										<?php if (isset($errors['company']['name'])): ?>
 											<small class="form-text text-danger"><?= $errors['company']['name'] ?></small>
 										<?php endif; ?>
-										<small class="form-text text-muted">Company name must be 8-20 characters long.</small>
+										<small class="form-text text-muted">Company name must be 5-20 characters long.</small>
 									</div>
 								</div>
-								<div class="card-title text-center font-weight-bold">Account Information</div>
+								<div class="card-title text-center font-weight-bold">
+									Account Information
+									<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="This account blah blah"></i>
+								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">First Name</label>
 									<div class="col-sm-8">
@@ -69,7 +72,7 @@
 								</div>
 							</form>
 						</div>
-						<div class="card-footer">
+						<div class="card-footer text-right">
 							<a class="btn btn-secondary" href="<?= base_url('/') ?>">Cancel</a>
 							<button class="btn btn-primary" type="submit" form="registerCompany">Register</button>
 						</div>
@@ -83,5 +86,10 @@
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/jquery.nicescroll.min.js"></script>
 		<script src="assets/js/script.js"></script>
+		<script>
+			(function($) {
+				$('[data-toggle="tooltip"]').tooltip();
+			}(jQuery));
+		</script>
 	</body>
 </html>

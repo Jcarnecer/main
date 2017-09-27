@@ -20,7 +20,7 @@
 				<div class="col-sm-6">
 					<div class="card card-primary">
 						<div class="card-header">
-							Login to <?= $company->name ?>
+							Login
 						</div>
 						<div class="card-body">
 							<?php if ($error != null): ?>

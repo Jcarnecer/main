@@ -13,6 +13,7 @@ class Site_Controller extends CI_Controller {
 		if ($user) {
 			return $this->load->view('dashboard');	
 		}
+		
 		return $this->load->view('welcome');
 	}
 }
