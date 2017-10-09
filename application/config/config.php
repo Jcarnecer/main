@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 if (ENVIRONMENT == "production") {
-	$config['base_url'] = 'http://52.76.142.14/main/';
+	$config['base_url'] = 'http://main.payakapps.com/';
 } else {
 	$config['base_url'] = 'http://localhost/main/';
 }
