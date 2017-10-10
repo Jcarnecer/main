@@ -62,3 +62,7 @@ $route['users/profile'] = 'User_Controller/profile';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['migrate'] = 'Migration_Controller/index';
+$route['migrate/(:any)'] = 'Migration_Controller/index/$1';
+$route['migrate/(:any)/(:num)'] = 'Migration_Controller/index/$1/$2';
