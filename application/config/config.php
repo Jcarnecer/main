@@ -406,7 +406,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 */
 if (ENVIRONMENT === "production") {
 	$config['cookie_prefix']	= '';
-	$config['cookie_domain']	= '*.payakapps.com';
+	$config['cookie_domain']	= '.payakapps.com';
 	$config['cookie_path']		= '/';
 	$config['cookie_secure']	= FALSE;
 	$config['cookie_httponly'] 	= FALSE;
