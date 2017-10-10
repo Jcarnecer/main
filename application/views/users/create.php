@@ -145,7 +145,7 @@
 										<div class="col-sm-8">
 											<select class="form-control" name="role">
 												<option value="2">Admin</option>
-												<option value="3">Normal</option>
+												<option value="3">Staff</option>
 											</select>
 										</div>
 									</div>

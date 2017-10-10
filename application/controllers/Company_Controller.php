@@ -41,4 +41,8 @@ class Company_Controller extends CI_Controller {
 		return $this->load->view('company/register', ['errors' => $errors]);
 	}
 
+
+	public function users($company_id) {
+		return print json_encode($this->db->get_where('users', ['company_id' => $company_id])->result_array());
+	}
 }

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
 	</head>
 	<body>
 		<div id="sidebar">
@@ -105,30 +106,12 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>First Name</th>
 											<th>Last Name</th>
+											<th>First Name</th>
 											<th>E-mail Address</th>
 											<th>Role</th>
 										</tr>
 									</thead>
-									<tbody>
-									<?php foreach($users as $user): ?>
-										<tr>
-											<td><?= $user->first_name ?></td>
-											<td><?= $user->last_name ?></td>
-											<td><?= $user->email_address ?></td>
-											<td>
-												<?php if ($user->role == "1"): ?>
-													Root
-												<?php elseif ($user->role == "2"): ?>
-													Admin
-												<?php elseif ($user->role == "3"): ?>
-													Normal
-												<?php endif; ?>	
-											</td>
-										</tr>
-									<?php endforeach; ?>
-									</tbody>
 								</table>
 							</div>
 						</div>
@@ -146,5 +129,30 @@
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/jquery.nicescroll.min.js"></script>
 		<script src="assets/js/script.js"></script>
+		<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script>
+			$('table').DataTable({
+				ajax: {
+					url: 'companies/<?= $company_id ?>/users',
+					dataSrc: ''
+				},
+				columns: [
+					{ data: 'last_name' },
+					{ data: 'first_name' },
+					{ data: 'email_address' },
+					{ 
+						data: function(user) {
+							if (user.role == "1") {
+								return "Root";
+							} else if (user.role == "2") {
+								return "Admin";
+							} else if (user.role == "3") {
+								return "Staff";
+							}
+						} 
+					}
+				]
+			});
+		</script>
 	</body>
 </html>

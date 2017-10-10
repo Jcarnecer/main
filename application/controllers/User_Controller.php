@@ -14,9 +14,11 @@ class User_Controller extends CI_Controller {
 
 		$users = $this->user->get_users(['company_id' => $user->company_id]);
 
-		return $this->load->view('users/view', ['users' => $users]);
+		return $this->load->view('users/view', [
+			'company_id' => $user->company_id,
+			'users' => $users
+		]);
 	}
-
 
 
 	public function create() {
