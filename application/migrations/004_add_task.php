@@ -259,7 +259,7 @@ class Migration_Add_Task extends CI_Migration {
             'CONSTRAINT `tasks_assignment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE'
         ]);
 
-        $this->dbforge->add_key(['team_id', 'user_id'], TRUE);
+        $this->dbforge->add_key(['task_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
         return $this->dbforge->create_table('tasks_assignment');
