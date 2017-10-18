@@ -16,6 +16,7 @@ class Migration_Add_Kanban extends CI_Migration {
 
         $this->dbforge->drop_table('kanban_tasks');
         $this->dbforge->drop_table('kanban_columns');
+        $this->dbforge->drop_table('kanban_boards');
     }
 
 
@@ -63,7 +64,13 @@ class Migration_Add_Kanban extends CI_Migration {
                 
                 'type'           => 'TEXT'
             ],
-             'board_id'        => [
+            'position'        => [
+
+                'type'           => 'TINYINT',
+                'constraint'     => 3,
+                'unsigned'       => TRUE
+            ],
+             'board_id'       => [
                 
                 'type'           => 'VARCHAR',
                 'constraint'     => 11,
