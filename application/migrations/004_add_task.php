@@ -133,8 +133,8 @@ class Migration_Add_Task extends CI_Migration {
             'CONSTRAINT `tasks_tagging_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON UPDATE CASCADE'
         ]);
                         
-        $this->dbforge->add_key(['tags_id', 'tasks_id'], TRUE);
-        $this->dbforge->add_key('tasks_id');
+        $this->dbforge->add_key(['tag_id', 'task_id'], TRUE);
+        $this->dbforge->add_key('task_id');
         
         return $this->dbforge->create_table('tasks_tagging');
     }
@@ -176,7 +176,7 @@ class Migration_Add_Task extends CI_Migration {
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key('tasks_id');
+        $this->dbforge->add_key('task_id');
         
         return $this->dbforge->create_table('task_notes');        
     }
@@ -231,8 +231,8 @@ class Migration_Add_Task extends CI_Migration {
             'CONSTRAINT `teams_mapping_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE'
         ]);
 
-        $this->dbforge->add_key(['teams_id', 'users_id'], TRUE);
-        $this->dbforge->add_key('users_id');
+        $this->dbforge->add_key(['team_id', 'user_id'], TRUE);
+        $this->dbforge->add_key('user_id');
         
         return $this->dbforge->create_table('teams_mapping');
     }
@@ -259,7 +259,7 @@ class Migration_Add_Task extends CI_Migration {
             'CONSTRAINT `tasks_assignment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE'
         ]);
 
-        $this->dbforge->add_key(['teams_id', 'user_id'], TRUE);
+        $this->dbforge->add_key(['team_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
         return $this->dbforge->create_table('tasks_assignment');
