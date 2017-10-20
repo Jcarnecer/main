@@ -57,7 +57,7 @@ class Migration_Add_Companies extends CI_Migration {
 			"data" => [
 				"type" => "BLOB"
 			]
-		]);
+		]);	
 		
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('ci_sessions');
