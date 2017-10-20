@@ -17,7 +17,6 @@ class Migration_Add_Task extends CI_Migration {
 
 
     public function down() {
-
         $this->dbforge->drop_table('tasks_assignment');
         $this->dbforge->drop_table('teams_mapping');
         $this->dbforge->drop_table('teams');
