@@ -45,6 +45,9 @@ class Migration_Add_Kanban extends CI_Migration {
             'CONSTRAINT `kanban_boards_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON UPDATE CASCADE'
         ]);
 
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('team_id');
+
         return $this->dbforge->create_table('kanban_boards');
     }
 
@@ -72,7 +75,7 @@ class Migration_Add_Kanban extends CI_Migration {
             ],
              'board_id'       => [
                 
-                'type'           => 'VARCHAR',
+                'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => TRUE
             ],
