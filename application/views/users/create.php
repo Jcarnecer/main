@@ -29,7 +29,7 @@
 					</a>
 				</li>
 				<li class="">
-					<a class="" href="http://localhost/chat">
+					<a class="" href="http://chat.payakapps.com">
 						<i class="fa fa-dashboard"></i>
 						<span>Chat Module</span>
 					</a>
