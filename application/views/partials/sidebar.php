@@ -19,7 +19,7 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://localhost/task/tasks">
+			<a class="" href="http://task.payakapps.com">
 				<i class="fa fa-dashboard"></i>
 				<span>Task Module</span>
 			</a>
