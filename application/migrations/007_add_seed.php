@@ -59,7 +59,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'eGd2Lit5ic9',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'cjdalan@astridtechnologies.com',
+                'email_address'  => 'christian.dalan@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Christian Jordan',
                 'last_name'      => 'Dalan',
@@ -79,7 +79,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'XzdG2i1vRUK',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'amlizardo@astridtechnologies.com',
+                'email_address'  => 'martin.lizardo@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Antonio Martin',
                 'last_name'      => 'Lizardo',
@@ -89,7 +89,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'A2d3LiX1iUK',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'janadal@astridtechnologies.com',
+                'email_address'  => 'johnaidon.nadal@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'John Aidon',
                 'last_name'      => 'Nadal',
@@ -109,7 +109,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'epv3LXtGiBO',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'vvsison@astridtechnologies.com',
+                'email_address'  => 'von.sison@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Von Vincent',
                 'last_name'      => 'Sison',
@@ -119,7 +119,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'FpvRLXtG37O',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'idcruz@astridtechnologies.com',
+                'email_address'  => 'ian.cruz@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Ian David',
                 'last_name'      => 'Cruz',
@@ -129,7 +129,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'Ipv123tGHBO',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'kmdelfin@astridtechnologies.com',
+                'email_address'  => 'katrina.delfin@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Katrina Michaela',
                 'last_name'      => 'Delfin',
@@ -139,7 +139,7 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'UpY3RXttiBO',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'nsabriol@astridtechnologies.com',
+                'email_address'  => 'nathan.abriol@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Nathaniel Siegfrid',
                 'last_name'      => 'Abriol',
@@ -159,8 +159,8 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => 'Rp23LXt19BO',
                 'company_id'     => 'BM2RHidnpvG',
-                'email_address'  => 'jmjimenez@astridtechnologies.com',
-                'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
+                'email_address'  => 'janmichael.jimenez@astridtechnologies.com',
+                'password'       => '28428395f74bf6ad08b7c79e6b98f76a3fe64b58bf1bb8d3685d58b17458f44ddffce5acebdc09accea7c4c1f1037836d7f5cd2629a253b19a855f89de790673y35uXTaWjx9xnFwJGQf03ISqgWahlzskXLJ9CcnyRY8=',
                 'first_name'     => 'Jan Michael',
                 'last_name'      => 'Jimenez',
                 'role'           => '2'
