@@ -16,10 +16,10 @@ class Migration_Add_Resume extends CI_Migration {
 
     public function down() {
 
-        $this->dbforge->drop_table('employees');
-        $this->dbforge->drop_table('record');
-        $this->dbforge->drop_table('role');
-        $this->dbforge->drop_table('position');
+        $this->dbforge->drop_table('employees', TRUE);
+        $this->dbforge->drop_table('record', TRUE);
+        $this->dbforge->drop_table('role', TRUE);
+        $this->dbforge->drop_table('position', TRUE);
     }
 
 
