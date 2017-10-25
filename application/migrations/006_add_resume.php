@@ -7,6 +7,7 @@ class Migration_Add_Resume extends CI_Migration {
     public function up() {
 
         $this->position();
+        $this->position_seed();
         $this->role();
         $this->record();
         $this->employees();
@@ -43,14 +44,17 @@ class Migration_Add_Resume extends CI_Migration {
 
         $this->dbforge->add_key('id', TRUE);
 
-        $this->dbforge->create_table('position');
+        return $this->dbforge->create_table('position');
+    }
 
-        #insert data
+
+    public function position_seed() {
 
         $data = [
-            ['id' => 1, 'name' => "Employee"],
-            ['id' => 2, 'name' => "Intern"],
-            ['id' => 3, 'name' => "Freelance"]
+
+            ['id' => 1, 'name' => 'Employee'],
+            ['id' => 2, 'name' => 'Intern'],
+            ['id' => 3, 'name' => 'Freelance']
         ];
 
         return $this->db->insert_batch('position', $data);
