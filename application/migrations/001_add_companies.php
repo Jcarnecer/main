@@ -26,8 +26,8 @@ class Migration_Add_Companies extends CI_Migration {
 
 
 	public function down() {
-		$this->dbforge->drop_table('companies');
-		$this->dbforge->drop_table('ci_sessions');
+		$this->dbforge->drop_table('companies', TRUE);
+		$this->dbforge->drop_table('ci_sessions', TRUE);
 	}
 
 

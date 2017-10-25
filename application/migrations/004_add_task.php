@@ -17,13 +17,13 @@ class Migration_Add_Task extends CI_Migration {
 
 
     public function down() {
-        $this->dbforge->drop_table('tasks_assignment');
-        $this->dbforge->drop_table('teams_mapping');
-        $this->dbforge->drop_table('teams');
-        $this->dbforge->drop_table('task_notes');
-        $this->dbforge->drop_table('tasks_tagging');
-        $this->dbforge->drop_table('tasks');
-        $this->dbforge->drop_table('tags');
+        $this->dbforge->drop_table('tasks_assignment', TRUE);
+        $this->dbforge->drop_table('teams_mapping', TRUE);
+        $this->dbforge->drop_table('teams', TRUE);
+        $this->dbforge->drop_table('task_notes', TRUE);
+        $this->dbforge->drop_table('tasks_tagging', TRUE);
+        $this->dbforge->drop_table('tasks', TRUE);
+        $this->dbforge->drop_table('tags', TRUE);
     }
 
 
