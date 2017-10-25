@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_Controller extends CI_Controller {
+class User_Controller extends Base_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -12,11 +12,9 @@ class User_Controller extends CI_Controller {
 		$this->authenticate->is_login();
 		$user = $this->authenticate->current_user();
 
-		$users = $this->user->get_users(['company_id' => $user->company_id]);
-
-		return $this->load->view('users/view', [
+		return parent::main_page("users/index", [
 			'company_id' => $user->company_id,
-			'users' => $users
+			'users' => $this->user->get_users(['company_id' => $user->company_id])
 		]);
 	}
 
@@ -26,7 +24,7 @@ class User_Controller extends CI_Controller {
 		$user = $this->authenticate->current_user();
 
 		$errors = [];
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$user_details = [
 				'id' => $this->utilities->create_random_string(),
 				'company_id' => $user->company_id,
@@ -42,12 +40,13 @@ class User_Controller extends CI_Controller {
 			if (count($errors) == 0) {
 				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 				$this->user->insert_user($user_details);
+				copy("assets/img/avatar/default.png", "assets/img/avatar/{$user_details['id']}.png");
 				# TODO: Send e-mail for user credentials
 				return redirect('users/create');
 			}
 		}
 
-		return $this->load->view('users/create', ['errors' => $errors]);
+		return parent::main_page("users/create", ['errors' => $errors]);
 	}
 
 
