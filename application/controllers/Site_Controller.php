@@ -9,6 +9,12 @@ class Site_Controller extends Base_Controller {
 
 	public function index() {
 		$user = $this->authenticate->current_user();
-		parent::main_page("dashboard");
+
+		if ($user) {
+			parent::main_page("dashboard");
+		} else {
+			parent::guest_page("welcome");
+		}
+		
 	}
 }
