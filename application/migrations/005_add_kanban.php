@@ -42,7 +42,7 @@ class Migration_Add_Kanban extends CI_Migration {
                 'unsigned'       => TRUE
             ],
 
-            'CONSTRAINT `kanban_boards_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `kanban_boards_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key('id', TRUE);
@@ -80,7 +80,7 @@ class Migration_Add_Kanban extends CI_Migration {
                 'unsigned'       => TRUE
             ],
 
-            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `kanban_boards` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `kanban_boards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
@@ -108,8 +108,8 @@ class Migration_Add_Kanban extends CI_Migration {
                 'unsigned'       => TRUE
             ],
             
-            'CONSTRAINT `kanban_tasks_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tasks` (`id`) ON UPDATE CASCADE',
-            'CONSTRAINT `kanban_tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `kanban_columns` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `kanban_tasks_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `kanban_tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `kanban_columns` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key(['id', 'column_id'], TRUE);

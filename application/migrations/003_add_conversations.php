@@ -30,7 +30,7 @@ class Migration_Add_Conversations extends CI_Migration {
 				'constraint'	 => 1
 			],
 
-			'CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON UPDATE CASCADE'
+			'CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 		]);
 
 		$this->dbforge->add_key('id', true);
