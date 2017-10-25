@@ -34,6 +34,7 @@ class Company_Controller extends CI_Controller {
 				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 				$this->company->insert_company($company_details);
 				$this->user->insert_user($user_details);
+				copy("/assets/img/profile/default.png", "/assets/img/profile/{$user_details['id']}.png");
 				return redirect("users/login");
 			}
 		}
@@ -44,5 +45,12 @@ class Company_Controller extends CI_Controller {
 
 	public function users($company_id) {
 		return print json_encode($this->db->get_where('users', ['company_id' => $company_id])->result_array());
+	}
+
+
+	public function subscriptions($company_id) {
+		return print json_encode(
+			$this->db->get("main_modules")->result_array()
+		);
 	}
 }

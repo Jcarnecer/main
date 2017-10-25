@@ -53,6 +53,7 @@ $route['default_controller'] = 'Site_Controller/index';
 
 $route['companies/register'] = 'Company_Controller/register';
 $route['companies/(:any)/users'] = 'Company_Controller/users/$1';
+$route["companies/(:any)/subscriptions"] = "Company_Controller/subscriptions/$1";
 
 $route['users/login'] = 'User_Controller/login';
 $route['users/logout'] = 'User_Controller/logout';
@@ -60,6 +61,10 @@ $route['users/logout'] = 'User_Controller/logout';
 $route['users/create'] = 'User_Controller/create';
 $route['users'] = 'User_Controller/all';
 $route['users/profile'] = 'User_Controller/profile';
+
+$route["subscriptions"] = "Subscription_Controller/index";
+$route["modules/all"] = "Module_Controller/all";
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

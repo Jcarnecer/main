@@ -31,6 +31,39 @@
 		</nav>
 	</div>
 	<div class="container-fluid">
-
+		<div class="row justify-content-center">
+			<div class="col-sm-12">
+				<div class="card mt-3">
+					<div class="card-header">Subscriptions</div>
+					<div class="card-body">
+						<table class="table"></table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+</div>	
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+	$('table').DataTable({
+		ajax: {
+			url: "modules/all",
+			dataSrc: ''
+		},
+		columns: [
+			{ 
+				title: "Name",
+				data: 'name' 
+			},
+			{
+				title: "Status",
+				data: "",
+				render: function(modules) {
+					
+				}
+			}
+		]
+	});
+</script>
