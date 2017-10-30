@@ -82,4 +82,25 @@ class User_Controller extends CI_Controller {
 		$this->authenticate->logout_user();
 		redirect('/');
 	}
+
+
+	public function update_user($user_id) {
+
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$data = [
+				'first_name' => $_POST['first_name'],
+				'last_name' => $_POST['last_name']
+			];
+
+			return $this->user->update($user_id, $data);
+		}
+	}
+
+
+	public function update_password($user_id) {
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			return $this->user->update($user_id, ['password' => $_POST['password']]);
+		}
+	}
 }
