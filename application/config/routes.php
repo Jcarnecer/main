@@ -60,6 +60,8 @@ $route['users/logout'] = 'User_Controller/logout';
 $route['users/create'] = 'User_Controller/create';
 $route['users'] = 'User_Controller/all';
 $route['users/profile'] = 'User_Controller/profile';
+$route['users/profile/update'] = 'User_Controller/update';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

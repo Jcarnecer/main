@@ -12,7 +12,7 @@
 <?php endforeach; ?>
 </ul>
 
-<p><?php echo anchor('upload_controller', 'Upload Another File!'); ?></p>
+<p><?php echo anchor('users/profile', 'Back'); ?></p>
 
 </body>
 </html>

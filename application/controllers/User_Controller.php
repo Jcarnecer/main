@@ -84,23 +84,36 @@ class User_Controller extends CI_Controller {
 	}
 
 
-	public function update_user($user_id) {
+	public function update() {
+		$this->load->helper(array('form'));
+		$this->load->view('update');
+		$this->load->view('upload_form', array('error' => ' ' ));
+	}
 
+
+	public function update_user() {
+		$user_id = $this->session->user->id;
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = [
 				'first_name' => $_POST['first_name'],
 				'last_name' => $_POST['last_name']
 			];
 
-			return $this->user->update($user_id, $data);
+			$this->user->update($user_id, $data);
+
+			redirect('users/profile');
 		}
 	}
 
 
-	public function update_password($user_id) {
+	public function update_password() {
+		$user_id = $this->session->user->id;
+
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			return $this->user->update($user_id, ['password' => $_POST['password']]);
+			$this->user->update($user_id, ['password' => $this->encryption->encrypt($_POST['password'])]);
+
+			redirect('users/profile');
 		}
 	}
 }
