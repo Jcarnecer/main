@@ -87,7 +87,6 @@ class User_Controller extends CI_Controller {
 	public function update() {
 		$this->load->helper(array('form'));
 		$this->load->view('update');
-		$this->load->view('upload_form', array('error' => ' ' ));
 	}
 
 
