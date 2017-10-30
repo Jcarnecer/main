@@ -99,46 +99,86 @@
 				</nav>
 			</div>
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-3"><br><br>
-						<?php echo form_open_multipart('User_Controller/update_user');?>
-							First Name: 
-							<input type="text" name="first_name" size="20" /> <br>
-							Last Name: 
-							<input type="text" name="last_name" size="20" />
-
-							<br /><br />
-
-							<input type="submit" value="Update" />
-
-						</form>
-
-						<hr>
-
-						<?php echo form_open_multipart('User_Controller/update_password');?>
-
-							Password: 
-							<input type="password" name="password" size="20" />
-
-							<br /><br />
-
-							<input type="submit" value="Update" />
-
-						</form>
-
-						<hr>
-						<?php echo form_open_multipart('upload_controller/do_upload');?>
-							Upload Avatar
-							<br>
-							<input type="file" name="userfile" size="20" />
-
-							<br /><br />
-
-							<input type="submit" value="Upload" />
-
-						</form>
+				<div class="row justify-content-center">
+					<div class="col-sm-6">
+						<div class="card">
+							<div class="card-header">Update Name</div>
+							<div class="card-body">
+								<?php echo form_open_multipart('User_Controller/update_user');?>
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label text-right">First Name</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" name="first_name" placeholder="First Name" />
+											<?php if (isset($errors['first_name'])): ?>
+												<small class="text-danger"><?= $errors['first_name'] ?></small>
+											<?php endif; ?>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label text-right">Last Name</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" name="last_name" placeholder="Last Name" />
+											<?php if (isset($errors['last_name'])): ?>
+												<small class="text-danger"><?= $errors['last_name'] ?></small>
+											<?php endif; ?>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="card-footer">
+								<button class="btn btn-primary" form="createUser" type="submit">Update</button>
+							</div>
+						</div>
 					</div>
 				</div>
+				<br>	
+				<div class="row justify-content-center">
+					<div class="col-sm-6">
+						<div class="card">
+							<div class="card-header">Change Password</div>
+							<div class="card-body">
+								<?php echo form_open_multipart('User_Controller/update_password');?>
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label text-right">Password</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="password" name="password" placeholder="Password" />
+											<?php if (isset($errors['password'])): ?>
+												<small class="text-danger"><?= $errors['password'] ?></small>
+											<?php endif; ?>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="card-footer">
+								<button class="btn btn-primary" form="createUser" type="submit">Change Password</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row justify-content-center">
+					<div class="col-sm-6">
+						<div class="card">
+							<div class="card-header">Upload Avatar</div>
+							<div class="card-body">
+								<?php echo form_open_multipart('upload_controller/do_upload');?>
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label text-right">Password</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="file" name="userfile" placeholder="Password" />
+											<?php if (isset($errors['password'])): ?>
+												<small class="text-danger"><?= $errors['password'] ?></small>
+											<?php endif; ?>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="card-footer">
+								<button class="btn btn-primary" form="createUser" type="submit">Upload</button>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 		<!--  -->
