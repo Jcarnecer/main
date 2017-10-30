@@ -104,7 +104,7 @@
 						<div class="card">
 							<div class="card-header">Update Name</div>
 							<div class="card-body">
-								<?php echo form_open_multipart('User_Controller/update_user');?>
+								<?php echo form_open_multipart('User_Controller/update_user', 'id="updateUser"');?>
 									<div class="form-group row">
 										<label class="col-sm-4 col-form-label text-right">First Name</label>
 										<div class="col-sm-8">
@@ -126,7 +126,7 @@
 								</form>
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-primary" form="createUser" type="submit">Update</button>
+								<button class="btn btn-primary" form="updateUser" type="submit">Update</button>
 							</div>
 						</div>
 					</div>
@@ -137,7 +137,7 @@
 						<div class="card">
 							<div class="card-header">Change Password</div>
 							<div class="card-body">
-								<?php echo form_open_multipart('User_Controller/update_password');?>
+								<?php echo form_open_multipart('User_Controller/update_password', 'id="changePassword"');?>
 									<div class="form-group row">
 										<label class="col-sm-4 col-form-label text-right">Password</label>
 										<div class="col-sm-8">
@@ -150,7 +150,7 @@
 								</form>
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-primary" form="createUser" type="submit">Change Password</button>
+								<button class="btn btn-primary" form="changePassword" type="submit">Change Password</button>
 							</div>
 						</div>
 					</div>
@@ -161,20 +161,17 @@
 						<div class="card">
 							<div class="card-header">Upload Avatar</div>
 							<div class="card-body">
-								<?php echo form_open_multipart('upload_controller/do_upload');?>
+								<?php echo form_open_multipart('upload_controller/do_upload', 'id="uploadAvatar"');?>
 									<div class="form-group row">
-										<label class="col-sm-4 col-form-label text-right">Password</label>
+										<label class="col-sm-4 col-form-label text-right">Choose Image</label>
 										<div class="col-sm-8">
-											<input class="form-control" type="file" name="userfile" placeholder="Password" />
-											<?php if (isset($errors['password'])): ?>
-												<small class="text-danger"><?= $errors['password'] ?></small>
-											<?php endif; ?>
+											<input class="form-control-file" type="file" name="userfile" accept="image/*"/>
 										</div>
 									</div>
 								</form>
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-primary" form="createUser" type="submit">Upload</button>
+								<button class="btn btn-primary" form="uploadAvatar" type="submit">Upload</button>
 							</div>
 						</div>
 					</div>
