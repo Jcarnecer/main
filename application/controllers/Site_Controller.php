@@ -11,7 +11,7 @@ class Site_Controller extends Base_Controller {
 		$user = $this->authenticate->current_user();
 
 		if ($user) {
-			parent::main_page("dashboard");
+			parent::main_page("dashboard", ["user" => $user]);
 		} else {
 			parent::guest_page("welcome");
 		}
