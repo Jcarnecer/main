@@ -8,58 +8,63 @@
 	<ul class="sidebar-menu">		
 		<li class="">
 			<a class="" href="<?= base_url('/') ?>">
-				<i class="fa fa-dashboard"></i>
+				<i class="fa fa-dashboard mr-2"></i>
 				<span>Dashboard</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://chat.payakapps.com">
-				<i class="fa fa-dashboard"></i>
-				<span>Chat Module</span>
+			<a class="" href="http://localhost/chat/">
+				<i class="fa fa-comment mr-2"></i>
+				<span>Chat</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://localhost/task/tasks">
-				<i class="fa fa-dashboard"></i>
-				<span>Task Module</span>
+			<a class="" href="http://localhost/task/">
+				<i class="fa fa-sticky-note mr-2"></i>
+				<span>Notes</span>
 			</a>
 		</li>
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
-				<i class="fa fa-desktop"></i>
-				<span>User Management</span>
+				<i class="fa fa-users mr-2"></i>
+				<span>Users</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
 				<li><a  href="<?= base_url('users') ?>">View Users</a></li>
 				<li><a  href="<?= base_url('users/create') ?>">Create User</a></li>
 			</ul>
 		</li>
-		<li class="">
-			<a class="" href="<?= base_url('users/logout'); ?>">
-				<i class="fa fa-dashboard"></i>
-				<span>Logout</span>
-			</a>
-		</li>
 	</ul>
 	<!-- sidebar menu end-->
 </div>
 <div class="main-content">
 	<div class="topbar">
-		<nav class="navbar navbar-custom navbar-expand-lg d-flex justify-content-between">
+		<nav class="navbar navbar-custom navbar-expand-lg d-flex">
 			<div id="nav-icon-open" class="custom-toggle hidden-toggle">
 				<span></span>
 				<span></span>
 				<span></span>
 			</div>
-			<a class="navbar-brand" href="#">Navbar</a>
-			<ul class="navbar-nav flex-row">
+			<a class="navbar-brand" href="#">PayakApps</a>
+			<ul class="navbar-nav flex-row ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-						<img class="img-fluid img-avatar" src="http://localhost/main/assets/img/avatar/<?= $user->id ?>.png" />
+						<?= $user->first_name . " " . $user->last_name ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">Profile</a>
-						<a class="dropdown-item" href="<?= base_url('support') ?>">Support</a>
+						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
+						<a class="dropdown-item" href="<?= base_url("users/change-password") ?>">My Password</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+						Support
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="<?= base_url("tickets") ?>">My Tickets</a>
+						<a class="dropdown-item" href="<?= base_url("tickets/create") ?>">Submit a ticket</a>
 					</div>
 				</li>
 			</ul>
