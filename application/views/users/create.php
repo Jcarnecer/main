@@ -99,16 +99,18 @@
 			</div>
 			<div class="container-fluid">
 				<div class="row justify-content-center">
-					<div class="col-sm-6">
+					<div class="col-lg-8">
 						<div class="card">
 							<div class="card-header">Create User</div>
 							<div class="card-body">
 								<form id="createUser" method="POST">
 									<div class="form-group row">
 										<label class="col-sm-4 col-form-label text-right">E-mail Address</label>
-										<div class="col-sm-8">
+										<div class="input-group col-sm-8">
 											<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" />
+											<span class="input-group-addon" id="basic-addon2">@astridtechnologies.com</span>
 											<?php if (isset($errors['email_address'])): ?>
+												<br>
 												<small class="text-danger"><?= $errors['email_address'] ?></small>
 											<?php endif; ?>
 										</div>
