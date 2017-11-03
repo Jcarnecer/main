@@ -13,6 +13,14 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" >
+
+		<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+
+	    <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
+
+	    <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+
+	    <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
 	</head>
 	<body>
 		<div id="sidebar">
@@ -161,17 +169,17 @@
 						<div class="card">
 							<div class="card-header">Upload Avatar</div>
 							<div class="card-body">
-								<?php echo form_open_multipart('upload_controller/do_upload', 'id="uploadAvatar"');?>
-									<div class="form-group row">
-										<label class="col-sm-4 col-form-label text-right">Choose Image</label>
-										<div class="col-sm-8">
-											<input class="form-control-file" type="file" name="userfile" accept="image/*"/>
-										</div>
+								<div class="form-group row justify-content-center">
+									<div class="col-sm-8">
+										<div id="upload-demo" style="width:350px"></div>
+							  		</div>
+									<div class="col-sm-8">
+										<input type="file" id="upload">
 									</div>
-								</form>
+								</div>
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-primary" form="uploadAvatar" type="submit">Upload</button>
+								<button class="btn btn-primary upload-result">Upload Image</button>
 							</div>
 						</div>
 					</div>
@@ -183,6 +191,91 @@
 		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> -->
+		<script type="text/javascript">
+
+			$uploadCrop = $('#upload-demo').croppie({
+
+			    enableExif: true,
+
+			    viewport: {
+
+			        width: 200,
+
+			        height: 200,
+
+			        type: 'circle'
+
+			    },
+
+			    boundary: {
+
+			        width: 300,
+
+			        height: 300
+
+			    }
+
+			});
+
+
+			$('#upload').on('change', function () { 
+
+				var reader = new FileReader();
+
+			    reader.onload = function (e) {
+
+			    	$uploadCrop.croppie('bind', {
+
+			    		url: e.target.result
+
+			    	}).then(function(){
+
+			    		console.log('jQuery bind complete');
+
+			    	});
+
+			    	
+
+			    }
+
+			    reader.readAsDataURL(this.files[0]);
+
+			});
+
+
+			$('.upload-result').on('click', function (ev) {
+
+				$uploadCrop.croppie('result', {
+
+					type: 'canvas',
+
+					size: 'viewport'
+
+				}).then(function (resp) {
+
+
+					$.ajax({
+
+						url: "Upload_Controller/do_upload",
+
+						type: "POST",
+
+						data: {"userfile":resp},
+
+						success: function (data) {
+
+							html = '<center><img src="' + resp + '" /></center>';
+							$("#upload").remove();
+							$("#upload-demo").html(html);
+
+						}
+
+					});
+
+				});
+
+			});
+		</script>
 		<script src="assets/js/jquery.js"></script>
 		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
