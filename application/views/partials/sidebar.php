@@ -54,10 +54,12 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
 						<a class="dropdown-item" href="<?= base_url("users/change-password") ?>">My Password</a>
+						<a class="dropdown-item" href="<?= base_url("subscriptions") ?>">My Subscriptions</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>
 					</div>
 				</li>
+				<!--
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 						Support
@@ -67,6 +69,7 @@
 						<a class="dropdown-item" href="<?= base_url("tickets/create") ?>">Submit a ticket</a>
 					</div>
 				</li>
+				-->
 			</ul>
 			<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>

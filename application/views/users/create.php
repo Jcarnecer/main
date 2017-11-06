@@ -6,7 +6,22 @@
 				<div class="card-body">
 					<form id="createUser" method="POST">
 						<div class="form-group row">
-							<label class="col-md-2 col-form-label">E-mail Address</label>
+							<label class="col-sm-2 col-form-label text-right">Name</label>
+							<div class="col-sm-4">
+								<input class="form-control" type="text" name="first_name" placeholder="First Name" />
+								<?php if (isset($errors['first_name'])): ?>
+									<small class="text-danger"><?= $errors['first_name'] ?></small>
+								<?php endif; ?>
+							</div>
+							<div class="col-sm-4">
+								<input class="form-control" type="text" name="last_name" placeholder="Last Name" />
+								<?php if (isset($errors['last_name'])): ?>
+									<small class="text-danger"><?= $errors['last_name'] ?></small>
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-2 col-form-label text-right">E-mail Address</label>
 							<div class="col-sm-8">
 								<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" />
 								<?php if (isset($errors['email_address'])): ?>
@@ -15,7 +30,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Password</label>
+							<label class="col-sm-2 col-form-label text-right">Password</label>
 							<div class="col-sm-8">
 								<input class="form-control" type="password" name="password" placeholder="Password" />
 								<?php if (isset($errors['password'])): ?>
@@ -23,25 +38,7 @@
 								<?php endif; ?>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">First Name</label>
-							<div class="col-sm-8">
-								<input class="form-control" type="text" name="first_name" placeholder="First Name" />
-								<?php if (isset($errors['first_name'])): ?>
-									<small class="text-danger"><?= $errors['first_name'] ?></small>
-								<?php endif; ?>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Last Name</label>
-							<div class="col-sm-8">
-								<input class="form-control" type="text" name="last_name" placeholder="Last Name" />
-								<?php if (isset($errors['last_name'])): ?>
-									<small class="text-danger"><?= $errors['last_name'] ?></small>
-								<?php endif; ?>
-							</div>
-						</div>
-						<div class="form-group row">
+						<div class="form-group row text-right">
 							<label class="col-sm-2 col-form-label">Role</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="role">
@@ -50,10 +47,13 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<button class="btn btn-primary" type="submit">Create</button>
+							</div>
+						</div>
 					</form>
-				</div>
-				<div class="card-footer">
-					<button class="btn btn-primary" form="createUser" type="submit">Create</button>
 				</div>
 			</div>
 		</div>

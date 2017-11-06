@@ -14,7 +14,10 @@ class Ticket_Controller extends Base_Controller {
 
 
 	public function all() {
-		return print json_encode($this->db->get_where("main_tickets")->result_array());
+		return print json_encode(
+			$this->db->get("main_tickets")
+				->result_array()
+		);
 	}
 
 
@@ -35,6 +38,17 @@ class Ticket_Controller extends Base_Controller {
 			$this->db->insert("main_tickets", $ticket);
 		}
 
-		parent::main_page("tickets/create");
+		return parent::main_page("tickets/create");
+	}
+
+
+	public function show($ticket_id) {
+		$user = $this->authenticate->current_user();
+		$ticket = $this->db->get_where("main_tickets", ["id" => $ticket_id, "created_by" => $user->id])->row_array();
+
+		if ($ticket) {
+			return parent::main_page("tickets/show", ["ticket" => $ticket]);
+		}
+		return redirect("tickets");
 	}
 }

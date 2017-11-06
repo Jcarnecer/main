@@ -4,9 +4,7 @@
 			<div class="card">
 				<div class="card-header">Tickets</div>
 				<div class="card-body">
-					<table class="table table-hover" id="ticketTbl">
-						
-					</table>
+					<table class="table table-hover" id="ticketsTbl"></table>
 				</div>
 			</div>
 		</div>
@@ -17,7 +15,7 @@
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
 <script type="text/javascript">
-	var ticketTbl;
+	var ticketsTbl;
 
 	function getTickets() {
 		return $.ajax({
@@ -27,7 +25,8 @@
 	}
 
 	function init() {
-		ticketTbl = $("#ticketTbl").DataTable({
+		ticketsTbl = $("#ticketsTbl").DataTable({
+			data: "",
 			select: "single",
 			columns: [
 				{ 
@@ -35,7 +34,7 @@
 					data: "status",
 					render: function(status) {
 						if (status === "1") {
-							return "PENDING";
+							return "<span class='badge badge-danger'>PENDING</span>";
 						} else if (status === "2") {
 							return "OPEN";
 						} else if (status === "3") {
@@ -53,24 +52,25 @@
 				},
 				{ 
 					title: "Date",
-					data: "created_at",
-					render: function(created_at) {
-						return created_at;
-					}
+					data: "created_at"
 				}
 			]
 		});
 
-		ticketTbl.on("select", function(e, dt, type, indexes) {
+		ticketsTbl.on("select", function(e, dt, type, indexes) {
 			if (type === "row") {
+				var data = ticketsTbl.rows(indexes).data().pluck("id");
 				
+				if (data.length) {
+					window.location.href = "tickets/" + data[0];
+				}
 			}
 		});
 	
 		getTickets().done(function(data) {
-			ticketTbl.clear()
-					.rows.add($.parseJSON(data))
-					.draw();
+			ticketsTbl.clear()
+				.rows.add($.parseJSON(data))
+				.draw();
 		});
 	}
 
