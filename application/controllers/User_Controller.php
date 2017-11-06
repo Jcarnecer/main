@@ -54,7 +54,7 @@ class User_Controller extends Base_Controller {
 		$this->authenticate->is_login();
 		$user = $this->authenticate->current_user();
 
-		return $this->load->view('users/profile');
+		return parent::main_page('users/profile');
 	}
 
 
@@ -80,5 +80,38 @@ class User_Controller extends Base_Controller {
 	public function logout() {
 		$this->authenticate->logout_user();
 		redirect('/');
+	}
+
+
+	public function update() {
+		$this->load->helper(array('form'));
+		$this->load->view('update');
+	}
+
+
+	public function update_user() {
+		$user_id = $this->session->user->id;
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$data = [
+				'first_name' => $_POST['first_name'],
+				'last_name' => $_POST['last_name']
+			];
+
+			$this->user->update($user_id, $data);
+
+			redirect('users/profile');
+		}
+	}
+
+
+	public function change_password() {
+		$user_id = $this->session->user->id;
+
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$this->user->update($user_id, ['password' => $this->encryption->encrypt($_POST['password'])]);
+
+			redirect('users/profile');
+		}
+		return parent::main_page("users/change-password");
 	}
 }

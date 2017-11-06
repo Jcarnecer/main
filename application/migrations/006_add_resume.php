@@ -93,7 +93,7 @@ class Migration_Add_Resume extends CI_Migration {
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
 
-            'CONSTRAINT `role_ibfk_1` FOREIGN KEY (`pos_id`) REFERENCES `position` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `role_ibfk_1` FOREIGN KEY (`pos_id`) REFERENCES `position` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('role_id', TRUE);
@@ -239,8 +239,8 @@ class Migration_Add_Resume extends CI_Migration {
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
 
-            'CONSTRAINT `record_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON UPDATE CASCADE',
-            'CONSTRAINT `record_ibfk_2` FOREIGN KEY (`pos_id`) REFERENCES `position` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `record_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `record_ibfk_2` FOREIGN KEY (`pos_id`) REFERENCES `position` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
@@ -295,7 +295,7 @@ class Migration_Add_Resume extends CI_Migration {
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
 
-            'CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`record_id`) REFERENCES `record` (`id`) ON UPDATE CASCADE'
+            'CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`record_id`) REFERENCES `record` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);

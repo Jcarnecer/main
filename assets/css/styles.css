@@ -105,3 +105,13 @@ body {
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg); }
+
+.navbar {
+  max-height: 56px;
+}
+
+.img-avatar {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
