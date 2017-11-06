@@ -13,13 +13,13 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://localhost/chat/">
+			<a class="" href="http://chat.payakapps.com/">
 				<i class="fa fa-comment mr-2"></i>
 				<span>Chat</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://localhost/task/">
+			<a class="" href="http://task.payakapps.com/">
 				<i class="fa fa-sticky-note mr-2"></i>
 				<span>Notes</span>
 			</a>
