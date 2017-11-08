@@ -40,7 +40,7 @@ class User_Controller extends Base_Controller {
 			if (count($errors) == 0) {
 				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 				$this->user->insert_user($user_details);
-				copy("assets/img/avatar/default.png", "assets/img/avatar/{$user_details['id']}.png");
+				copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
 				# TODO: Send e-mail for user credentials
 				return redirect('users/create');
 			}
@@ -101,7 +101,7 @@ class User_Controller extends Base_Controller {
 	public function update_avatar() {
 		header("Cache-Control: no-cache, must-revalidate");
 
-		$config['upload_path'] = "./assets/img/avatar/";
+		$config['upload_path'] = "./upload/avatar/";
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 100;
         $config['max_width'] = 800;

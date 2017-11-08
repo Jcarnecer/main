@@ -6,7 +6,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-3">
-							<img class="img-fluid rounded mx-auto d-block w-100 avatar" src="<?= base_url("assets/img/avatar/{$user->id}.png") ?>" />
+							<img class="img-fluid rounded mx-auto d-block w-100 avatar" src="<?= base_url("upload/avatar/{$user->id}.png") ?>" />
 							<form class="mt-3" id="uploadAvatarFrm" method="POST" action="<?= base_url("users/profile/update-avatar") ?>" enctype="multipart/form-data">
 								<input class="form-control-file" type="file" id="avatar" name="avatar" accept="image/*" />
 								<label class="btn btn-primary btn-block" for="avatar">Upload new avatar</label>

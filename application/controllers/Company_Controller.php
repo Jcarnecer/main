@@ -34,7 +34,7 @@ class Company_Controller extends CI_Controller {
 				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 				$this->company->insert_company($company_details);
 				$this->user->insert_user($user_details);
-				copy("/assets/img/profile/default.png", "/assets/img/profile/{$user_details['id']}.png");
+				copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
 				return redirect("users/login");
 			}
 		}
