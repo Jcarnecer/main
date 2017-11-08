@@ -51,16 +51,12 @@ class User_Controller extends Base_Controller {
 
 
 	public function profile() {
-		$this->authenticate->is_login();
-		$user = $this->authenticate->current_user();
-
 		return parent::main_page('users/profile');
 	}
 
 
 	public function login() {
 		$this->authenticate->is_guest();
-
 		$error = null;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -83,35 +79,90 @@ class User_Controller extends Base_Controller {
 	}
 
 
+
 	public function update() {
-		$this->load->helper(array('form'));
-		$this->load->view('update');
-	}
-
-
-	public function update_user() {
 		$user_id = $this->session->user->id;
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		
+		if($this->input->server("REQUEST_METHOD") === "POST") {
 			$data = [
-				'first_name' => $_POST['first_name'],
-				'last_name' => $_POST['last_name']
+				"first_name" => $this->input->post("first_name"),
+				"last_name" => $this->input->post("last_name")
 			];
 
 			$this->user->update($user_id, $data);
-
-			redirect('users/profile');
+			$user = $this->db->get_where("users", ["id" => $user_id])->row();
+			unset($user->password);
+			$this->session->set_userdata("user", $user);
 		}
+
+		redirect("users/profile");
 	}
 
+	public function update_avatar() {
+		header("Cache-Control: no-cache, must-revalidate");
+
+		$config['upload_path'] = "./assets/img/avatar/";
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 100;
+        $config['max_width'] = 800;
+        $config['max_height'] = 800;
+        $config['file_name'] = "{$this->session->user->id}.png";
+        $config["overwrite"] = TRUE;
+
+		$this->load->library("upload", $config);
+
+		if (!$this->upload->do_upload("avatar")) {
+			return redirect("users/profile");
+		}
+		return redirect("users/profile");
+	}
 
 	public function change_password() {
 		$user_id = $this->session->user->id;
 
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->user->update($user_id, ['password' => $this->encryption->encrypt($_POST['password'])]);
+		if($this->input->server("REQUEST_METHOD") === "POST") {
 
-			redirect('users/profile');
+			$this->form_validation->set_rules([
+				[
+					"field" => "password", 
+					"label" => "password",
+					"rules" => [
+						"required", 
+						[
+							"password_check",
+							function($password) {
+								$user_id = $this->session->user->id;
+								$user = $this->db->get_where("users", ["id" => $user_id])->row_array();
+
+								return $this->encryption->decrypt($user["password"]) === $password;
+							}
+						]
+					]
+
+				],
+				[
+					"field" => "new_password", 
+					"label" => "new password",
+					"rules" => "required|differs[password]"
+				],
+				[
+					"field" => "confirm_password", 
+					"label" => "confirm password",
+					"rules" => "required|matches[new_password]"
+				]
+			]);
+			$this->form_validation->set_message("password_check", "The password field is incorrect");
+
+			if ($this->form_validation->run()) {
+				$this->user->update(
+					$user_id, 
+					['password' => $this->encryption->encrypt($this->input->post("new_password"))]
+				);
+				redirect('users/profile');
+			}
+			
 		}
 		return parent::main_page("users/change-password");
 	}
 }
+	

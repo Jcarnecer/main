@@ -53,7 +53,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
-						<a class="dropdown-item" href="<?= base_url("users/change-password") ?>">My Password</a>
+						<a class="dropdown-item" href="<?= base_url("users/profile/change-password") ?>">My Password</a>
 						<a class="dropdown-item" href="<?= base_url("subscriptions") ?>">My Subscriptions</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>

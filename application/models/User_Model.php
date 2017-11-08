@@ -32,6 +32,6 @@ class User_Model extends CI_Model {
 
 
 	public function update($id, $user_details) {
-		return $this->db->update('users', $user_details, "id = '$id'");
+		return $this->db->update("users", $user_details, ["id" => $id]);
 	}
 }

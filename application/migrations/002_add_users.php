@@ -52,6 +52,11 @@ class Migration_Add_Users extends CI_Migration {
 				'type'			 => 'TINYINT',
 				'constraint'	 => 1
 			],
+			"uuid" => [
+				"type" 			=> "VARCHAR",
+				"constraint" 	=> 11,
+				"null"			=> true
+			],
 			
 			'CONSTRAINT `users_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 		]);

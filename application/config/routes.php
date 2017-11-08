@@ -13,19 +13,9 @@ $route['users/logout'] = 'User_Controller/logout';
 $route['users/create'] = 'User_Controller/create';
 $route['users'] = 'User_Controller/all';
 $route['users/profile'] = 'User_Controller/profile';
-$route['users/profile/update'] = 'User_Controller/update';
-$route['users/change-password'] = "User_Controller/change_password";
-
-/*
-$route["tickets"] = "Ticket_Controller/index";
-$route["tickets/all"] = "Ticket_Controller/all";
-$route["tickets/create"] = "Ticket_Controller/create";
-$route["tickets/(:any)"] = "TIcket_Controller/show/$1";
-*/
-
-$route["subscriptions"] = "Subscription_Controller/index";
-$route["modules/all"] = "Module_Controller/all";
-
+$route['users/profile/update']["POST"] = 'User_Controller/update';
+$route['users/profile/change-password'] = "User_Controller/change_password";
+$route['users/profile/update-avatar']['POST'] = "User_Controller/update_avatar";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
