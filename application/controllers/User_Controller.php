@@ -112,7 +112,7 @@ class User_Controller extends Base_Controller {
 		$this->load->library("upload", $config);
 
 		if (!$this->upload->do_upload("avatar")) {
-			return redirect("users/profile");
+			return print json_encode("Error");
 		}
 		return redirect("users/profile");
 	}
