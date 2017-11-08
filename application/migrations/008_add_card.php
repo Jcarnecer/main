@@ -63,7 +63,7 @@ class Migration_Add_Card extends CI_Migration {
                 'constraint'     => 11
             ],
 
-            'CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
 
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
