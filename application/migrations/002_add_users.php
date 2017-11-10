@@ -5,14 +5,41 @@ class Migration_Add_Users extends CI_Migration {
 
 
 	public function up() {
+		$this->roles();
 		$this->users();
 	}
 
 
 	public function down() {
-		$this->dbforge->drop_table('users', TRUE);
+		$this->dbforge->drop_table("roles", TRUE);
+		$this->dbforge->drop_table("users", TRUE);
 	}
 
+	public function roles() {
+		$this->dbforge->add_field([
+			"id" => [
+				"type" => "VARCHAR",
+				"constraint" => 11
+			],
+			"company_id" => [
+				"type" => "VARCHAR",
+				"constraint" => 11,
+				"null" => true
+			],
+			"name" => [
+				"type" => "VARCHAR",
+				"constraint" => 20
+			],
+			"permission" => [
+				"type" => "BIGINT"
+			],
+			'CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+		]);
+
+		$this->dbforge->add_key("id", TRUE);
+		$this->dbforge->add_key("company_id");
+		$this->dbforge->create_table("roles");
+	}
 
 	public function users() {
 		$this->dbforge->add_field([
@@ -49,8 +76,8 @@ class Migration_Add_Users extends CI_Migration {
 			],
 			'role'			  => [
 
-				'type'			 => 'TINYINT',
-				'constraint'	 => 1
+				'type'			 => 'VARCHAR',
+				'constraint'	 => 11
 			],
 			"uuid" => [
 				"type" 			=> "VARCHAR",
@@ -58,7 +85,8 @@ class Migration_Add_Users extends CI_Migration {
 				"null"			=> true
 			],
 			
-			'CONSTRAINT `users_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+			'CONSTRAINT `users_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+			'CONSTRAINT `users_ibfk_2` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 		]);
 
 		$this->dbforge->add_key('id', TRUE);

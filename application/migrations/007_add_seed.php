@@ -5,28 +5,27 @@ class Migration_Add_Seed extends CI_Migration {
 
 
     public function up() {
-
         $this->companies_seed();
+        $this->roles_seed();
         $this->users_seed();
     }
 
 
     public function down() {
-
         $ids = [
-                    'epdcLitviUK',
-                    'eGd2Lit5ic9', 
-                    'Ex31rijL0zT', 
-                    'XzdG2i1vRUK', 
-                    'A2d3LiX1iUK', 
-                    'e21cLiCsVUK', 
-                    'epv3LXtGiBO', 
-                    'FpvRLXtG37O', 
-                    'Ipv123tGHBO', 
-                    'UpY3RXttiBO', 
-                    '5pv3LX6GiB9', 
-                    'Rp23LXt19BO'
-                ];
+            'epdcLitviUK',
+            'eGd2Lit5ic9', 
+            'Ex31rijL0zT', 
+            'XzdG2i1vRUK', 
+            'A2d3LiX1iUK', 
+            'e21cLiCsVUK', 
+            'epv3LXtGiBO', 
+            'FpvRLXtG37O', 
+            'Ipv123tGHBO', 
+            'UpY3RXttiBO', 
+            '5pv3LX6GiB9', 
+            'Rp23LXt19BO'
+        ];
         $this->db->where_in('id', $ids);
         $this->db->delete('users');
         $this->db->where('id', 'BM2RHidnpvG');
@@ -35,15 +34,36 @@ class Migration_Add_Seed extends CI_Migration {
 
 
     public function companies_seed() {
-
         $data = [['id' => 'BM2RHidnpvG', 'name' => 'Astrid Technologies']];
-
         return $this->db->insert_batch('companies', $data);
     }
 
+    public function roles_seed() {
+        $roles = [
+            [
+                "id" => "1",
+                "company_id" => null,
+                "name" => "Root",
+                "permission" => 0x03
+            ],
+            [
+                "id" => "2",
+                "company_id" => "BM2RHidnpvG",
+                "name" => "Admin",
+                "permission" => 0x03
+            ],
+            [
+                "id" => "3",
+                "company_id" => "BM2RHidnpvG",
+                "name" => "Staff",
+                "permission" => 0x00
+            ]
+        ];
+
+        return $this->db->insert_batch("roles", $roles);
+    }
 
     public function users_seed() {
-
         $data = [
 
             [

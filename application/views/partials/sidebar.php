@@ -24,16 +24,25 @@
 				<span>Notes</span>
 			</a>
 		</li>
+		<?php if (($user->permissions & $permission->USER_LIST) === $permission->USER_LIST || 
+				  ($user->permissions & $permission->USER_CREATE) === $permission->USER_CREATE): ?>
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
 				<span>Users</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
-				<li><a  href="<?= base_url('users') ?>">View Users</a></li>
-				<li><a  href="<?= base_url('users/create') ?>">Create User</a></li>
+				<?php if (($user->permissions & $permission->USER_LIST) === $permission->USER_LIST): ?>
+					<li><a  href="<?= base_url('users') ?>">View Users</a></li>
+				<?php endif; ?>
+				<?php if (($user->permissions & $permission->USER_CREATE) ===  $permission->USER_CREATE): ?>
+					<li><a  href="<?= base_url('users/create') ?>">Create User</a></li>
+				<?php endif; ?>
+				<li><a href="<?= base_url("roles") ?>"?>Roles</a></li>
 			</ul>
 		</li>
+		<?php endif; ?>
+		<li class="sub-menu">
 	</ul>
 	<!-- sidebar menu end-->
 </div>
@@ -54,7 +63,6 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
 						<a class="dropdown-item" href="<?= base_url("users/profile/change-password") ?>">My Password</a>
-						<a class="dropdown-item" href="<?= base_url("subscriptions") ?>">My Subscriptions</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>
 					</div>

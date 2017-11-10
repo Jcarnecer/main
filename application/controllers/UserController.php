@@ -1,52 +1,63 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_Controller extends Base_Controller {
+class UserController extends Base_Controller {
 
 	public function __construct() {
 		parent::__construct();
 	}
 
 
-	public function all() {
-		$this->authenticate->is_login();
+	public function index() {
 		$user = $this->authenticate->current_user();
 
-		return parent::main_page("users/index", [
-			'company_id' => $user->company_id,
-			'users' => $this->user->get_users(['company_id' => $user->company_id])
-		]);
-	}
-
-
-	public function create() {
-		$this->authenticate->is_login();
-		$user = $this->authenticate->current_user();
-
-		$errors = [];
-		if ($_SERVER['REQUEST_METHOD'] == "POST") {
-			$user_details = [
-				'id' => $this->utilities->create_random_string(),
-				'company_id' => $user->company_id,
-				'first_name' => $_POST['first_name'],
-				'last_name' => $_POST['last_name'],
-				'email_address' => $_POST['email_address'],
-				'password' => $_POST['password'],
-				'role' => $_POST['role']
-			];
-
-			$errors = $this->utilities->validate_user_details($user_details);
-
-			if (count($errors) == 0) {
-				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
-				$this->user->insert_user($user_details);
-				copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
-				# TODO: Send e-mail for user credentials
-				return redirect('users/create');
-			}
+		if ($user && 
+			($user->permissions & $this->permission->USER_LIST) === $this->permission->USER_LIST) {
+			return parent::main_page("users/index", [
+				"company_id" => $user->company_id,
+				"users" => $this->user->get_users(['company_id' => $user->company_id])
+			]);
 		}
 
-		return parent::main_page("users/create", ['errors' => $errors]);
+		return redirect("/");
+	}
+
+	public function create() {
+		$user = $this->session->userdata("user");
+
+		if ($user &&
+			($user->permissions & $this->permission->USER_CREATE) === $this->permission->USER_CREATE) {
+
+			$errors = [];
+			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+				$user_details = [
+					'id' => $this->utilities->create_random_string(),
+					'company_id' => $user->company_id,
+					'first_name' => $_POST['first_name'],
+					'last_name' => $_POST['last_name'],
+					'email_address' => $_POST['email_address'],
+					'password' => $_POST['password'],
+					'role' => $_POST['role']
+				];
+
+				$errors = $this->utilities->validate_user_details($user_details);
+
+				if (count($errors) == 0) {
+					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
+					$this->user->insert_user($user_details);
+					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
+					# TODO: Send e-mail for user credentials
+					return redirect('users/create');
+				}
+			}
+
+			return parent::main_page("users/create", [
+				'roles' => $this->db->get_where("roles", ["company_id" => $user->company_id])->result_array(), 
+				'errors' => $errors
+			]);
+		}
+		
+		return redirect("/");
 	}
 
 

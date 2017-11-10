@@ -44,9 +44,39 @@ class Company_Controller extends CI_Controller {
 
 
 	public function users($company_id) {
-		return print json_encode($this->db->get_where('users', ['company_id' => $company_id])->result_array());
+		header("Content-type: application/json");
+
+		$users = 
+			$this->db->select("users.id, users.first_name, users.last_name, users.email_address, roles.name as role")
+			->from("users")
+			->join("roles", "roles.id = users.role")
+			->where(["users.company_id" => $company_id])
+			->get()
+			->result_array();
+
+		return print json_encode(
+			$users,
+			JSON_PRETTY_PRINT
+		);
 	}
 
+	public function roles() {
+		header("Content-Type: application/json");
+		$user = $this->authenticate->current_user();
+
+		if ($user && 
+			($user->permissions & $this->permission->ROLE_LIST) === $this->permission->ROLE_LIST) {
+
+			$roles = [];
+			foreach ($this->db->get_where("roles", ["company_id" => $user->company_id])->result_array() as $role) {
+				$role["user_count"] = $this->db->get_where("users", ["role" => $role["id"]])->num_rows();
+				array_push($roles, $role);
+			}
+			
+			return print json_encode($roles, JSON_PRETTY_PRINT);
+		}
+		return print json_encode(["error" => "Authentication error"], JSON_PRETTY_PRINT);
+	}
 
 	public function subscriptions($company_id) {
 		return print json_encode(

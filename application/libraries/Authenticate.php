@@ -24,7 +24,12 @@ class Authenticate {
 
 
 	public function current_user() {
-		return $this->CI->session->userdata('user');
+		if ($this->CI->session->user) {
+			$user = $this->CI->session->user;
+			$user->permissions = $this->CI->db->get_where("roles", ["id" => $user->role])->row_array()["permission"];
+			return $user;
+		}
+		return NULL;
 	}
 
 

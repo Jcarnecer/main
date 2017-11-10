@@ -38,13 +38,17 @@
 								<?php endif; ?>
 							</div>
 						</div>
-						<div class="form-group row text-right">
-							<label class="col-sm-2 col-form-label">Role</label>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label text-right">Role</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="role">
-									<option value="2">Admin</option>
-									<option value="3">Staff</option>
+									<?php foreach ($roles as $role): ?>
+									<option value="<?= $role["id"] ?>"><?= $role["name"] ?></option>
+									<?php endforeach; ?>
 								</select>
+							</div>
+							<div class="col-sm-4">
+								<a href="#">Create role</a>
 							</div>
 						</div>
 						<div class="form-group row">
