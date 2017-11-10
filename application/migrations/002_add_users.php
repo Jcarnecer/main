@@ -6,13 +6,17 @@ class Migration_Add_Users extends CI_Migration {
 
 	public function up() {
 		$this->roles();
+		$this->permissions();
+		$this->roles_permissions();
 		$this->users();
 	}
 
 
 	public function down() {
-		$this->dbforge->drop_table("roles", TRUE);
 		$this->dbforge->drop_table("users", TRUE);
+		$this->dbforge->drop_table("roles_permissions", TRUE);
+		$this->dbforge->drop_table("permissions", TRUE);
+		$this->dbforge->drop_table("roles", TRUE);
 	}
 
 	public function roles() {
@@ -30,8 +34,8 @@ class Migration_Add_Users extends CI_Migration {
 				"type" => "VARCHAR",
 				"constraint" => 20
 			],
-			"permission" => [
-				"type" => "BIGINT"
+			"created_at" => [
+				"type" => "DATETIME"
 			],
 			'CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 		]);
@@ -39,6 +43,44 @@ class Migration_Add_Users extends CI_Migration {
 		$this->dbforge->add_key("id", TRUE);
 		$this->dbforge->add_key("company_id");
 		$this->dbforge->create_table("roles");
+	}
+
+	public function permissions() {
+		$this->dbforge->add_field([
+			"id" => [
+				"type" => "VARCHAR",
+				"constraint" => "11"
+			],
+			"name" => [
+				"type" => "VARCHAR",
+				"constraint" => "50"
+			],
+			"description" => [
+				"type" => "TEXT"
+			]
+		]);
+
+		$this->dbforge->add_key("id", TRUE);
+		$this->dbforge->create_table("permissions");
+	}
+
+	public function roles_permissions() {
+		$this->dbforge->add_field([
+			"role_id" => [
+				"type" => "VARCHAR",
+				"constraint" => "11"
+			],
+			"permission_id" => [
+				"type" => "VARCHAR",
+				"constraint" => "11"
+			],
+			'CONSTRAINT `roles_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+			'CONSTRAINT `roles_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+		]);
+
+		$this->dbforge->add_key("role_id");
+		$this->dbforge->add_key("permission_id");
+		$this->dbforge->create_table("roles_permissions");
 	}
 
 	public function users() {

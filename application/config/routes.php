@@ -19,11 +19,13 @@ $route['users/profile/update-avatar']['POST'] = "UserController/update_avatar";
 
 $route["roles"] = "RoleController/index";
 $route["roles/create"] = "RoleController/create";
+$route["roles/(:any)/permissions/add"] = "RoleController/add_permission/$1";
 $route["roles/(:any)"] = "RoleController/view/$1";
 
 $api_url = "api/dev";
 $route["{$api_url}/companies/roles"] = "Company_Controller/roles";
-$route["{$api_url}/roles/(:any)"] = "RoleController/view_rest/$1";
+$route["{$api_url}/roles/(:any)"] = "APIController/get_role/$1";
+$route["{$api_url}/roles/(:any)/permissions"] = "APIController/get_roles_permissions/$1";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

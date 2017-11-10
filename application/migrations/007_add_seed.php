@@ -7,6 +7,8 @@ class Migration_Add_Seed extends CI_Migration {
     public function up() {
         $this->companies_seed();
         $this->roles_seed();
+        $this->permissions_seed();
+        $this->roles_permissions_seed();
         $this->users_seed();
     }
 
@@ -44,23 +46,107 @@ class Migration_Add_Seed extends CI_Migration {
                 "id" => "1",
                 "company_id" => null,
                 "name" => "Root",
-                "permission" => 0x03
             ],
             [
                 "id" => "2",
                 "company_id" => "BM2RHidnpvG",
-                "name" => "Admin",
-                "permission" => 0x03
+                "name" => "Admin"
             ],
             [
                 "id" => "3",
                 "company_id" => "BM2RHidnpvG",
-                "name" => "Staff",
-                "permission" => 0x00
+                "name" => "Staff"
             ]
         ];
 
         return $this->db->insert_batch("roles", $roles);
+    }
+
+    public function permissions_seed() {
+        $permissions = [
+            [
+                "id" => "ROLE_LIST",
+                "name" => "ROLE_LIST",
+                "description" => "Allows user to view the list of roles"
+            ],
+            [
+                "id" => "ROLE_VIEW",
+                "name" => "ROLE_VIEW",
+                "description" => "Allows user to view roles"
+            ],
+            [
+                "id" => "ROLE_CREATE",
+                "name" => "ROLE_CREATE",
+                "description" => "Allows user to create roles"
+            ],
+            [
+                "id" => "ROLE_UPDATE",
+                "name" => "ROLE_UPDATE",
+                "description" => "Allows user to update roles"
+            ],
+            [
+                "id" => "USER_LIST",
+                "name" => "USER_LIST",
+                "description" => "Allows user to view the list of users"
+            ],
+            [
+                "id" => "USER_VIEW",
+                "name" => "USER_VIEW",
+                "description" => "Allows user to view users"
+            ],
+            [
+                "id" => "USER_CREATE",
+                "name" => "USER_CREATE",
+                "description" => "Allows user to create users"
+            ],
+            [
+                "id" => "USER_UPDATE",
+                "name" => "USER_UPDATE",
+                "description" => "Allows user to update users"
+            ],
+            [
+                "id" => "USER_DELETE",
+                "name" => "USER_UPDATE",
+                "description" => "Allows user to delete users"
+            ]
+        ];
+
+        return $this->db->insert_batch("permissions", $permissions);
+    }
+
+    public function roles_permissions_seed() {
+        $roles_permissions = [
+            [
+                "role_id" => "1",
+                "permission_id" => "ROLE_LIST"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "ROLE_CREATE"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "ROLE_UPDATE"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "USER_LIST"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "USER_CREATE"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "USER_UPDATE"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "USER_DELETE"
+            ]
+        ];
+
+        return $this->db->insert_batch("roles_permissions", $roles_permissions);
     }
 
     public function users_seed() {

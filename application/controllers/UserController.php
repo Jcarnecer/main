@@ -12,7 +12,8 @@ class UserController extends Base_Controller {
 		$user = $this->authenticate->current_user();
 
 		if ($user && 
-			($user->permissions & $this->permission->USER_LIST) === $this->permission->USER_LIST) {
+			in_array("USER_LIST", $user->permissions)) {
+
 			return parent::main_page("users/index", [
 				"company_id" => $user->company_id,
 				"users" => $this->user->get_users(['company_id' => $user->company_id])
@@ -26,7 +27,7 @@ class UserController extends Base_Controller {
 		$user = $this->session->userdata("user");
 
 		if ($user &&
-			($user->permissions & $this->permission->USER_CREATE) === $this->permission->USER_CREATE) {
+			in_array("USER_CREATE", $user->permissions)) {
 
 			$errors = [];
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {

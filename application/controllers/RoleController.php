@@ -9,41 +9,38 @@ class RoleController extends Base_Controller {
 
 
 	public function index() {
-		return parent::main_page("role/index.php");
-	}
-
-
-	public function view($role_id) {
 		$user = $this->authenticate->current_user();
 
 		if ($user &&
-			($user->permissions & $this->permission->ROLE_VIEW) === $this->permission->ROLE_VIEW) {
+			in_array("ROLE_LIST", $user->permissions)) {
+			return parent::main_page("role/index.php");
+		}
 
-			$role = $this->db->get_where("roles", ["id" => $role_id])->row_array();
+		return redirect("/");
+	}
+
+
+	public function view($name) {
+		$user = $this->authenticate->current_user();
+
+		if ($user &&
+			in_array("ROLE_VIEW", $user->permissions)) {
+
+			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
 			return parent::main_page("role/view.php", ["role" => $role]);
 		}
 
 		return redirect("/");
 	}
 
-	public function view_rest($role_id) {
-		header("Content-Type: application/json");
+	public function add_permission($name) {
 		$user = $this->authenticate->current_user();
 
 		if ($user &&
-			($user->permissions & $this->permission->ROLE_VIEW) === $this->permission->ROLE_VIEW) {
-
-			$role = $this->db->get_where("roles", ["id" => $role_id])->row_array();
-
-			$role["users"] = $this->db->select("users.id, users.first_name, users.last_name")
-				->from("users")
-				->where(["role" => $role_id])
-				->get()
-				->result_array();
-
-			return print json_encode($role, JSON_PRETTY_PRINT);
+			in_array("ROLE_UPDATE", $user->permissions)) {
+			return parent::main_page("role/add_permissions.php", ["permissions" => $permissions]);
 		}
 
-		return print json_encode(["error" => "Authentication issues"]);	
+		return redirect("/");
 	}
 }

@@ -26,7 +26,12 @@ class Authenticate {
 	public function current_user() {
 		if ($this->CI->session->user) {
 			$user = $this->CI->session->user;
-			$user->permissions = $this->CI->db->get_where("roles", ["id" => $user->role])->row_array()["permission"];
+
+			$user->permissions = [];
+			foreach ($this->CI->db->get_where("roles_permissions", ["role_id" => $user->role])->result_array() as $role_permissions) {
+				$user->permissions[] = $role_permissions["permission_id"];
+			}
+
 			return $user;
 		}
 		return NULL;
