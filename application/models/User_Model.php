@@ -12,11 +12,12 @@ class User_Model extends CI_Model {
 
 	public function authenticate_user($email_address, $password) {
 		$user = $this->db->get_where('users', ['email_address' => $email_address])->row();
-		if ($user && 
-			$this->encryption->decrypt($user->password) === $password) {
+
+		if ($user && $this->encryption->decrypt($user->password) === $password) {
 			$this->authenticate->login_user($user);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -33,5 +34,9 @@ class User_Model extends CI_Model {
 
 	public function update($id, $user_details) {
 		return $this->db->update("users", $user_details, ["id" => $id]);
+	}
+
+	public function can($user, $permission) {
+		return ($user->permissions & $permission) === $permission;
 	}
 }

@@ -3,16 +3,7 @@
 		<div class="col-sm-12">
 			<div class="card mt-3">
 				<div class="card-body">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Last Name</th>
-								<th>First Name</th>
-								<th>E-mail Address</th>
-								<th>Role</th>
-							</tr>
-						</thead>
-					</table>
+					<table class="table table-striped"></table>
 				</div>
 			</div>
 		</div>
@@ -28,20 +19,10 @@
 			dataSrc: ''
 		},
 		columns: [
-			{ data: 'last_name' },
-			{ data: 'first_name' },
-			{ data: 'email_address' },
-			{ 
-				data: function(user) {
-					if (user.role == "1") {
-						return "Root";
-					} else if (user.role == "2") {
-						return "Admin";
-					} else if (user.role == "3") {
-						return "Staff";
-					}
-				} 
-			}
+			{ title: "Last Name", data: 'last_name' },
+			{ title: "First Name", data: 'first_name' },
+			{ title: "E-mail Address", data: 'email_address' },
+			{ title: "Role", data: "role" }
 		]
 	});
 </script>
