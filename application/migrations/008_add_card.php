@@ -5,7 +5,6 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function up() {
-
         $this->cards(); 
         $this->comments();
         $this->cards_tagging();
@@ -14,7 +13,6 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function down() {
-
         $this->dbforge->drop_table('viewers');
         $this->dbforge->drop_table('cards_tagging');
         $this->dbforge->drop_table('comments');
@@ -23,7 +21,6 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function cards() {
-
         $this->dbforge->add_field([
 
             'id'              => [

@@ -1,19 +1,46 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class APIController extends Base_Controller {
+class APIController extends BaseController {
 
 	public function __construct() {
 		parent::__construct();
-		header("Content-Type: application/json");
+		$this->output->set_content_type("application/json");
 	}
 
+	public function get_current_user() {
+		return $this->output->set_output(json_encode($this->user->current_user(), JSON_PRETTY_PRINT));
+	}
 
-	public function get_role($name) {		
+	public function get_company_users() {
+		$data = [];
+		$user = $this->user->current_user();
+
+		if ($user && in_array("USER_LIST", $user->permissions)) {
+			$this->output->set_status_header(200);
+
+			foreach ($this->user->get_many_by(["company_id" => $user->company_id]) as $_user) {
+				$_user["role"] = $this->role->get($_user["role"]);
+				unset($_user["password"]);
+				unset($_user["role"]["id"]);
+				unset($_user["role"]["company_id"]);
+				$data[] = $_user;
+			}
+		} else {
+			$this->output->set_status_header(400);
+			$data["error"] = [
+				"message" => "Authentication error"
+			];
+		}
+
+		return $this->output->set_output(json_encode($data, JSON_PRETTY_PRINT));
+	}
+
+	public function get_role($name) {
+		$data = [];
 		$user = $this->authenticate->current_user();
 
-		if ($user &&
-			in_array("ROLE_VIEW", $user->permissions)) {
+		if ($user && in_array("ROLE_VIEW", $user->permissions)) {
 
 			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
 			$role["users"] = $this->db->select("users.id, users.first_name, users.last_name")

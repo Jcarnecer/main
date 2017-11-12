@@ -26,20 +26,13 @@ class Migration_Add_Companies extends CI_Migration {
 
 
 	public function down() {
-		$this->dbforge->drop_table('companies', TRUE);
-		$this->dbforge->drop_table('ci_sessions', TRUE);
+		$this->dbforge->drop_table("companies", TRUE);
+		
+		$this->dbforge->drop_table("ci_sessions", TRUE);
 	}
 
 
 	public function sessions() {
-		/*
-			CREATE TABLE `ci_sessions` (
-			  `id` varchar(128) NOT NULL,
-			  `ip_address` varchar(45) NOT NULL,
-			  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
-			  `data` blob NOT NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-		 */
 		$this->dbforge->add_field([
 			"id" => [
 				"type" => "VARCHAR",

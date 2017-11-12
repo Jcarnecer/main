@@ -1,5 +1,5 @@
-<div class="container-fluid">
-	<div class="row justify-content-center mt-3">
+<div class="container-fluid mt-3">
+	<div class="row justify-content-center">
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-header">Create User</div>

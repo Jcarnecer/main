@@ -1,10 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Company_Model extends CI_Model {
+class CompanyModel extends BaseModel {
 
 	public $id;
 	public $name;
+
+	public $table = "companies";
+
+	public function __construct() {
+		parent::__construct();
+	}
 
 	public function insert_company($company_details) {
 		return $this->db->insert('companies', $company_details);

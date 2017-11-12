@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ticket_Controller extends Base_Controller {
+class Ticket_Controller extends BaseController {
 
 	public function __construct() {
 		parent::__construct();

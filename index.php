@@ -54,7 +54,6 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -71,6 +70,8 @@ switch (ENVIRONMENT)
 	break;
 
 	case 'testing':
+		break;
+
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
