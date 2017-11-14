@@ -8,7 +8,7 @@ class UserController extends BaseController {
 	}
 
 	public function index() {
-		$user = $this->user->current_user();
+		$user = parent::current_user();
 
 		if ($user && in_array("USER_LIST", $user->permissions)) {
 			return parent::main_page("users/index");
@@ -18,11 +18,9 @@ class UserController extends BaseController {
 	}
 
 	public function create() {
-		$user = $this->session->userdata("user");
+		$user = parent::current_user();
 
 		if ($user && in_array("USER_CREATE", $user->permissions)) {
-
-			$errors = [];
 			if ($this->input->server("REQUEST_METHOD") === "POST") {
 				$user_details = [
 					"id" => $this->utilities->create_random_string(),
@@ -30,79 +28,95 @@ class UserController extends BaseController {
 					"first_name" => $this->input->post("first_name"),
 					"last_name" => $this->input->post('last_name'),
 					"email_address" => $this->input->post('email_address'),
-					"password" => $_POST['password'],
-					"role" => $_POST['role']
+					"password" => $this->input->post('password'),
+					"role" => $this->input->post('role')
 				];
 
-				$errors = $this->utilities->validate_user_details($user_details);
+				$this->form_validation->set_rules("first_name", "first name", "required|alpha_numeric_spaces");
+				$this->form_validation->set_rules("last_name", "last name", "required|alpha_numeric_spaces");
+				$this->form_validation->set_rules("email_address", "e-mail address", "required|valid_email");
+				$this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[20]");
+				$this->form_validation->set_rules("role", "role", "required");
 
-				if (count($errors) == 0) {
+				if ($this->form_validation->run()) {
 					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 					$this->user->insert_user($user_details);
 					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
 					# TODO: Send e-mail for user credentials
-					return redirect('users/create');
+					return redirect("users/create");
 				}
 			}
 
-			return parent::main_page("users/create", [
-				'roles' => $this->db->get_where("roles", ["company_id" => $user->company_id])->result_array(), 
-				'errors' => $errors
-			]);
+			return parent::main_page("users/create", 
+				["roles" => $this->role->get_many_by(["company_id" => $user->company_id])]
+			);
 		}
 		
 		return redirect("/");
 	}
 
 	public function profile() {
-		return parent::main_page('users/profile');
+		$user = parent::current_user();
+
+		if ($user) {
+			return parent::main_page('users/profile');
+		}
+		return redirect("/");
 	}
 
-	public function login() {
-		$this->authenticate->is_guest();
-		$error = "";
+	public function get_login() {
+		$user = parent::current_user();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$email_address = $_POST['email_address'];
-			$password = $_POST['password'];
+		if (!$user) {
+			return $this->load->view("users/login");
+		}
+		return redirect("/");
+	}
+
+	public function post_login() {
+		$user = parent::current_user();
+
+		if (!$user) {
+			$email_address = $this->input->post('email_address');
+			$password = $this->input->post('password');
 
 			if ($this->user->authenticate_user($email_address, $password)) {
-				return redirect('/');
+				return redirect("/");
+			} else {
+				$this->session->set_flashdata("message", "Invalid login credentials");
+				return redirect("users/login");
 			}
-			
-			$error = "Invalid login credentials";
 		}
-		return $this->load->view('users/login', ['error' => $error]);
+		return redirect("/");
 	}
-
 
 	public function logout() {
-		$this->authenticate->logout_user();
-		redirect('/');
+		$this->session->unset_userdata("user");
+		return redirect("/");
 	}
 
-
-
 	public function update() {
-		$user_id = $this->session->user->id;
+		$user = parent::current_user();
 		
-		if($this->input->server("REQUEST_METHOD") === "POST") {
-			$data = [
-				"first_name" => $this->input->post("first_name"),
-				"last_name" => $this->input->post("last_name")
-			];
+		if ($user) {
+			if($this->input->server("REQUEST_METHOD") === "POST") {
+				$data = [
+					"first_name" => $this->input->post("first_name"),
+					"last_name" => $this->input->post("last_name")
+				];
 
-			$this->user->update($user_id, $data);
-			$user = $this->db->get_where("users", ["id" => $user_id])->row();
-			unset($user->password);
-			$this->session->set_userdata("user", $user);
+				$this->user->update($user->id, $data);
+				$user = $this->db->get_where("users", ["id" => $user->id])->row();
+				unset($user->password);
+				$this->session->set_userdata("user", $user);
+			}	
+
+			return redirect("users/profile");
 		}
-
-		redirect("users/profile");
 	}
 
 	public function update_avatar() {
-		header("Cache-Control: no-cache, must-revalidate");
+		$this->output->set_content_type("Cache-Control: no-store, no-cache, must-revalidate");
 
 		$config['upload_path'] = "./upload/avatar/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -112,60 +126,32 @@ class UserController extends BaseController {
         $config['file_name'] = "{$this->session->user->id}.png";
         $config["overwrite"] = TRUE;
 
-		$this->load->library("upload", $config);
+		$this->upload->initialize($config);
 
 		if (!$this->upload->do_upload("avatar")) {
-			return print json_encode($this->upload->display_errors());
+			$this->session->set_flashdata("message", $this->upload->display_errors("", ""));
 		}
+
 		return redirect("users/profile");
 	}
 
 	public function change_password() {
-		$user_id = $this->session->user->id;
+		$user = $this->user->current_user();
+		if ($user) {
+			if($this->input->server("REQUEST_METHOD") === "POST") {
+				$this->form_validation->set_rules("password", "password", "required|password_check");
+				$this->form_validation->set_rules("new_password", "new password", "required|min_length[8]|max_length[20]|differs[password]");
+				$this->form_validation->set_rules("confirm_password", "confirm password", "required|matches[new_password]");
 
-		if($this->input->server("REQUEST_METHOD") === "POST") {
-
-			$this->form_validation->set_rules([
-				[
-					"field" => "password", 
-					"label" => "password",
-					"rules" => [
-						"required", 
-						[
-							"password_check",
-							function($password) {
-								$user_id = $this->session->user->id;
-								$user = $this->db->get_where("users", ["id" => $user_id])->row_array();
-
-								return $this->encryption->decrypt($user["password"]) === $password;
-							}
-						]
-					]
-
-				],
-				[
-					"field" => "new_password", 
-					"label" => "new password",
-					"rules" => "required|differs[password]"
-				],
-				[
-					"field" => "confirm_password", 
-					"label" => "confirm password",
-					"rules" => "required|matches[new_password]"
-				]
-			]);
-			$this->form_validation->set_message("password_check", "The password field is incorrect");
-
-			if ($this->form_validation->run()) {
-				$this->user->update(
-					$user_id, 
-					['password' => $this->encryption->encrypt($this->input->post("new_password"))]
-				);
-				redirect('users/profile');
+				if ($this->form_validation->run()) {
+					$this->user->update($user->id, 
+						["password" => $this->encryption->encrypt($this->input->post("new_password"))]);
+					$this->session->set_flashdata("message", "Successfully changed password");
+					return redirect("users/profile/change-password");
+				}
 			}
-			
+			return parent::main_page("users/change-password");
 		}
-		return parent::main_page("users/change-password");
+		return redirect("/");
 	}
 }
-	

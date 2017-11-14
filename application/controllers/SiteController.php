@@ -8,7 +8,7 @@ class SiteController extends BaseController {
 	}
 
 	public function index() {
-		$user = $this->user->current_user();
+		$user = parent::current_user();
 
 		if ($user) {
 			parent::main_page("dashboard");

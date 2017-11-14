@@ -7,24 +7,20 @@ class RoleController extends BaseController {
 		parent::__construct();
 	}
 
-
 	public function index() {
-		$user = $this->authenticate->current_user();
+		$user = $this->user->current_user();
 
-		if ($user &&
-			in_array("ROLE_LIST", $user->permissions)) {
+		if ($user && in_array("ROLE_LIST", $user->permissions)) {
 			return parent::main_page("role/index.php");
 		}
 
 		return redirect("/");
 	}
 
-
 	public function view($name) {
 		$user = $this->authenticate->current_user();
 
-		if ($user &&
-			in_array("ROLE_VIEW", $user->permissions)) {
+		if ($user && in_array("ROLE_VIEW", $user->permissions)) {
 
 			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
 			return parent::main_page("role/view.php", ["role" => $role]);

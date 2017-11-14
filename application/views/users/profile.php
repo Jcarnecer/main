@@ -4,6 +4,15 @@
 			<div class="card">
 				<div class="card-header">My Profile</div>
 				<div class="card-body">
+					<?php if ($this->session->flashdata("message")): ?>
+					<div class="row">
+						<div class="col">
+							<div class="alert alert-danger text-center">
+								<?= $this->session->flashdata("message") ?>
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
 					<div class="row">
 						<div class="col-sm-3">
 							<img class="img-fluid rounded mx-auto d-block w-100 avatar" src="<?= base_url("upload/avatar/{$user->id}.png") ?>" />

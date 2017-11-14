@@ -24,19 +24,15 @@
 				<span>Notes</span>
 			</a>
 		</li>
-		<?php if (in_array("USER_LIST", $user->permissions) || 
-				  in_array("USER_CREATE", $user->permissions)): ?>
+		<?php if (in_array("USER_LIST", $user->permissions)): ?>
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
-				<span>Users</span>
+				<span>Access</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
 				<?php if (in_array("USER_LIST", $user->permissions)): ?>
-					<li><a  href="<?= base_url('users') ?>">View Users</a></li>
-				<?php endif; ?>
-				<?php if (in_array("USER_CREATE", $user->permissions)): ?>
-					<li><a  href="<?= base_url('users/create') ?>">Create User</a></li>
+					<li><a  href="<?= base_url('users') ?>">Users</a></li>
 				<?php endif; ?>
 				<li><a href="<?= base_url("roles") ?>"?>Roles</a></li>
 			</ul>

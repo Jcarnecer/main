@@ -9,12 +9,18 @@ class APIController extends BaseController {
 	}
 
 	public function get_current_user() {
-		return $this->output->set_output(json_encode($this->user->current_user(), JSON_PRETTY_PRINT));
+		return $this->output->set_output(json_encode(parent::current_user(), JSON_PRETTY_PRINT));
 	}
+
+
+	public function get_companies() {
+		return $this->output->set_output(json_encode($this->company->get_all(), JSON_PRETTY_PRINT));
+	}
+
 
 	public function get_company_users() {
 		$data = [];
-		$user = $this->user->current_user();
+		$user = parent::current_user();
 
 		if ($user && in_array("USER_LIST", $user->permissions)) {
 			$this->output->set_status_header(200);
@@ -23,13 +29,13 @@ class APIController extends BaseController {
 				$_user["role"] = $this->role->get($_user["role"]);
 				unset($_user["password"]);
 				unset($_user["role"]["id"]);
-				unset($_user["role"]["company_id"]);
 				$data[] = $_user;
 			}
 		} else {
 			$this->output->set_status_header(400);
+
 			$data["error"] = [
-				"message" => "Authentication error"
+				"message" => "Requires authentication"
 			];
 		}
 

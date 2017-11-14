@@ -1,45 +1,50 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CompanyController extends CI_Controller {
+class CompanyController extends BaseController {
 
 	public function __construct() {
 		parent::__construct();
 	}
 
-
 	public function register() {
-		$errors = [];
+		$user = parent::current_user();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$company_details = [
-				'id' => $this->utilities->create_random_string(),
-				'name' => $_POST['name'] 
-			];
+		if (!$user) {
+			if ($this->input->server("REQUEST_METHOD") === "POST") {
+				$company_details = [
+					"id" => $this->utilities->create_random_string(),
+					"name" => $this->input->post('name'),
+					"created_at" => date("Y-m-d H:i:s")
+				];
 
-			$user_details = [
-				'id' => $this->utilities->create_random_string(),
-				'company_id' => $company_details['id'],
-				'first_name' => $_POST['first_name'],
-				'last_name' => $_POST['last_name'],
-				'email_address' => $_POST['email_address'],
-				'password' => $_POST['password'],
-				'role' => 1
-			];
+				$user_details = [
+					'id' => $this->utilities->create_random_string(),
+					'company_id' => $company_details['id'],
+					'first_name' => $this->input->post('first_name'),
+					'last_name' => $this->input->post('last_name'),
+					'email_address' => $this->input->post('email_address'),
+					'password' => $this->input->post('password'),
+					'role' => "1"
+				];
 
-			$errors['company'] = $this->utilities->validate_company_details($company_details);
-			$errors['user'] = $this->utilities->validate_user_details($user_details);
+				$this->form_validation->set_rules("name", "company name", "trim|required|min_length[5]|max_length[20]|unique_company_name");
+				$this->form_validation->set_rules("first_name", "first name", "trim|required");
+				$this->form_validation->set_rules("last_name", "last name", "trim|required");
+				$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|unique_email_address");
+				$this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|max_length[20]");
 
-			if (!count($errors['company']) && !count($errors['user'])) {
-				$user_details['password'] = $this->encryption->encrypt($user_details['password']);
-				$this->company->insert_company($company_details);
-				$this->user->insert_user($user_details);
-				copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
-				return redirect("users/login");
+				if ($this->form_validation->run()) {
+					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
+					$this->company->insert($company_details);
+					$this->user->insert($user_details);
+					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
+					return redirect("users/login");
+				}
 			}
+			return parent::guest_page("company/register");
 		}
-
-		return $this->load->view('company/register', ['errors' => $errors]);
+		return redirect("/");
 	}
 
 
@@ -54,18 +59,14 @@ class CompanyController extends CI_Controller {
 			->get()
 			->result_array();
 
-		return print json_encode(
-			$users,
-			JSON_PRETTY_PRINT
-		);
+		return print json_encode($users, JSON_PRETTY_PRINT);
 	}
 
 	public function roles() {
 		header("Content-Type: application/json");
 		$user = $this->authenticate->current_user();
 
-		if ($user &&
-			in_array("ROLE_LIST", $user->permissions)) {
+		if ($user && in_array("ROLE_LIST", $user->permissions)) {
 
 			$roles = [];
 			foreach ($this->db->get_where("roles", ["company_id" => $user->company_id])->result_array() as $role) {
