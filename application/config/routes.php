@@ -5,9 +5,8 @@ $route["default_controller"] = "SiteController/index";
 
 $route["companies/register"] = "CompanyController/register";
 
-$route["users/login"]["GET"] = "UserController/get_login";
-$route["users/login"]["POST"] = "UserController/post_login";
-$route["users/logout"]["GET"] = "UserController/logout";
+$route["users/login"] = "UserController/login";
+$route["users/logout"] = "UserController/logout";
 
 $route["users"] = "UserController/index";
 $route["users/create"] = "UserController/create";
@@ -25,8 +24,11 @@ $api_url = "api/dev";
 $route["{$api_url}/companies"]["GET"] = "APIController/get_companies";
 $route["{$api_url}/companies/users"] = "APIController/get_company_users";
 $route["{$api_url}/companies/roles"] = "APIController/get_company_roles";
+
 $route["{$api_url}/roles/(:any)"] = "APIController/get_role/$1";
 $route["{$api_url}/roles/(:any)/permissions"] = "APIController/get_role_permissions/$1";
+
+$route["{$api_url}/permissions"] = "APIController/get_permissions";
 
 $route["migrate"] = "Migration_Controller/index";
 $route["migrate/(:any)"] = "Migration_Controller/index/$1";

@@ -11,6 +11,7 @@ class UserModel extends BaseModel {
 	public $role;
 	public $created_at;
 	public $last_login_at;
+	public $avatar_url;
 	public $uuid;
 
 	protected $_table = "users";
@@ -25,9 +26,8 @@ class UserModel extends BaseModel {
 		if ($user && $this->encryption->decrypt($user->password) === $password) {
 			unset($user->password);
 			$this->session->set_userdata("user", $user);
-			return true;
+			return TRUE;
 		}
-		
-		return false;
+		return FALSE;
 	}
 }

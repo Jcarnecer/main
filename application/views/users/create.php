@@ -8,18 +8,18 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label text-right">Name</label>
 							<div class="col-sm-4">
-								<input class="form-control" type="text" name="first_name" placeholder="First Name" />
+								<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?= set_value("first_name") ?>" />
 								<?= form_error("first_name", '<small class="text-danger">', '</small>') ?>
 							</div>
 							<div class="col-sm-4">
-								<input class="form-control" type="text" name="last_name" placeholder="Last Name" />
+								<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="<?= set_value("last_name") ?>" />
 								<?= form_error("last_name", '<small class="text-danger">', '</small>') ?>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-md-2 col-form-label text-right">E-mail Address</label>
 							<div class="col-sm-8">
-								<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" />
+								<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" value="<?= set_value("email_address") ?>" />
 								<?= form_error("email_address", '<small class="text-danger">', '</small>') ?>
 							</div>
 						</div>
@@ -36,7 +36,7 @@
 								<select class="form-control" name="role">
 									<option value="" selected disabled>Role</option>
 									<?php foreach ($roles as $role): ?>
-									<option value="<?= $role["id"] ?>"><?= $role["name"] ?></option>
+									<option value="<?= $role["id"] ?>" <?= set_value("role") == $role["id"] ? "selected" : "" ?>><?= $role["name"] ?></option>
 									<?php endforeach; ?>
 								</select>
 								<?= form_error("role", '<small class="text-danger">', '</small>') ?>

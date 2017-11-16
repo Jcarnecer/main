@@ -17,6 +17,21 @@ class RoleController extends BaseController {
 		return redirect("/");
 	}
 
+	public function create() {
+		$user = parent::current_user();
+
+		if ($user) {
+			if ($this->input->server("REQUEST_METHOD") === "POST") {
+
+			}
+			return parent::main_page("role/create.php", [
+				"permissions" => $this->permission->get_all()
+			]);
+		}
+
+		return redirect("/");
+	}
+
 	public function view($name) {
 		$user = $this->authenticate->current_user();
 

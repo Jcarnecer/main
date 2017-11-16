@@ -85,48 +85,49 @@ class Migration_Add_Users extends CI_Migration {
 
 	public function users() {
 		$this->dbforge->add_field([
-
-			'id'			  => [
-
-				'type'           => 'VARCHAR',
-				'constraint'	 => 11
+			"id" => [
+				"type" => "VARCHAR",
+				"constraint" => 11
 			],
-			'company_id'	  => [
-
-				'type'           => 'VARCHAR',
-				'constraint'	 => 11
+			"company_id" => [
+				"type" => "VARCHAR",
+				"constraint" => 11
 			],
-			'email_address'	  => [
-
-				'type'           => 'VARCHAR',
-				'constraint'	 => 255
+			"email_address" => [
+				"type" => "VARCHAR",
+				"constraint" => 255
 			],
-			'password'	  	  => [
-
-				'type'           => 'VARCHAR',
-				'constraint'	 => 255
+			"password" => [
+				"type" => "VARCHAR",
+				"constraint" => 255
 			],
-			'first_name'	  => [
-
-				'type'           => 'VARCHAR',
-				'constraint'	 => 200,
+			"first_name" => [
+				"type" => "VARCHAR",
+				"constraint" => 200,
 			],
-			'last_name'		  => [
-
-				'type'			 => 'VARCHAR',
-				'constraint'	 => 200
+			"last_name" => [
+				"type" => "VARCHAR",
+				"constraint" => 200
 			],
-			'role'			  => [
-
-				'type'			 => 'VARCHAR',
-				'constraint'	 => 11
+			"role" => [
+				"type" => 'VARCHAR',
+				"constraint" => 11
+			],
+			"created_at" => [
+				"type" => "DATETIME"
+			],
+			"last_login_at" => [
+				"type" => "DATETIME"
+			],
+			"avatar_url" => [
+				"type" => "VARCHAR",
+				"constraint" => "255"
 			],
 			"uuid" => [
-				"type" 			=> "VARCHAR",
-				"constraint" 	=> 11,
-				"null"			=> true
+				"type" 	=> "VARCHAR",
+				"constraint" => 11,
+				"null" => true
 			],
-			
 			'CONSTRAINT `users_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
 			'CONSTRAINT `users_ibfk_2` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 		]);

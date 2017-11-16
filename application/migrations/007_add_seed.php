@@ -55,6 +55,7 @@ class Migration_Add_Seed extends CI_Migration {
                 "id" => "2",
                 "company_id" => "astridtech",
                 "name" => "Admin",
+                "created_at" => date("Y-m-d H:i:s")
             ],
             [
                 "id" => "3",
@@ -167,9 +168,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Jun',
                 'last_name'      => 'Carnecer',
-                'role'           => '1'
+                'role'           => '1',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'eGd2Lit5ic9',
                 'company_id'     => 'astridtech',
@@ -177,9 +180,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Christian Jordan',
                 'last_name'      => 'Dalan',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'Ex31rijL0zT',
                 'company_id'     => 'astridtech',
@@ -187,9 +192,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Ana',
                 'last_name'      => 'Rivera',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'XzdG2i1vRUK',
                 'company_id'     => 'astridtech',
@@ -197,9 +204,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Antonio Martin',
                 'last_name'      => 'Lizardo',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'A2d3LiX1iUK',
                 'company_id'     => 'astridtech',
@@ -207,9 +216,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'John Aidon',
                 'last_name'      => 'Nadal',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'e21cLiCsVUK',
                 'company_id'     => 'astridtech',
@@ -217,9 +228,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Tess',
                 'last_name'      => 'Sanglay',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'epv3LXtGiBO',
                 'company_id'     => 'astridtech',
@@ -227,9 +240,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Von Vincent',
                 'last_name'      => 'Sison',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'FpvRLXtG37O',
                 'company_id'     => 'astridtech',
@@ -237,9 +252,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Ian David',
                 'last_name'      => 'Cruz',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'Ipv123tGHBO',
                 'company_id'     => 'astridtech',
@@ -247,9 +264,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Katrina Michaela',
                 'last_name'      => 'Delfin',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'UpY3RXttiBO',
                 'company_id'     => 'astridtech',
@@ -257,9 +276,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Nathaniel Siegfrid',
                 'last_name'      => 'Abriol',
-                'role'           => '3'
+                'role'           => '3',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => '5pv3LX6GiB9',
                 'company_id'     => 'astridtech',
@@ -267,9 +288,11 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
                 'first_name'     => 'Krishia',
                 'last_name'      => 'Ellis',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ],
-
             [
                 'id'             => 'Rp23LXt19BO',
                 'company_id'     => 'astridtech',
@@ -277,7 +300,10 @@ class Migration_Add_Seed extends CI_Migration {
                 'password'       => '28428395f74bf6ad08b7c79e6b98f76a3fe64b58bf1bb8d3685d58b17458f44ddffce5acebdc09accea7c4c1f1037836d7f5cd2629a253b19a855f89de790673y35uXTaWjx9xnFwJGQf03ISqgWahlzskXLJ9CcnyRY8=',
                 'first_name'     => 'Jan Michael',
                 'last_name'      => 'Jimenez',
-                'role'           => '2'
+                'role'           => '2',
+                'created_at'     => date("Y-m-d H:i:s"),
+                'last_login_at'  => date("Y-m-d H:i:s"),
+                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
             ]
         ];
 

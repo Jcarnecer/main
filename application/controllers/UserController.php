@@ -32,16 +32,19 @@ class UserController extends BaseController {
 					"role" => $this->input->post('role')
 				];
 
-				$this->form_validation->set_rules("first_name", "first name", "required|alpha_numeric_spaces");
-				$this->form_validation->set_rules("last_name", "last name", "required|alpha_numeric_spaces");
-				$this->form_validation->set_rules("email_address", "e-mail address", "required|valid_email");
-				$this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[20]");
-				$this->form_validation->set_rules("role", "role", "required");
+				$this->form_validation->set_rules("first_name", "first name", "trim|required|alpha_numeric_spaces");
+				$this->form_validation->set_rules("last_name", "last name", "trim|required|alpha_numeric_spaces");
+				$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email");
+				$this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|max_length[20]");
+				$this->form_validation->set_rules("role", "role", "trim|required");
 
 				if ($this->form_validation->run()) {
 					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
-					$this->user->insert_user($user_details);
-					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
+					$user_details["created_at"] = date("Y-m-d H:i:s");
+					$user_details["last_login_at"] = date("Y-m-d H:i:s");
+					$user_details["avatar_url"] = "http://localhost/main/upload/avatar/default.png";
+
+					$this->user->insert($user_details);
 					# TODO: Send e-mail for user credentials
 					return redirect("users/create");
 				}
@@ -64,28 +67,22 @@ class UserController extends BaseController {
 		return redirect("/");
 	}
 
-	public function get_login() {
+	public function login() {
 		$user = parent::current_user();
 
 		if (!$user) {
-			return $this->load->view("users/login");
-		}
-		return redirect("/");
-	}
+			if ($this->input->server("REQUEST_METHOD") === "POST") {
+				$email_address = $this->input->post('email_address');
+				$password = $this->input->post('password');
 
-	public function post_login() {
-		$user = parent::current_user();
-
-		if (!$user) {
-			$email_address = $this->input->post('email_address');
-			$password = $this->input->post('password');
-
-			if ($this->user->authenticate_user($email_address, $password)) {
-				return redirect("/");
-			} else {
-				$this->session->set_flashdata("message", "Invalid login credentials");
-				return redirect("users/login");
+				if ($this->user->authenticate_user($email_address, $password)) {
+					return redirect("/");
+				} else {
+					$this->session->set_flashdata("message", "Invalid login credentials");
+					return redirect("users/login");
+				}
 			}
+			return parent::guest_page("users/login");
 		}
 		return redirect("/");
 	}

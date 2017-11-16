@@ -12,11 +12,9 @@ class APIController extends BaseController {
 		return $this->output->set_output(json_encode(parent::current_user(), JSON_PRETTY_PRINT));
 	}
 
-
 	public function get_companies() {
 		return $this->output->set_output(json_encode($this->company->get_all(), JSON_PRETTY_PRINT));
 	}
-
 
 	public function get_company_users() {
 		$data = [];
@@ -86,4 +84,12 @@ class APIController extends BaseController {
 		return print json_encode(["error" => "Authentication error"]);
 	}
 	
+	public function get_permissions() {
+		$user = parent::current_user();
+
+		if ($user) {
+			$permissions = $this->permission->get_all();
+		}
+		return $this->output->set_output(json_encode($permissions, JSON_PRETTY_PRINT));
+	}
 }
