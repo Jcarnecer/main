@@ -36,7 +36,6 @@ class RoleController extends BaseController {
 		$user = $this->authenticate->current_user();
 
 		if ($user && in_array("ROLE_VIEW", $user->permissions)) {
-
 			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
 			return parent::main_page("role/view.php", ["role" => $role]);
 		}

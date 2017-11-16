@@ -71,7 +71,6 @@ switch (ENVIRONMENT)
 
 	case 'testing':
 		break;
-
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))

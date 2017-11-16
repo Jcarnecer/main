@@ -56,5 +56,4 @@ class Migration_Add_Companies extends CI_Migration {
 		$this->dbforge->add_key("id", TRUE);
 		$this->dbforge->create_table("companies");
 	}
-
 }
