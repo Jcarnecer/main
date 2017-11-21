@@ -1,114 +1,43 @@
-<div class="container mt-3">
+<div class="container mt-3 mb-3">
 	<div class="row">
 		<div class="col">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?= base_url("/") ?>">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?= base_url("roles") ?>">Roles</a>
+				</li>
+				<li class="breadcrumb-item active"><?= $role["name"] ?></li>
+			</ol>
 			<div class="card">
-				<div class="card-header"><?= $role["name"] ?></div>
+				<div class="card-header">Summary</div>
 				<div class="card-body">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link" href="#users" data-toggle="tab">Users</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="#permissions" data-toggle="tab">Permissions</a>
-						</li>
-					</ul>
-					<div class="tab-content p-3">
-						<div class="tab-pane" id="users" role="tabpanel">
-							<table class="table table-striped w-100" id="usersTbl"></table>
-						</div>
-						<div class="tab-pane active" id="permissions" role="tabpanel">
-							<table class="table table-striped w-100" id="permissionsTbl"></table>
-						</div>
+					<dl class="row">
+						<dt class="col-sm-2 text-right">Name</dt>
+						<dd class="col-sm-10"><?= $role["name"] ?></dd>
+
+						<dt class="col-sm-2 text-right">Created at</dt>
+						<dd class="col-sm-10"><?= $role["created_at"] ?></dd>
+
+						<dt class="col-sm-2 text-right">Permissions</dt>
+						<dd class="col-sm-10">
+							<?php if (count($role["permissions"])): ?>
+								<?php foreach ($role["permissions"] as $permission): ?>
+									<div class="">
+										<?= $permission["description"] ?>
+									</div>
+								<?php endforeach; ?>
+							<?php else: ?>
+								No permissions
+							<?php endif; ?>
+						</dd>
+					</dl>
+					<div class="col text-right">
+						<a class="btn btn-secondary" href="<?= base_url("roles") ?>">Back</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div class="modal fade" id="addPermissionMdl" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="modal-title">Add permission</div>
-			</div>
-			<div class="modal-body">
-				<form class="" id="addPermissionMdl">
-					<div class="form-group">
-						<input type="checkbox" />
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-primary" type="submit" for="addPermissionMdl">Add</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" />
-<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript">
-	(function() {
-		var usersTbl;
-		var permissionsTbl;
-		var addPermissionMdl;
-
-		function getRole() {
-			return $.ajax({
-				url: "api/dev/roles/<?= $role["name"] ?>",
-				method: "GET"
-			});
-		}
-
-		function init() {
-			addPermissionMdl = $("#addPermissionMdl");
-
-			usersTbl = $("#usersTbl").DataTable({
-					info: false,
-					lengthChange: false,
-					data: [],
-					columns: [
-						{ title: "Last Name", data: "last_name" },
-						{ title: "First Name", data: "first_name" }
-					]
-				});
-
-			permissionsTbl = $("#permissionsTbl").DataTable({
-					info: false,
-					lengthChange: false,
-					data: [],
-					dom: "Bfrtip",
-					buttons: [
-						{
-							text: "Add",
-							action: function(e, dt, node, config) {
-								window.location.href = "roles/<?= $role["name"] ?>/permissions/add";
-							}
-						}
-					],
-					columns: [
-						{ title: "Name", data: "name" },
-						{ title: "Description", data: "description"}
-					]
-				});
-
-			getRole()
-				.then(function(data) {
-					usersTbl.clear()
-						.rows.add(data.users)
-						.draw();
-
-					permissionsTbl.clear()
-						.rows.add(data.permissions)
-						.draw();
-
-					addPermissionMdl.find("form").html();
-				});
-		}
-
-		init();
-	})();
-</script>

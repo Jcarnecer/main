@@ -8,16 +8,16 @@
 				<li class="breadcrumb-item">
 					<a href="<?= base_url("roles") ?>">Roles</a>
 				</li>
-				<li class="breadcrumb-item active">Create role</li>
+				<li class="breadcrumb-item active">Update role</li>
 			</ol>
 			<div class="card">
-				<div class="card-header">Create role</div>
+				<div class="card-header">Update role</div>
 				<div class="card-body">
 					<form class="" method="POST">	
 						<div class="form-group row">
 							<label class="col-md-2 col-form-label text-right font-weight-bold">Name</label>
 							<div class="col-md-6">
-								<input class="form-control" type="text" name="name" placeholder="Name" value="<?= set_value("name") ?>" />
+								<input class="form-control" type="text" name="name" placeholder="Name" value="<?= set_value("name") ? set_value("name") : $role["name"] ?>" />
 								<?= form_error("name", '<small class="text-danger" />', '</small>') ?>
 							</div>
 						</div>
@@ -29,7 +29,9 @@
 										<label class="form-check-label">
 											<input class="form-check-input" type="checkbox" name="permissions[]" value="<?= $permission["id"] ?>" 
 												<?php if (set_value("permissions")): ?>
-													<?= in_array($permission["id"], set_value("permissions")) ? "checked" : "" ?> 
+													<?= in_array($permission["id"], set_value("permissions")) ? "checked" : "" ?>
+												<?php else: ?>
+													<?= in_array($permission["id"], $role["permissions"]) ? "checked" : "" ?>
 												<?php endif; ?> />
 											<?= $permission["description"] ?>
 										</label>
@@ -40,7 +42,7 @@
 						<div class="form-group row">
 							<div class="col-md-2"></div>
 							<div class="col-md-10 text-right">
-								<input class="btn btn-primary" type="submit" value="Create" />
+								<input class="btn btn-primary" type="submit" value="Update" />
 								<a class="btn btn-secondary" href="<?= base_url("roles") ?>">Cancel</a>
 							</div>
 						</div>

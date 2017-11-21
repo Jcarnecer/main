@@ -1,6 +1,17 @@
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 mb-3">
 	<div class="row justify-content-center">
-		<div class="col-sm-12">
+		<div class="col">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="<?= base_url("/") ?>">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="<?= base_url("users") ?>">Users</a>
+				</li>
+				<li class="breadcrumb-item active">
+					Create user
+				</li>
+			</ol>
 			<div class="card">
 				<div class="card-header">Create User</div>
 				<div class="card-body">

@@ -21,8 +21,6 @@ class APIController extends BaseController {
 		$user = parent::current_user();
 
 		if ($user && in_array("USER_LIST", $user->permissions)) {
-			$this->output->set_status_header(200);
-
 			foreach ($this->user->get_many_by(["company_id" => $user->company_id]) as $_user) {
 				$_user["role"] = $this->role->get($_user["role"]);
 				unset($_user["password"]);
@@ -30,8 +28,6 @@ class APIController extends BaseController {
 				$data[] = $_user;
 			}
 		} else {
-			$this->output->set_status_header(400);
-
 			$data["error"] = [
 				"message" => "Requires authentication"
 			];
@@ -40,22 +36,36 @@ class APIController extends BaseController {
 		return $this->output->set_output(json_encode($data, JSON_PRETTY_PRINT));
 	}
 
+	public function get_company_roles() {
+		$data = [];
+		$user = parent::current_user();
+
+		if ($user && in_array("ROLE_LIST", $user->permissions)) {
+			$data["roles"] = [];
+			foreach ($this->role->get_many_by("company_id", $user->company_id) as $role) {
+				unset($role["company_id"]);
+				$data["roles"][] = $role;
+			}
+		} else {
+			$data["error"] = [
+				"message" => "Requires authentication"
+			];
+		}
+	
+		return $this->output->set_output(json_encode($data, JSON_PRETTY_PRINT));
+	}
+
 	public function get_role($name) {
 		$data = [];
-		$user = $this->authenticate->current_user();
+		$user = parent::current_user();
 
 		if ($user && in_array("ROLE_VIEW", $user->permissions)) {
 
 			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
-			$role["users"] = $this->db->select("users.id, users.first_name, users.last_name")
-				->from("users")
-				->where(["role" => $role["id"]])
-				->get()
-				->result_array();
-
 			$role["permissions"] = [];
-			foreach ($this->db->get_where("roles_permissions", ["role_id" => $role["id"]])->result_array() as $permission) {
-				$role["permissions"][] = $permission["name"];
+			foreach ($this->role_permission->get_many_by("role_id", $role["id"]) as $role_permission) {
+				$permission = $this->permission->get($role_permission["permission_id"]);
+				$role["permissions"][] = $permission;
 			}
 
 			return print json_encode($role, JSON_PRETTY_PRINT);
@@ -65,7 +75,7 @@ class APIController extends BaseController {
 	}
 
 	public function get_roles_permissions($name) {
-		$user = $this->authenticate->current_user();
+		$user = parent::current_user();
 
 		if ($user &&
 			in_array("ROLE_UPDATE", $user->permissions)) {

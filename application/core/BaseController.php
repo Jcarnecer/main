@@ -33,7 +33,7 @@ class BaseController extends CI_Controller {
 
 		if ($user) {
 			$user->permissions = [];
-			foreach ($this->role_permission->get_by_role($user->role) as $permission) {
+			foreach ($this->role_permission->get_many_by("role_id", $user->role) as $permission) {
 				$user->permissions[] = $permission["permission_id"];
 			}
 		}

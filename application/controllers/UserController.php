@@ -1,63 +1,56 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserController extends Base_Controller {
+class UserController extends BaseController {
 
 	public function __construct() {
 		parent::__construct();
 	}
 
-
 	public function index() {
-		$user = $this->authenticate->current_user();
-
-		if ($user && 
-			in_array("USER_LIST", $user->permissions)) {
-
-			return parent::main_page("users/index", [
-				"company_id" => $user->company_id,
-				"users" => $this->user->get_users(['company_id' => $user->company_id])
-			]);
+		$user = parent::current_user();
+		if ($user && in_array("USER_LIST", $user->permissions)) {
+			return parent::main_page("users/index");
 		}
-
 		return redirect("/");
 	}
 
 	public function create() {
-		$user = $this->session->userdata("user");
-
-		if ($user &&
-			in_array("USER_CREATE", $user->permissions)) {
-
-			$errors = [];
-			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+		$user = parent::current_user();
+		if ($user && in_array("USER_CREATE", $user->permissions)) {
+			if ($this->input->server('REQUEST_METHOD') === "POST") {
 				$user_details = [
 					'id' => $this->utilities->create_random_string(),
 					'company_id' => $user->company_id,
-					'first_name' => $_POST['first_name'],
-					'last_name' => $_POST['last_name'],
-					'email_address' => $_POST['email_address'],
-					'password' => $_POST['password'],
-					'role' => $_POST['role']
+					'first_name' => $this->input->post('first_name'),
+					'last_name' => $this->input->post('last_name'),
+					'email_address' => $this->input->post('email_address'),
+					'password' => $this->input->post('password'),
+					'role' => $this->input->post('role'),
 				];
 
-				$errors = $this->utilities->validate_user_details($user_details);
+				$this->form_validation->set_rules("first_name", "first name", "trim|required");
+				$this->form_validation->set_rules("last_name", "last name", "trim|required");
+				$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|unique_email_address");
+				$this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|max_length[20]");
+				$this->form_validation->set_rules("role", "role", "trim|required");
 
-				if (count($errors) == 0) {
-					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
-					$this->user->insert_user($user_details);
-					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
+				if ($this->form_validation->run()) {
+					$user_details["password"] = $this->encryption->encrypt($user_details['password']);
+					$user_details["created_at"] = date("Y-m-d H:i:s");
+					$user_details["last_login_at"] = null;
+					$user_details["avatar_url"] = base_url("upload/avatar/default.png");
+					$this->user->insert($user_details);
+
 					# TODO: Send e-mail for user credentials
+
 					return redirect('users/create');
 				}
 			}
-
 			return parent::main_page("users/create", [
-				'roles' => $this->db->get_where("roles", ["company_id" => $user->company_id])->result_array(), 
-				'errors' => $errors
+				'roles' => $this->db->get_where("roles", ["company_id" => $user->company_id])->result_array()
 			]);
 		}
-		
 		return redirect("/");
 	}
 
@@ -68,29 +61,25 @@ class UserController extends Base_Controller {
 
 
 	public function login() {
-		$this->authenticate->is_guest();
-		$error = null;
+		$user = parent::current_user();
+		if (!$user) {
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$email_address = $_POST['email_address'];
+				$password = $_POST['password'];
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$email_address = $_POST['email_address'];
-			$password = $_POST['password'];
-
-			if ($this->user->authenticate_user($email_address, $password)) {
-				return redirect('/');
-			}
-			
-			$error = 'Invalid login credentials';
-		}
-		return $this->load->view('users/login', ['error' => $error]);
+				if ($this->user->authenticate_user($email_address, $password)) {
+					return redirect('/');
+				}
+            }
+            return parent::guest_page("users/login");         
+       	}
+		return redirect("/");
 	}
-
 
 	public function logout() {
-		$this->authenticate->logout_user();
-		redirect('/');
+		$this->session->unset_userdata("user");
+		return redirect("/");
 	}
-
-
 
 	public function update() {
 		$user_id = $this->session->user->id;

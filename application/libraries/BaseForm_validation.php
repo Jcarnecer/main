@@ -12,6 +12,7 @@ class BaseForm_validation extends CI_Form_validation {
 		$this->set_message("password_check", "The password field is incorrect.");
 		$this->set_message("unique_company_name", "The company name field is already in use.");
 		$this->set_message("unique_email_address", "The e-mail address field is already in use.");
+		$this->set_message("unique_role_name", "The role name field is already in use.");
 	}
 
 	public function password_check($password) {
@@ -29,6 +30,15 @@ class BaseForm_validation extends CI_Form_validation {
 
 	public function unique_email_address($email_address) {
 		if ($this->CI->user->get_by("email_address", $email_address)) {
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	public function unique_role_name($name) {
+		$user = $this->CI->session->userdata("user");
+		if ($name === "Root" ||
+			$this->CI->role->get_by(["name" => $name, "company_id" => $user->company_id])) {
 			return FALSE;
 		}
 		return TRUE;

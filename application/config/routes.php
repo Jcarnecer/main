@@ -17,7 +17,7 @@ $route["users/profile/update-avatar"]["POST"] = "UserController/update_avatar";
 
 $route["roles"] = "RoleController/index";
 $route["roles/create"] = "RoleController/create";
-$route["roles/(:any)/permissions/add"] = "RoleController/add_permission/$1";
+$route["roles/(:any)/update"] = "RoleController/update/$1";
 $route["roles/(:any)"] = "RoleController/view/$1";
 
 $api_url = "api/dev";

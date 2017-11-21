@@ -24,7 +24,15 @@
 				<span>Notes</span>
 			</a>
 		</li>
-		<?php if (in_array("USER_LIST", $user->permissions)): ?>
+		<?php if (in_array("USER_LIST", $user->permissions) ||
+				  in_array("USER_VIEW", $user->permissions) ||
+				  in_array("USER_CREATE", $user->permissions) ||
+				  in_array("USER_UPDATE", $user->permissions) ||
+				  in_array("USER_DELETE", $user->permissions) ||
+				  in_array("ROLE_LIST", $user->permissions) ||
+				  in_array("ROLE_VIEW", $user->permissions) ||
+				  in_array("ROLE_CREATE", $user->permissions) ||
+				  in_array("ROLE_UPDATE", $user->permissions)): ?>
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
@@ -34,7 +42,9 @@
 				<?php if (in_array("USER_LIST", $user->permissions)): ?>
 					<li><a  href="<?= base_url('users') ?>">Users</a></li>
 				<?php endif; ?>
-				<li><a href="<?= base_url("roles") ?>"?>Roles</a></li>
+				<?php if (in_array("ROLE_LIST", $user->permissions)): ?>
+					<li><a href="<?= base_url("roles") ?>"?>Roles</a></li>
+				<?php endif ; ?>
 			</ul>
 		</li>
 		<?php endif; ?>
