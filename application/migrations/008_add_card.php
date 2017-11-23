@@ -57,6 +57,11 @@ class Migration_Add_Card extends CI_Migration {
                 'type'           => 'VARCHAR',
                 'constraint'     => 7
             ],
+            'company_id'      => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
             'status'          => [
 
                 'type'           => 'INT',
@@ -64,6 +69,7 @@ class Migration_Add_Card extends CI_Migration {
             ],
 
             'CONSTRAINT `cards_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `cards_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
 
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'

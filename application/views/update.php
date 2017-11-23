@@ -202,7 +202,7 @@
 
 			        height: 200,
 
-			        type: 'circle'
+			        type: 'square'
 
 			    },
 
