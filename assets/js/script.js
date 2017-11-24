@@ -1,4 +1,4 @@
-var baseUrl = "http://localhost/main";
+var baseUrl = window.location.origin;
 var apiUrl = baseUrl + "/api/dev";
 
 $(function() {
