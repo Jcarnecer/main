@@ -19,9 +19,15 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://task.payakapps.com/">
+			<a class="" href="http://note.payakapps.com/">
 				<i class="fa fa-sticky-note mr-2"></i>
-				<span>Notes</span>
+				<span>Note</span>
+			</a>
+		</li>
+		<li class="">
+			<a class="" href="http://task.payakapps.com/">
+				<i class="fa fa-tasks mr-2"></i>
+				<span>Task</span>
 			</a>
 		</li>
 		<?php if (in_array("USER_LIST", $user->permissions) ||
