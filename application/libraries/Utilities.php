@@ -11,7 +11,6 @@ class Utilities {
 		$this->CI =& get_instance();
 	}
 
-
 	public function create_random_string($length=11) {
 		$string = "";
 	    $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -22,7 +21,6 @@ class Utilities {
 
     	return $string;
 	}
-
 
 	public function validate_company_details($company_details) {
 		$errors = [];
@@ -39,7 +37,6 @@ class Utilities {
 
 		return $errors;
 	}
-
 
 	public function validate_user_details($user_details) {
 		$errors = [];

@@ -17,57 +17,47 @@
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
 					<div class="card">
-						<div class="card-header bg-primary text-white">Register your company</div>
+						<div class="card-header">Register your company</div>
 						<div class="card-body">
 							<form id="registerCompany" method="POST">
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">Company Name</label>
 									<div class="col-sm-8">
-										<input class="form-control" type="text" name="name" placeholder="Name" />
-										<?php if (isset($errors['company']['name'])): ?>
-											<small class="form-text text-danger"><?= $errors['company']['name'] ?></small>
-										<?php endif; ?>
+										<input class="form-control" type="text" name="name" placeholder="Name" value="<?= set_value("name") ?>" />
+										<?= form_error("name", '<small class="text-danger">', '</small>') ?>
 										<small class="form-text text-muted">Company name must be 5-20 characters long.</small>
 									</div>
 								</div>
 								<div class="card-title text-center font-weight-bold">
 									Account Information
-									<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="This account blah blah"></i>
+									<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="This account"></i>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">First Name</label>
 									<div class="col-sm-8">
-										<input class="form-control" type="text" name="first_name" placeholder="First Name" />
-										<?php if (isset($errors['user']['first_name'])): ?>
-											<small class="form-text text-danger"><?= $errors['user']['first_name'] ?></small>
-										<?php endif; ?>
+										<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?= set_value("first_name") ?>" />
+										<?= form_error("first_name", '<small class="text-danger">', '</small>') ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">Last Name</label>
 									<div class="col-sm-8">
-										<input class="form-control" type="text" name="last_name" placeholder="Last Name" />
-										<?php if (isset($errors['user']['last_name'])): ?>
-											<small class="form-text text-danger"><?= $errors['user']['last_name'] ?></small>
-										<?php endif; ?>
+										<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="<?= set_value("last_name") ?>" />
+										<?= form_error("last_name", '<small class="text-danger">', '</small>') ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">E-mail Address</label>
 									<div class="col-sm-8">
-										<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" />
-										<?php if (isset($errors['user']['email_address'])): ?>
-											<small class="form-text text-danger"><?= $errors['user']['email_address'] ?></small>
-										<?php endif; ?>
+										<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" value="<?= set_value("email_address") ?>" />
+										<?= form_error("email_address", '<small class="text-danger">', '</small>') ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">Password</label>
 									<div class="col-sm-8">
 										<input class="form-control" type="password" name="password" placeholder="Password" />
-										<?php if (isset($errors['user']['password'])): ?>
-											<small class="form-text text-danger"><?= $errors['user']['password'] ?></small>
-										<?php endif; ?>
+										<?= form_error("password", '<small class="text-danger">', '</small>') ?>
 									</div>
 								</div>
 							</form>

@@ -1,25 +1,43 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") OR exit("No direct script access allowed");
 
-$route['default_controller'] = 'Site_Controller/index';
+$route["default_controller"] = "SiteController/index";
 
-$route['companies/register'] = 'Company_Controller/register';
-$route['companies/(:any)/users'] = 'Company_Controller/users/$1';
-$route["companies/(:any)/subscriptions"] = "Company_Controller/subscriptions/$1";
+$route["companies/register"] = "CompanyController/register";
 
-$route['users/login'] = 'User_Controller/login';
-$route['users/logout'] = 'User_Controller/logout';
+$route["users/login"] = "UserController/login";
+$route["users/logout"] = "UserController/logout";
 
-$route['users/create'] = 'User_Controller/create';
-$route['users'] = 'User_Controller/all';
-$route['users/profile'] = 'User_Controller/profile';
-$route['users/profile/update']["POST"] = 'User_Controller/update';
-$route['users/profile/change-password'] = "User_Controller/change_password";
-$route['users/profile/update-avatar']['POST'] = "User_Controller/update_avatar";
+/**
+ *	User profile routes
+ */
+$route["users/profile"] = "UserController/profile";
+$route["users/profile/update"]["POST"] = "UserController/update_profile";
+$route["users/profile/update-avatar"]["POST"] = "UserController/update_avatar";
+$route["users/profile/change-password"] = "UserController/change_password";
 
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route["users"] = "UserController/index";
+$route["users/create"] = "UserController/create";
+$route["users/(:any)/update"] = "UserController/update/$1";
 
-$route['migrate'] = 'Migration_Controller/index';
-$route['migrate/(:any)'] = 'Migration_Controller/index/$1';
-$route['migrate/(:any)/(:num)'] = 'Migration_Controller/index/$1/$2';
+$route["roles"] = "RoleController/index";
+$route["roles/create"] = "RoleController/create";
+$route["roles/(:any)/update"] = "RoleController/update/$1";
+$route["roles/(:any)"] = "RoleController/view/$1";
+
+$api_url = "api/dev";
+$route["{$api_url}/companies"]["GET"] = "APIController/get_companies";
+$route["{$api_url}/companies/users"] = "APIController/get_company_users";
+$route["{$api_url}/companies/roles"] = "APIController/get_company_roles";
+
+$route["{$api_url}/roles/(:any)"] = "APIController/get_role/$1";
+$route["{$api_url}/roles/(:any)/permissions"] = "APIController/get_role_permissions/$1";
+
+$route["{$api_url}/permissions"] = "APIController/get_permissions";
+
+$route["migrate"] = "Migration_Controller/index";
+$route["migrate/(:any)"] = "Migration_Controller/index/$1";
+$route["migrate/(:any)/(:num)"] = "Migration_Controller/index/$1/$2";
+
+$route["404_override"] = "";
+$route["translate_uri_dashes"] = FALSE;

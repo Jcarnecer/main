@@ -23,12 +23,16 @@
 							Login
 						</div>
 						<div class="card-body">
-							<?php if ($error != null): ?>
-								<div class="alert alert-danger">
-									<?= $error ?>
-								</div>
-							<?php endif; ?>
 							<form id="loginUser" method="POST">
+								<?php if ($this->session->flashdata("message")): ?>
+									<div class="form-group row">
+										<div class="col">
+											<div class="alert alert-danger text-center">
+												<?= $this->session->flashdata("message") ?>
+											</div>
+										</div>
+									</div>
+								<?php endif; ?>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label text-right">E-mail Address</label>
 									<div class="col-sm-8">

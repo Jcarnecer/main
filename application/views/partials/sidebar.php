@@ -13,27 +13,42 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://chat.payakapps.com/">
+			<a class="" href="http://localhost/chat/">
 				<i class="fa fa-comment mr-2"></i>
 				<span>Chat</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://task.payakapps.com/">
+			<a class="" href="http://localhost/task/">
 				<i class="fa fa-sticky-note mr-2"></i>
 				<span>Notes</span>
 			</a>
 		</li>
+		<?php if (in_array("USER_LIST", $user->permissions) ||
+				  in_array("USER_VIEW", $user->permissions) ||
+				  in_array("USER_CREATE", $user->permissions) ||
+				  in_array("USER_UPDATE", $user->permissions) ||
+				  in_array("USER_DELETE", $user->permissions) ||
+				  in_array("ROLE_LIST", $user->permissions) ||
+				  in_array("ROLE_VIEW", $user->permissions) ||
+				  in_array("ROLE_CREATE", $user->permissions) ||
+				  in_array("ROLE_UPDATE", $user->permissions)): ?>
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
-				<span>Users</span>
+				<span>Access</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
-				<li><a  href="<?= base_url('users') ?>">View Users</a></li>
-				<li><a  href="<?= base_url('users/create') ?>">Create User</a></li>
+				<?php if (in_array("USER_LIST", $user->permissions)): ?>
+					<li><a  href="<?= base_url('users') ?>">Users</a></li>
+				<?php endif; ?>
+				<?php if (in_array("ROLE_LIST", $user->permissions)): ?>
+					<li><a href="<?= base_url("roles") ?>"?>Roles</a></li>
+				<?php endif ; ?>
 			</ul>
 		</li>
+		<?php endif; ?>
+		<li class="sub-menu">
 	</ul>
 	<!-- sidebar menu end-->
 </div>
@@ -54,7 +69,6 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
 						<a class="dropdown-item" href="<?= base_url("users/profile/change-password") ?>">My Password</a>
-						<a class="dropdown-item" href="<?= base_url("subscriptions") ?>">My Subscriptions</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>
 					</div>
