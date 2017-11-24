@@ -9,11 +9,9 @@ class RoleController extends BaseController {
 
 	public function index() {
 		$user = parent::current_user();
-
 		if ($user && in_array("ROLE_LIST", $user->permissions)) {
 			return parent::main_page("role/index.php");
 		}
-
 		return redirect("/");
 	}
 

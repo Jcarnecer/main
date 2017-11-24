@@ -8,12 +8,17 @@ $route["companies/register"] = "CompanyController/register";
 $route["users/login"] = "UserController/login";
 $route["users/logout"] = "UserController/logout";
 
+/**
+ *	User profile routes
+ */
+$route["users/profile"] = "UserController/profile";
+$route["users/profile/update"]["POST"] = "UserController/update_profile";
+$route["users/profile/update-avatar"]["POST"] = "UserController/update_avatar";
+$route["users/profile/change-password"] = "UserController/change_password";
+
 $route["users"] = "UserController/index";
 $route["users/create"] = "UserController/create";
-$route["users/profile"] = "UserController/profile";
-$route["users/profile/update"]["POST"] = "UserController/update";
-$route["users/profile/change-password"] = "UserController/change_password";
-$route["users/profile/update-avatar"]["POST"] = "UserController/update_avatar";
+$route["users/(:any)/update"] = "UserController/update/$1";
 
 $route["roles"] = "RoleController/index";
 $route["roles/create"] = "RoleController/create";

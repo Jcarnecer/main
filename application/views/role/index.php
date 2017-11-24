@@ -25,7 +25,7 @@
 								</button>
 								<?php if (in_array("ROLE_UPDATE", $user->permissions)): ?>
 									<div class="dropdown-menu">
-										<div class="dropdown-item" id="updateRoleBtn">Update role</div>
+										<button class="dropdown-item" id="updateRoleBtn">Update role</button>
 									</div>
 								<?php endif; ?>
 							</div>

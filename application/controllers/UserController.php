@@ -19,16 +19,6 @@ class UserController extends BaseController {
 		$user = parent::current_user();
 		if ($user && in_array("USER_CREATE", $user->permissions)) {
 			if ($this->input->server('REQUEST_METHOD') === "POST") {
-				$user_details = [
-					'id' => $this->utilities->create_random_string(),
-					'company_id' => $user->company_id,
-					'first_name' => $this->input->post('first_name'),
-					'last_name' => $this->input->post('last_name'),
-					'email_address' => $this->input->post('email_address'),
-					'password' => $this->input->post('password'),
-					'role' => $this->input->post('role'),
-				];
-
 				$this->form_validation->set_rules("first_name", "first name", "trim|required");
 				$this->form_validation->set_rules("last_name", "last name", "trim|required");
 				$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|unique_email_address");
@@ -36,29 +26,79 @@ class UserController extends BaseController {
 				$this->form_validation->set_rules("role", "role", "trim|required");
 
 				if ($this->form_validation->run()) {
-					$user_details["password"] = $this->encryption->encrypt($user_details['password']);
-					$user_details["created_at"] = date("Y-m-d H:i:s");
-					$user_details["last_login_at"] = null;
-					$user_details["avatar_url"] = base_url("upload/avatar/default.png");
+					$user_details = [
+						'id' => $this->utilities->create_random_string(),
+						'company_id' => $user->company_id,
+						'first_name' => $this->input->post('first_name'),
+						'last_name' => $this->input->post('last_name'),
+						'email_address' => $this->input->post('email_address'),
+						'password' => $this->encryption->encrypt($this->input->post('password')),
+						'role' => $this->input->post('role'),
+						'created_at' => date("Y-m-d H:i:s"),
+						'last_login_at' => null,
+						'avatar_url' => base_url("upload/avatar/default.png")
+					];
 					$this->user->insert($user_details);
 
-					# TODO: Send e-mail for user credentials
+					// TODO: Send e-mail for user credentials
 
-					return redirect('users/create');
+					return redirect("users/create");
 				}
 			}
+
 			return parent::main_page("users/create", [
-				'roles' => $this->db->get_where("roles", ["company_id" => $user->company_id])->result_array()
+				"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
 			]);
 		}
+
 		return redirect("/");
 	}
 
+	public function update($id) {
+		$current_user = parent::current_user();
+		
+		if ($current_user and in_array("USER_UPDATE", $current_user->permissions)) {
+			$user = $this->user->get($id);
+
+			if (!$user) {
+				return show_error(404);
+			}
+
+			if ($this->input->server("REQUEST_METHOD") === "POST") {
+				$this->form_validation->set_rules("first_name", "first name", "trim|required");
+				$this->form_validation->set_rules("last_name", "last name", "trim|required");
+				$this->form_validation->set_rules("role", "role", "trim|required");
+				
+				if ($user["email_address"] === $this->input->post("email_address")) {
+					$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email");
+				} else {
+					$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|is_unique[users.email_address]");
+				}
+
+				if ($this->form_validation->run()) {
+					$user_details = [
+						"first_name" => $this->input->post('first_name'),
+						"last_name" => $this->input->post('last_name'),
+						"email_address" => $this->input->post('email_address'),
+						"role" => $this->input->post('role')
+					];
+					
+					$this->user->update($id, $user_details);
+				}
+			}
+
+			return parent::main_page("users/update", [
+				"user" => $user, 
+				"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
+			]);
+		}
+
+		return redirect("/");
+	}
 
 	public function profile() {
 		return parent::main_page('users/profile');
 	}
-
 
 	public function login() {
 		$user = parent::current_user();
@@ -81,7 +121,7 @@ class UserController extends BaseController {
 		return redirect("/");
 	}
 
-	public function update() {
+	public function update_profile() {
 		$user_id = $this->session->user->id;
 		
 		if($this->input->server("REQUEST_METHOD") === "POST") {
