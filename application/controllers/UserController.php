@@ -38,6 +38,7 @@ class UserController extends BaseController {
 
 	public function create() {
 		$user = parent::current_user();
+
 		if ($user && in_array("USER_CREATE", $user->permissions)) {
 			if ($this->input->server('REQUEST_METHOD') === "POST") {
 				$this->form_validation->set_rules("first_name", "first name", "trim|required");
@@ -68,7 +69,7 @@ class UserController extends BaseController {
 			}
 
 			return parent::main_page("users/create", [
-				"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
+				"roles" =>  $this->role->get_many_by(["company_id" => $user->company_id])
 			]);
 		}
 
