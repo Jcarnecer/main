@@ -7,6 +7,27 @@ class UserController extends BaseController {
 		parent::__construct();
 	}
 
+	public function login() {
+		$user = parent::current_user();
+		if (!$user) {
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$email_address = $_POST['email_address'];
+				$password = $_POST['password'];
+
+				if ($this->user->authenticate_user($email_address, $password)) {
+					return redirect('/');
+				}
+            }
+            return parent::guest_page("users/login");         
+       	}
+		return redirect("/");
+	}
+
+	public function logout() {
+		$this->session->unset_userdata("user");
+		return redirect("/");
+	}
+
 	public function index() {
 		$user = parent::current_user();
 		if ($user && in_array("USER_LIST", $user->permissions)) {
@@ -82,7 +103,7 @@ class UserController extends BaseController {
 						"email_address" => $this->input->post('email_address'),
 						"role" => $this->input->post('role')
 					];
-					
+
 					$this->user->update($id, $user_details);
 				}
 			}
@@ -98,27 +119,6 @@ class UserController extends BaseController {
 
 	public function profile() {
 		return parent::main_page('users/profile');
-	}
-
-	public function login() {
-		$user = parent::current_user();
-		if (!$user) {
-			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-				$email_address = $_POST['email_address'];
-				$password = $_POST['password'];
-
-				if ($this->user->authenticate_user($email_address, $password)) {
-					return redirect('/');
-				}
-            }
-            return parent::guest_page("users/login");         
-       	}
-		return redirect("/");
-	}
-
-	public function logout() {
-		$this->session->unset_userdata("user");
-		return redirect("/");
 	}
 
 	public function update_profile() {

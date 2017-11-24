@@ -73,47 +73,42 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 "id" => "ROLE_LIST",
                 "name" => "ROLE_LIST",
-                "description" => "Allows user to view the list of roles"
+                "description" => "Allow user to view the list of roles"
             ],
             [
                 "id" => "ROLE_VIEW",
                 "name" => "ROLE_VIEW",
-                "description" => "Allows user to view roles"
+                "description" => "Allow user to view roles"
             ],
             [
                 "id" => "ROLE_CREATE",
                 "name" => "ROLE_CREATE",
-                "description" => "Allows user to create roles"
+                "description" => "Allow user to create roles"
             ],
             [
                 "id" => "ROLE_UPDATE",
                 "name" => "ROLE_UPDATE",
-                "description" => "Allows user to update roles"
+                "description" => "Allow user to update roles"
             ],
             [
                 "id" => "USER_LIST",
                 "name" => "USER_LIST",
-                "description" => "Allows user to view the list of users"
+                "description" => "Allow user to view the list of users"
             ],
             [
                 "id" => "USER_VIEW",
                 "name" => "USER_VIEW",
-                "description" => "Allows user to view users"
+                "description" => "Allow user to view users"
             ],
             [
                 "id" => "USER_CREATE",
                 "name" => "USER_CREATE",
-                "description" => "Allows user to create users"
+                "description" => "Allow user to create users"
             ],
             [
                 "id" => "USER_UPDATE",
                 "name" => "USER_UPDATE",
-                "description" => "Allows user to update users"
-            ],
-            [
-                "id" => "USER_DELETE",
-                "name" => "USER_UPDATE",
-                "description" => "Allows user to delete users"
+                "description" => "Allow user to update users"
             ]
         ];
 
@@ -144,15 +139,15 @@ class Migration_Add_Seed extends CI_Migration {
             ],
             [
                 "role_id" => "1",
+                "permission_id" => "USER_VIEW"
+            ],
+            [
+                "role_id" => "1",
                 "permission_id" => "USER_CREATE"
             ],
             [
                 "role_id" => "1",
                 "permission_id" => "USER_UPDATE"
-            ],
-            [
-                "role_id" => "1",
-                "permission_id" => "USER_DELETE"
             ]
         ];
 

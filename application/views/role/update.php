@@ -41,7 +41,7 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-md-2"></div>
-							<div class="col-md-10 text-right">
+							<div class="col-md-10">
 								<input class="btn btn-primary" type="submit" value="Update" />
 								<a class="btn btn-secondary" href="<?= base_url("roles") ?>">Cancel</a>
 							</div>
