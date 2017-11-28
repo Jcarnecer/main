@@ -68,7 +68,7 @@ class UserController extends BaseController {
 			}
 
 			return parent::main_page("users/create", [
-				"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
+				"roles" =>  $this->role->get_many_by(["company_id" => $user->company_id])
 			]);
 		}
 
