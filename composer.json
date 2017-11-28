@@ -1,0 +1,10 @@
+{
+    "name": "christian/main",
+    "authors": [
+        {
+            "name": "Christian Jordan Dalan",
+            "email": "cjdalan@gmail.com"
+        }
+    ],
+    "require": {}
+}

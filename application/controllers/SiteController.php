@@ -13,7 +13,7 @@ class SiteController extends BaseController {
 		if ($user) {
 			parent::main_page("dashboard");
 		} else {
-			parent::guest_page("welcome");
+			$this->load->view("welcome");
 		}
 		
 	}

@@ -67,5 +67,4 @@ class Utilities {
 
 		return $errors;
 	}
-	
 }
