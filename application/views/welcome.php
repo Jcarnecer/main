@@ -30,7 +30,7 @@
             <a class="nav-link" href="#pricing">Pricing</a>
         </li>
         <li class="nav-item">
-            <button class="sign-up-btn" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+            <a class="btn btn-primary sign-up-btn" href="<?= base_url("users/login") ?>">Login</a>
         </li>
       </ul>
     </div>
