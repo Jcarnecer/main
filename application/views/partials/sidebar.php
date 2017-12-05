@@ -19,9 +19,15 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://localhost/task/">
+			<a class="" href="http://localhost/note/">
 				<i class="fa fa-sticky-note mr-2"></i>
-				<span>Notes</span>
+				<span>Note</span>
+			</a>
+		</li>
+		<li class="">
+			<a class="" href="http://localhost/task/">
+				<i class="fa fa-tasks mr-2"></i>
+				<span>Task</span>
 			</a>
 		</li>
 		<?php if (in_array("USER_LIST", $user->permissions) ||
