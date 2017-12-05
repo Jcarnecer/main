@@ -5,6 +5,7 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function up() {
+
         $this->cards(); 
         $this->comments();
         $this->cards_tagging();
@@ -13,6 +14,7 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function down() {
+
         $this->dbforge->drop_table('viewers');
         $this->dbforge->drop_table('cards_tagging');
         $this->dbforge->drop_table('comments');
@@ -21,6 +23,7 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function cards() {
+
         $this->dbforge->add_field([
 
             'id'              => [
@@ -54,6 +57,11 @@ class Migration_Add_Card extends CI_Migration {
                 'type'           => 'VARCHAR',
                 'constraint'     => 7
             ],
+            'company_id'      => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
             'status'          => [
 
                 'type'           => 'INT',
@@ -61,6 +69,7 @@ class Migration_Add_Card extends CI_Migration {
             ],
 
             'CONSTRAINT `cards_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `cards_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
 
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
@@ -168,5 +177,4 @@ class Migration_Add_Card extends CI_Migration {
         
         return $this->dbforge->create_table('viewers');
     }
-
 }
