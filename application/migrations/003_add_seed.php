@@ -166,7 +166,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '1',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'eGd2Lit5ic9',
@@ -178,7 +178,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'Ex31rijL0zT',
@@ -190,7 +190,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'XzdG2i1vRUK',
@@ -202,7 +202,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'A2d3LiX1iUK',
@@ -214,7 +214,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'e21cLiCsVUK',
@@ -226,7 +226,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'epv3LXtGiBO',
@@ -238,7 +238,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'FpvRLXtG37O',
@@ -250,7 +250,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'Ipv123tGHBO',
@@ -262,7 +262,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'UpY3RXttiBO',
@@ -274,7 +274,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '3',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => '5pv3LX6GiB9',
@@ -286,7 +286,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ],
             [
                 'id'             => 'Rp23LXt19BO',
@@ -298,7 +298,7 @@ class Migration_Add_Seed extends CI_Migration {
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
-                'avatar_url'     => "http://localhost/main/upload/avatar/default.png"
+                'avatar_url'     => base_url('upload/avatar/default.png')
             ]
         ];
 
