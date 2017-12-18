@@ -142,7 +142,6 @@ class UserController extends BaseController {
 	public function update_avatar() {
 		$current_user = parent::current_user();
 		header("Cache-Control: no-cache, must-revalidate");
-		$user_id = $this->session->user->id;
 
 		$config['upload_path'] = "./upload/avatar/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -157,12 +156,13 @@ class UserController extends BaseController {
 		if (!$this->upload->do_upload("avatar")) {
 			return print json_encode($this->upload->display_errors());
 		} else {
-			$data = [
-				"avatar_url" => base_url("upload/avatar/".$config['file_name'])
-			];
-
-			$this->user->update($user_id, $data);
+			# TODO
+			$this->session->user->avatar_url = base_url("upload/avatar/". $config["file_name"]);
+			$this->user->update($current_user->id, [
+				"avatar_url" => base_url("upload/avatar/" . $config["file_name"])
+			]);
 		}
+
 		return redirect("users/profile");
 	}
 
