@@ -5,7 +5,6 @@ class Migration_Add_Companies extends CI_Migration {
 
 
 	public function up() {
-		$this->sessions();
 		$this->companies();
 	}
 
