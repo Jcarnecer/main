@@ -141,19 +141,26 @@ class UserController extends BaseController {
 
 	public function update_avatar() {
 		header("Cache-Control: no-cache, must-revalidate");
+		$user_id = $this->session->user->id;
 
 		$config['upload_path'] = "./upload/avatar/";
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 100;
+        $config['max_size'] = 1000;
         $config['max_width'] = 800;
         $config['max_height'] = 800;
         $config['file_name'] = "{$this->session->user->id}.png";
         $config["overwrite"] = TRUE;
 
-		$this->load->library("upload", $config);
+		$this->upload->initialize($config);
 
 		if (!$this->upload->do_upload("avatar")) {
 			return print json_encode($this->upload->display_errors());
+		} else {
+			$data = [
+				"avatar_url" => base_url("upload/avatar/".$config['file_name'])
+			];
+
+			$this->user->update($user_id, $data);
 		}
 		return redirect("users/profile");
 	}
