@@ -17,7 +17,7 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label text-right">Name</label>
 							<div class="col-sm-4">
-								<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?= set_value("first_name") ? set_value("first_name") : $user["first_name"] ?>  " />
+								<input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?= set_value("first_name") ? set_value("first_name") : $user["first_name"] ?>" />
 								<?= form_error("first_name", '<small class="text-danger">', '</small>') ?>
 							</div>
 							<div class="col-sm-4">

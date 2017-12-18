@@ -140,6 +140,7 @@ class UserController extends BaseController {
 	}
 
 	public function update_avatar() {
+		$current_user = parent::current_user();
 		header("Cache-Control: no-cache, must-revalidate");
 
 		$config['upload_path'] = "./upload/avatar/";
@@ -147,10 +148,10 @@ class UserController extends BaseController {
         $config['max_size'] = 100;
         $config['max_width'] = 800;
         $config['max_height'] = 800;
-        $config['file_name'] = "{$this->session->user->id}.png";
+        $config['file_name'] = "{$current_user->id}.png";
         $config["overwrite"] = TRUE;
 
-		$this->load->library("upload", $config);
+		$this->upload->initialize($config);
 
 		if (!$this->upload->do_upload("avatar")) {
 			return print json_encode($this->upload->display_errors());
