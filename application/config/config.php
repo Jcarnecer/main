@@ -24,7 +24,18 @@ date_default_timezone_set('Asia/Manila');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://payakapps.com/';
+
+switch (ENVIRONMENT) {
+	case 'development':
+		$config['base_url'] = 'http://localhost/main/';
+		break;
+	case 'testing':
+		$config['base_url'] = 'http://locahost/main/';
+		break;
+	case 'production':
+		$config['base_url'] = 'http://payakapps.com/';
+		break;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -401,8 +412,14 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
+
+if (ENVIRONMENT === 'production') {
+	$config['cookie_domain'] = '.payakapps.com';
+} else {
+	$config['cookie_domain'] = ''; 
+}
+
 $config['cookie_prefix']	= '';
-$config['cookie_domain']	= '.payakapps.com';
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
 $config['cookie_httponly'] 	= FALSE;
