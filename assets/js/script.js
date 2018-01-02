@@ -1,4 +1,11 @@
-var baseUrl = window.location.origin;
+var baseUrl;
+
+if (window.location.origin === "http://payakapps.com") {
+    baseUrl = "http://payakapps.com";
+} else {
+    baseUrl = "http://localhost/main";
+}
+
 var apiUrl = baseUrl + "/api/dev";
 
 $(function() {

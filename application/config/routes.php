@@ -35,9 +35,9 @@ $route["{$api_url}/roles/(:any)/permissions"] = "APIController/get_role_permissi
 
 $route["{$api_url}/permissions"] = "APIController/get_permissions";
 
-$route["migrate"] = "Migration_Controller/index";
-$route["migrate/(:any)"] = "Migration_Controller/index/$1";
-$route["migrate/(:any)/(:num)"] = "Migration_Controller/index/$1/$2";
+$route["migrate"] = "MigrationController/index";
+$route["migrate/(:any)"] = "MigrationController/index/$1";
+$route["migrate/(:any)/(:num)"] = "MigrationController/index/$1/$2";
 
 $route["404_override"] = "";
 $route["translate_uri_dashes"] = FALSE;
