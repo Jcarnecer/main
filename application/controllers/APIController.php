@@ -18,15 +18,18 @@ class APIController extends BaseController {
 
 	public function get_company_users() {
 		$data = [];
-		$user = parent::current_user();
+		$current_user = parent::current_user();
 
-		if ($user && in_array("USER_LIST", $user->permissions)) {
-			foreach ($this->user->get_many_by(["company_id" => $user->company_id]) as $_user) {
-				$_user["role"] = $this->role->get($_user["role"]);
-				unset($_user["password"]);
-				unset($_user["role"]["id"]);
-				$data[] = $_user;
+		if ($current_user and 
+			in_array("USER_LIST", $current_user->permissions)) {
+
+			foreach ($this->user->get_many_by(["company_id" => $current_user->company_id]) as $user) {
+				$user["role"] = $this->role->get($user["role"]);
+				unset($user["password"]);
+				unset($user["role"]["id"]);
+				$data[] = $user;
 			}
+
 		} else {
 			$data["error"] = [
 				"message" => "Requires authentication"
@@ -38,14 +41,17 @@ class APIController extends BaseController {
 
 	public function get_company_roles() {
 		$data = [];
-		$user = parent::current_user();
+		$current_user = parent::current_user();
 
-		if ($user && in_array("ROLE_LIST", $user->permissions)) {
+		if ($current_user and 
+			in_array("ROLE_LIST", $current_user->permissions)) {
+
 			$data["roles"] = [];
-			foreach ($this->role->get_many_by("company_id", $user->company_id) as $role) {
+			foreach ($this->role->get_many_by("company_id", $current_user->company_id) as $role) {
 				unset($role["company_id"]);
 				$data["roles"][] = $role;
 			}
+
 		} else {
 			$data["error"] = [
 				"message" => "Requires authentication"
@@ -56,13 +62,14 @@ class APIController extends BaseController {
 	}
 
 	public function get_role($name) {
-		$data = [];
-		$user = parent::current_user();
+		$current_user = parent::current_user();
 
-		if ($user && in_array("ROLE_VIEW", $user->permissions)) {
+		if ($current_user and 
+			in_array("ROLE_VIEW", $current_user->permissions)) {
 
-			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array();
+			$role = $this->db->get_where("roles", ["company_id" => $current_user->company_id, "name" => $name])->row_array();
 			$role["permissions"] = [];
+
 			foreach ($this->role_permission->get_many_by("role_id", $role["id"]) as $role_permission) {
 				$permission = $this->permission->get($role_permission["permission_id"]);
 				$role["permissions"][] = $permission;
@@ -71,16 +78,20 @@ class APIController extends BaseController {
 			return print json_encode($role, JSON_PRETTY_PRINT);
 		}
 
-		return print json_encode(["error" => "Authentication issues"]);	
+		return print json_encode([
+			"error" => [
+				"message" => "Authentication issues"
+			]
+		]);	
 	}
 
 	public function get_roles_permissions($name) {
-		$user = parent::current_user();
+		$current_user = parent::current_user();
 
-		if ($user &&
-			in_array("ROLE_UPDATE", $user->permissions)) {
+		if ($current_user &&
+			in_array("ROLE_UPDATE", $current_user->permissions)) {
 
-			$role = $this->db->get_where("roles", ["company_id" => $user->company_id, "name" => $name])->row_array(); 
+			$role = $this->db->get_where("roles", ["company_id" => $current_user->company_id, "name" => $name])->row_array(); 
 			$permissions = $this->db->query("
 				SELECT *
 				  FROM permissions
@@ -93,13 +104,8 @@ class APIController extends BaseController {
 
 		return print json_encode(["error" => "Authentication error"]);
 	}
-	
-	public function get_permissions() {
-		$user = parent::current_user();
 
-		if ($user) {
-			$permissions = $this->permission->get_all();
-		}
-		return $this->output->set_output(json_encode($permissions, JSON_PRETTY_PRINT));
+	public function get_permissions() {
+		return $this->output->set_output(json_encode($this->permission->get_all(), JSON_PRETTY_PRINT));
 	}
 }
