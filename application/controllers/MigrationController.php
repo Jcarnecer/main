@@ -4,18 +4,14 @@ class MigrationController extends CI_Controller {
 
 
     public function __construct() {
-
         parent :: __construct();
         $this->load->library('migration');
     }
 
-
     public function index($key=null, $ver=null) {
-        
         $result = "";
 
         switch ($key) {
-            
             case 'lat':
                 $result = $this->migration->latest();
                 break;
