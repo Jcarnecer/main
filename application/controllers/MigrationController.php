@@ -2,14 +2,15 @@
 
 class MigrationController extends CI_Controller {
 
-
-    public function __construct() {
-        parent :: __construct();
-        $this->load->library('migration');
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function index($key=null, $ver=null) {
-        $result = "";
+
+    public function index($key = null, $ver = null)
+    {
+        $result = false;
 
         switch ($key) {
             case 'lat':
@@ -26,9 +27,10 @@ class MigrationController extends CI_Controller {
                 break;
         }
 
-        if ($result === FALSE)
-            show_error($this->migration->error_string());
-        else 
+        if ($result === false) {
+            show_error($this->migration->error_string());    
+        } else {
             echo "Version $result";
+        }
     }
 }

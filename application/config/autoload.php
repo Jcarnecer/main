@@ -61,7 +61,8 @@ $autoload['packages'] = array();
 $autoload['libraries'] = [
 	"database",
 	"encryption",
-	"form_validation", 
+	"form_validation",
+	"migration",
 	"session",
 	"upload",
 	"utilities"
