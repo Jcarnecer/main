@@ -28,7 +28,7 @@ class CompanyController extends BaseController {
 					"role" => "1",
 					"created_at" => date("Y-m-d H:i:s"),
 	                "last_login_at" => date("Y-m-d H:i:s"),
-	                "avatar_url" => "http://payakapps.com/upload/avatar/default.png"
+	                "avatar_url" => base_url("upload/avatar/default.png")
 				];
 
 				$this->form_validation->set_rules("name", "company name", "trim|required|min_length[5]|max_length[20]|unique_company_name");
@@ -41,12 +41,11 @@ class CompanyController extends BaseController {
 					$user_details['password'] = $this->encryption->encrypt($user_details['password']);
 					$this->company->insert($company_details);
 					$this->user->insert($user_details);
-					copy("upload/avatar/default.png", "upload/avatar/{$user_details['id']}.png");
 					return redirect("users/login");
 				}
 			}
 			return parent::guest_page("company/register");
-		}
+		}		
 		return redirect("/");
 	}
 }
