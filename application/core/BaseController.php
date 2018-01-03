@@ -58,10 +58,6 @@ class BaseController extends CI_Controller {
 	public function can_user($permission)
 	{
 		$current_user = $this->current_user();
-		if ($current_user and in_array($permission, $current_user->permissions)) {
-			return true;
-		} else {
-			return redirect("/");
-		}
+		return $current_user and in_array($permission, $current_user->permissions);
 	}
 }

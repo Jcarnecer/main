@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CompanyController extends BaseController {
+class CompanyController extends BaseController
+{
 
 	public function __construct()
 	{
