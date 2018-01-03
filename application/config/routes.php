@@ -3,7 +3,8 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 
 $route["default_controller"] = "SiteController/index";
 
-$route["companies/register"] = "CompanyController/register";
+$route["companies/register"]["GET"] = "CompanyController/show_register";
+$route["companies/register"]["POST"] = "CompanyController/register";
 
 $route["users/login"] = "UserController/login";
 $route["users/logout"] = "UserController/logout";
