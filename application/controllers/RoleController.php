@@ -14,6 +14,8 @@ class RoleController extends BaseController
 	{	
 		if (parent::can_user("ROLE_LIST")) {
 			return parent::main_page("role/index.php");
+		} else {
+			return redirect("/");
 		}
 	}
 
@@ -22,6 +24,8 @@ class RoleController extends BaseController
 	{
 		if (parent::can_user("ROLE_CREATE")) {
 			return parent::main_page("role/create.php", ["permissions" => $this->permission->get_all()]);
+		} else {
+			return redirect("/");
 		}
 	}
 
@@ -54,6 +58,8 @@ class RoleController extends BaseController
 				return redirect("roles");
 			}
 			return parent::main_page("role/create.php", ["permissions" => $this->permission->get_all()]);
+		} else {
+			return redirect("/");
 		}
 	}
 
@@ -73,6 +79,8 @@ class RoleController extends BaseController
 					"permissions" => $this->permission->get_all()
 				]
 			);
+		} else {
+			return redirect("/");
 		}
 	}
 
@@ -111,6 +119,8 @@ class RoleController extends BaseController
 					"permissions" => $this->permission->get_all()
 				]
 			);
+		} else {
+			return redirect("/");
 		}
 	}
 }
