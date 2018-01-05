@@ -262,6 +262,7 @@ class UserController extends BaseController
 			}
 			
 		}
+		
 		return parent::main_page("users/change-password");
 	}
 }
