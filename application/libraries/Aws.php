@@ -2,7 +2,7 @@
 
 require 'aws/aws-autoloader.php';
 
-class AwsHelper
+class Aws
 {
 	private $CI;
 
