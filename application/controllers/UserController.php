@@ -191,7 +191,7 @@ class UserController extends BaseController
 	public function update_avatar()
 	{
 		$current_user = parent::current_user();
-		$this->awshelper->upload_avatar($current_user->id);
+		$this->aws_helper->upload_avatar($current_user->id);
 		return redirect("users/profile");
 	}
 

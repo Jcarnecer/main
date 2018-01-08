@@ -59,7 +59,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 $autoload['libraries'] = [
-	"awshelper",
+	"AwsHelper" => "aws_helper",
 	"database",
 	"encryption",
 	"form_validation",
