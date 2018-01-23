@@ -24,15 +24,15 @@ class Migration_Add_Timekeeping extends CI_Migration {
 
     public function down() {
         
-        $this->dbforge->drop_table('timekeeping_sub_menu');
-        $this->dbforge->drop_table('timekeeping_shift');
-        $this->dbforge->drop_table('timekeeping_school');
-        $this->dbforge->drop_table('timekeeping_record_overtime');
-        $this->dbforge->drop_table('timekeeping_record');
-        $this->dbforge->drop_table('timekeeping_menu');
-        $this->dbforge->drop_table('timekeeping_logs');
-        $this->dbforge->drop_table('timekeeping_leave');
-        $this->dbforge->drop_table('timekeeping_calendar_events');
+        $this->dbforge->drop_table('timekeeping_sub_menu', TRUE);
+        $this->dbforge->drop_table('timekeeping_shift', TRUE);
+        $this->dbforge->drop_table('timekeeping_school', TRUE);
+        $this->dbforge->drop_table('timekeeping_record_overtime', TRUE);
+        $this->dbforge->drop_table('timekeeping_record', TRUE);
+        $this->dbforge->drop_table('timekeeping_menu', TRUE);
+        $this->dbforge->drop_table('timekeeping_logs', TRUE);
+        $this->dbforge->drop_table('timekeeping_leave', TRUE);
+        $this->dbforge->drop_table('timekeeping_calendar_events', TRUE);
     }
 
 
@@ -77,7 +77,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('user_id');
 
-        return $this->dbforge->create_table('timekeeping_calendar_events');
+        return $this->dbforge->create_table('timekeeping_calendar_events', TRUE);
     }
 
 
@@ -109,7 +109,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('timekeeping_leave');        
+        return $this->dbforge->create_table('timekeeping_leave', TRUE);        
     }
 
 
@@ -175,7 +175,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('timekeeping_logs');
+        return $this->dbforge->create_table('timekeeping_logs', TRUE);
     }
 
 
@@ -222,7 +222,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('timekeeping_menu');
+        return $this->dbforge->create_table('timekeeping_menu', TRUE);
     }
 
 
@@ -363,7 +363,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('timekeeping_record');
+        return $this->dbforge->create_table('timekeeping_record', TRUE);
     }
 
 
@@ -417,7 +417,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('timekeeping_record_overtime');
+        return $this->dbforge->create_table('timekeeping_record_overtime', TRUE);
     }
 
 
@@ -449,9 +449,9 @@ class Migration_Add_Timekeeping extends CI_Migration {
             ]
         ]);
                         
-        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('school_id', TRUE);
         
-        return $this->dbforge->create_table('timekeeping_record_school');
+        return $this->dbforge->create_table('timekeeping_school', TRUE);
     }
 
 
@@ -481,9 +481,9 @@ class Migration_Add_Timekeeping extends CI_Migration {
             ]
         ]);
 
-        $this->dbforge->add_ket('id', TRUE);
+        $this->dbforge->add_key('id', TRUE);
 
-        return $this->dbforge->create_table('timekeeping_shift');
+        return $this->dbforge->create_table('timekeeping_shift', TRUE);
     }
 
 
@@ -538,7 +538,8 @@ class Migration_Add_Timekeeping extends CI_Migration {
             'menu_id'         => [
 
                 'type'           => 'INT',
-                'constraint'     => 11
+                'constraint'     => 11,
+                'unsigned'       => TRUE
             ],
             'intern'          => [
 
@@ -551,13 +552,13 @@ class Migration_Add_Timekeeping extends CI_Migration {
                 'constraint'     => 1
             ],
 
-            'CONSTRAINT `timekeeping_sub_menu_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `timekeeping_sub_menu_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `timekeeping_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('menu_id');
         
-        return $this->dbforge->create_table('timekeeping_sub_menu');
+        return $this->dbforge->create_table('timekeeping_sub_menu', TRUE);
     }
 
 

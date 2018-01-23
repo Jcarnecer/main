@@ -83,7 +83,7 @@ class Migration_Add_Task extends CI_Migration {
         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('tasks');
+        return $this->dbforge->create_table('tasks', TRUE);
     }
 
 
@@ -106,7 +106,7 @@ class Migration_Add_Task extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('tags');
+        return $this->dbforge->create_table('tags', TRUE);
     }
 
 
@@ -135,7 +135,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['tag_id', 'task_id'], TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('tasks_tagging');
+        return $this->dbforge->create_table('tasks_tagging', TRUE);
     }
 
 
@@ -177,7 +177,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('task_notes');        
+        return $this->dbforge->create_table('task_notes', TRUE);        
     }
 
 
@@ -207,7 +207,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('admin');
         
-        return $this->dbforge->create_table('teams');
+        return $this->dbforge->create_table('teams', TRUE);
     }
 
 
@@ -233,7 +233,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['team_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('teams_mapping');
+        return $this->dbforge->create_table('teams_mapping', TRUE);
     }
 
 
@@ -261,6 +261,6 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['task_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('tasks_assignment');
+        return $this->dbforge->create_table('tasks_assignment', TRUE);
     }
 }
