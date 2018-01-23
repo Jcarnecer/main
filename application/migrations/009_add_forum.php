@@ -64,7 +64,7 @@ class Migration_Add_Forum extends CI_Migration {
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('company_id');
 
-        return $this->dbforge->create_table("forum_posts");
+        return $this->dbforge->create_table('forum_posts');
     }
 
 
