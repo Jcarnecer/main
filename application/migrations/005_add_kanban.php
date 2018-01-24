@@ -6,8 +6,8 @@ class Migration_Add_Kanban extends CI_Migration {
 
     public function up() {
 
-        $this->boards();
-        $this->columns();
+        $this->kb_boards();
+        $this->kb_columns();
     }
 
 
