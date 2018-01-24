@@ -24,6 +24,10 @@ class Migration_Add_Timekeeping extends CI_Migration {
 
     public function down() {
         
+        $this->db->empty_table('timekeeping_sub_menu');
+        $this->db->empty_table('timekeeping_shift');
+        $this->db->empty_table('timekeeping_menu');
+        $this->db->empty_table('timekeeping_leave');
         $this->dbforge->drop_table('timekeeping_sub_menu', TRUE);
         $this->dbforge->drop_table('timekeeping_shift', TRUE);
         $this->dbforge->drop_table('timekeeping_school', TRUE);
