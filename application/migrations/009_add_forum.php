@@ -6,19 +6,19 @@ class Migration_Add_Forum extends CI_Migration {
 
     public function up() {
 
-        $this->posts();
-        $this->comments();
+        $this->threads();
+        $this->replies();
     }
 
 
     public function down() {
 
-        $this->dbforge->drop_table('forum_comments', TRUE);
-        $this->dbforge->drop_table('forum_posts', TRUE);
+        $this->dbforge->drop_table('forum_replies', TRUE);
+        $this->dbforge->drop_table('forum_threads', TRUE);
     }
 
 
-    public function posts() {
+    public function threads() {
 
         $this->dbforge->add_field([
 
@@ -56,19 +56,19 @@ class Migration_Add_Forum extends CI_Migration {
             'created_at TIMESTAMP',
             'updated_at TIMESTAMP',
 
-            'CONSTRAINT `forum_posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `forum_posts_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `forum_threads_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `forum_threads_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('company_id');
 
-        return $this->dbforge->create_table('forum_posts', TRUE);
+        return $this->dbforge->create_table('forum_threads', TRUE);
     }
 
 
-    public function comments() {
+    public function replies() {
 
         $this->dbforge->add_field([
             
@@ -88,7 +88,7 @@ class Migration_Add_Forum extends CI_Migration {
                 'type'           => 'VARCHAR',
                 'constraint'     => 11
             ],
-            'post_id'         => [
+            'thread_id'         => [
                 
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -103,14 +103,14 @@ class Migration_Add_Forum extends CI_Migration {
             'created_at TIMESTAMP',
             'updated_at TIMESTAMP',
 
-            'CONSTRAINT `forum_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `forum_comments_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `forum_posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `forum_replies_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `forum_replies_ibfk_2` FOREIGN KEY (`thread_id`) REFERENCES `forum_threads` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('user_id');
-        $this->dbforge->add_key('post_id');
+        $this->dbforge->add_key('thread_id');
         
-        return $this->dbforge->create_table('forum_comments', TRUE);        
+        return $this->dbforge->create_table('forum_replies', TRUE);        
     }
 }
