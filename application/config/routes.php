@@ -35,5 +35,7 @@ $route["api/dev/companies"]["GET"] = "APIController/get_companies";
 $route["api/dev/companies/users"]["GET"] = "APIController/get_company_users";
 $route["api/dev/companies/roles"]["GET"] = "APIController/get_company_roles";
 
+$route['transaction/checkout']="PaymentController/Checkout";
+
 $route["404_override"] = "";
 $route["translate_uri_dashes"] = FALSE;
