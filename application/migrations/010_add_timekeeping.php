@@ -15,6 +15,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->timekeeping_school();
         $this->timekeeping_shift();
         $this->timekeeping_sub_menu();
+        $this->timekeeping_file_leave();
         $this->leaves_seed();
         $this->menu_seed();
         $this->shift_seed();
@@ -28,6 +29,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->db->empty_table('timekeeping_shift');
         $this->db->empty_table('timekeeping_menu');
         $this->db->empty_table('timekeeping_leave');
+        $this->dbforge->drop_table('timekeeping_file_leave', TRUE);
         $this->dbforge->drop_table('timekeeping_sub_menu', TRUE);
         $this->dbforge->drop_table('timekeeping_shift', TRUE);
         $this->dbforge->drop_table('timekeeping_school', TRUE);
@@ -114,27 +116,6 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         
         return $this->dbforge->create_table('timekeeping_leave', TRUE);        
-    }
-
-
-    public function leaves_seed() {
-
-        $data = [
-            [
-                "leave_name" => "Vacation Leave",
-                "No_of_days" => 10
-            ],
-            [
-                "leave_name" => "Sick Leave",
-                "No_of_days" => 10
-            ],
-            [
-                "leave_name" => "Maternity Leave",
-                "No_of_days" => 50
-            ]
-        ];
-
-        return $this->db->insert_batch("timekeeping_leave", $data);
     }
 
 
@@ -227,87 +208,6 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         
         return $this->dbforge->create_table('timekeeping_menu', TRUE);
-    }
-
-
-    public function menu_seed() {
-
-        $data = [
-            [
-                "id" => 1,
-                "name" => "Dashboard",
-                "icon" => "fa fa-dashboard",
-                "status"   => 1,
-                "url"  => "dashboard",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 2,
-                "name" => "User Management",
-                "icon" => "fa fa-users",
-                "status"   => 1,
-                "url"  => "users",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 3,
-                "name" => "Attendance",
-                "icon" => "fa fa-calendar",
-                "status"   => 1,
-                "url"  => "",
-                "with_sub" => 1 
-            ],
-            [
-                "id" => 4,
-                "name" => "Management Shift",
-                "icon" => "fa fa-clock-o",
-                "status"   => 1,
-                "url"  => "",
-                "with_sub" => 1 
-            ],
-            [
-                "id" => 5,
-                "name" => "Position Management",
-                "icon" => "fa fa-sitemap",
-                "status"   => 1,
-                "url"  => "position",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 6,
-                "name" => "Logs",
-                "icon" => "fa fa-tasks",
-                "status"   => 1,
-                "url"  => "logs",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 7,
-                "name" => "Profile",
-                "icon" => "fa fa-user",
-                "status"   => 1,
-                "url"  => "profile",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 8,
-                "name" => "Schedule",
-                "icon" => "fa fa-columns",
-                "status"   => 1,
-                "url"  => "eschedule",
-                "with_sub" => NULL
-            ],
-            [
-                "id" => 9,
-                "name" => "Leave Management",
-                "icon" => "fa fa-wpforms",
-                "status"   => 1,
-                "url"  => "eleave",
-                "with_sub" => NULL
-            ]
-        ];
-
-        return $this->db->insert_batch("timekeeping_menu", $data);
     }
 
 
@@ -491,33 +391,6 @@ class Migration_Add_Timekeeping extends CI_Migration {
     }
 
 
-    public function shift_seed() {
-
-        $data = [
-            [
-                "id" => 1,
-                "shift_type" => "Morning",
-                "start_time" => "08:00:00",
-                "end_time"   => "17:00:00"
-            ],
-            [
-                "id" => 2,
-                "shift_type" => "Mid",
-                "start_time" => "15:00:00",
-                "end_time"   => "01:00:00"
-            ],
-            [
-                "id" => 3,
-                "shift_type" => "Night",
-                "start_time" => "22:00:00",
-                "end_time"   => "10:00:00"
-            ]
-        ];
-
-        return $this->db->insert_batch("timekeeping_shift", $data);
-    }
-
-
     public function timekeeping_sub_menu() {
 
         $this->dbforge->add_field([
@@ -563,6 +436,194 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->dbforge->add_key('menu_id');
         
         return $this->dbforge->create_table('timekeeping_sub_menu', TRUE);
+    }
+
+
+    public function timekeeping_file_leave() {
+
+        $this->dbforge->add_field([
+
+            'id'              => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'auto_increment' => TRUE
+            ],
+            'leave_id'        => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE
+            ],
+            'user_id'         => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
+            'start_date'      => [
+
+                'type'           => 'DATE'
+            ],
+            'end_date'        => [
+
+                'type'           => 'DATE'
+            ],
+            'reason'          => [
+
+                'type'           => 'TEXT'
+            ],
+            'status'          => [
+
+                'type'           => 'TEXT'
+            ],
+            'duration'        => [
+
+                'type'           => 'INT',
+                'constraint'     => 11
+            ],
+
+            'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+
+            'CONSTRAINT `timekeeping_file_leave_ibfk_1` FOREIGN KEY (`leave_id`) REFERENCES `timekeeping_leave` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `timekeeping_file_leave_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+        ]);
+
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('leave_id');
+        $this->dbforge->add_key('user_id');
+
+        return $this->dbforge->create_table('timekeeping_file_leave', TRUE);
+    }
+
+
+    public function leaves_seed() {
+
+        $data = [
+            [
+                "leave_name" => "Vacation Leave",
+                "No_of_days" => 10
+            ],
+            [
+                "leave_name" => "Sick Leave",
+                "No_of_days" => 10
+            ],
+            [
+                "leave_name" => "Maternity Leave",
+                "No_of_days" => 50
+            ]
+        ];
+
+        return $this->db->insert_batch("timekeeping_leave", $data);
+    }
+    
+
+    public function menu_seed() {
+
+        $data = [
+            [
+                "id" => 1,
+                "name" => "Dashboard",
+                "icon" => "fa fa-dashboard",
+                "status"   => 1,
+                "url"  => "dashboard",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 2,
+                "name" => "User Management",
+                "icon" => "fa fa-users",
+                "status"   => 1,
+                "url"  => "users",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 3,
+                "name" => "Attendance",
+                "icon" => "fa fa-calendar",
+                "status"   => 1,
+                "url"  => "",
+                "with_sub" => 1 
+            ],
+            [
+                "id" => 4,
+                "name" => "Management Shift",
+                "icon" => "fa fa-clock-o",
+                "status"   => 1,
+                "url"  => "",
+                "with_sub" => 1 
+            ],
+            [
+                "id" => 5,
+                "name" => "Position Management",
+                "icon" => "fa fa-sitemap",
+                "status"   => 1,
+                "url"  => "position",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 6,
+                "name" => "Logs",
+                "icon" => "fa fa-tasks",
+                "status"   => 1,
+                "url"  => "logs",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 7,
+                "name" => "Profile",
+                "icon" => "fa fa-user",
+                "status"   => 1,
+                "url"  => "profile",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 8,
+                "name" => "Schedule",
+                "icon" => "fa fa-columns",
+                "status"   => 1,
+                "url"  => "eschedule",
+                "with_sub" => NULL
+            ],
+            [
+                "id" => 9,
+                "name" => "Leave Management",
+                "icon" => "fa fa-wpforms",
+                "status"   => 1,
+                "url"  => "eleave",
+                "with_sub" => NULL
+            ]
+        ];
+
+        return $this->db->insert_batch("timekeeping_menu", $data);
+    }
+
+
+    public function shift_seed() {
+
+        $data = [
+            [
+                "id" => 1,
+                "shift_type" => "Morning",
+                "start_time" => "08:00:00",
+                "end_time"   => "17:00:00"
+            ],
+            [
+                "id" => 2,
+                "shift_type" => "Mid",
+                "start_time" => "15:00:00",
+                "end_time"   => "01:00:00"
+            ],
+            [
+                "id" => 3,
+                "shift_type" => "Night",
+                "start_time" => "22:00:00",
+                "end_time"   => "10:00:00"
+            ]
+        ];
+
+        return $this->db->insert_batch("timekeeping_shift", $data);
     }
 
 

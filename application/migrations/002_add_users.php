@@ -80,7 +80,7 @@ class Migration_Add_Users extends CI_Migration {
 
 		$this->dbforge->add_key("role_id");
 		$this->dbforge->add_key("permission_id");
-		$this->dbforge->create_table("roles_permissions");
+		$this->dbforge->create_table("roles_permissions", TRUE);
 	}
 
 	public function users() {
