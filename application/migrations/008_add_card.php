@@ -5,6 +5,7 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function up() {
+
         $this->cards(); 
         $this->comments();
         $this->cards_tagging();
@@ -13,14 +14,16 @@ class Migration_Add_Card extends CI_Migration {
 
 
     public function down() {
-        $this->dbforge->drop_table('viewers');
-        $this->dbforge->drop_table('cards_tagging');
-        $this->dbforge->drop_table('comments');
-        $this->dbforge->drop_table('cards');
+
+        $this->dbforge->drop_table('viewers', TRUE);
+        $this->dbforge->drop_table('cards_tagging', TRUE);
+        $this->dbforge->drop_table('comments', TRUE);
+        $this->dbforge->drop_table('cards', TRUE);
     }
 
 
     public function cards() {
+
         $this->dbforge->add_field([
 
             'id'              => [
@@ -74,7 +77,7 @@ class Migration_Add_Card extends CI_Migration {
         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('cards');
+        return $this->dbforge->create_table('cards', TRUE);
     }
 
 
@@ -115,7 +118,7 @@ class Migration_Add_Card extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('card_id');
         
-        return $this->dbforge->create_table('comments');        
+        return $this->dbforge->create_table('comments', TRUE);        
     }
 
 
@@ -143,7 +146,7 @@ class Migration_Add_Card extends CI_Migration {
         $this->dbforge->add_key(['tag_id', 'card_id'], TRUE);
         $this->dbforge->add_key('card_id');
         
-        return $this->dbforge->create_table('cards_tagging');
+        return $this->dbforge->create_table('cards_tagging', TRUE);
     }
 
 
@@ -171,6 +174,6 @@ class Migration_Add_Card extends CI_Migration {
         $this->dbforge->add_key(['card_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('viewers');
+        return $this->dbforge->create_table('viewers', TRUE);
     }
 }
