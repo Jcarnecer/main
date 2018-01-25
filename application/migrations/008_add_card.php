@@ -139,7 +139,7 @@ class Migration_Add_Card extends CI_Migration {
                 'unsigned'       => TRUE
             ],
             
-            'CONSTRAINT `cards_tagging_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `cards_tagging_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `kb_tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `cards_tagging_ibfk_2` FOREIGN KEY (`card_id`) REFERENCES `cards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
