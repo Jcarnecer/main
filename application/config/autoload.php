@@ -68,6 +68,7 @@ $autoload['libraries'] = [
 	"upload",
 	"utilities",
 	'Paymaya'=>"PayMaya",
+	'User',
 ];
 
 /*
