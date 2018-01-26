@@ -7,6 +7,7 @@ class Migration_Add_Resume extends CI_Migration {
     public function up() {
 
         $this->position();
+        $this->remove_seed();
         $this->position_seed();
         $this->role();
         $this->record();
@@ -302,5 +303,13 @@ class Migration_Add_Resume extends CI_Migration {
         $this->dbforge->add_key('record_id');
         
         return $this->dbforge->create_table('employees', TRUE);
+    }
+
+
+    public function remove_seed() {
+
+        $ids = [1,2,3];
+        $this->db->where_in('id', $ids);
+        $this->db->delete('position');
     }
 }
