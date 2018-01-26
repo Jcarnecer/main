@@ -42,7 +42,7 @@ class Migration_Add_Forum extends CI_Migration {
                 'type'           => 'VARCHAR',
                 'constraint'     => 11
             ],
-            'company_id'      => [
+            'project_id'      => [
 
                 "type"           => "VARCHAR",
                 "constraint"     => 11
@@ -57,7 +57,7 @@ class Migration_Add_Forum extends CI_Migration {
             'updated_at TIMESTAMP',
 
             'CONSTRAINT `forum_threads_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `forum_threads_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `forum_threads_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `PJ_PROJECTS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key('id', TRUE);
