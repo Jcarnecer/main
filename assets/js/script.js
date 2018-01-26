@@ -8,26 +8,53 @@ if (window.location.origin === "http://payakapps.com") {
 
 var apiUrl = baseUrl + "/api/dev";
 
-$(function() {
-    function init() {
-        var hide = true;
-
-        $(".custom-toggle").click(function() {
-            if (hide) {
-                $("#sidebar").css({"margin-left": "-210px"});
-                $(".main-content").addClass("animation");
-                $(".main-content").removeClass("reverse-animation");
-                $(".hidden-toggle").css({"display": "block"});
-                hide = false;
-            } else {
-                $("#sidebar").css({"margin-left": "0px"});
-                $(".main-content").removeClass("animation");
-                $(".main-content").addClass("reverse-animation");
-                $(".hidden-toggle").css({"display": "none"});
-                hide = true;
-            }
-        });
+function browserWidth(){
+    var width = $(window).width();
+    var height = $(window).height();
+  
+    return width;
+  };
+  
+  function toggle(){
+    var hide = true;
+    $(".custom-toggle").click(function() {
+      if(browserWidth() < 768) {
+        if (hide) {
+          $('#sidebar').css({'margin-left' : '0px'});
+          hide = false;
+        } else {
+          $('#sidebar').css({'margin-left' : '-210px'});
+          hide = true;
+        }
+      } else {
+        if (hide) {
+          $('#sidebar').css({'margin-left' : '-210px'});
+          $('.main-content').css({'margin-left' : '0px'});
+          $('.hidden-toggle').css({'display' : 'block'});
+          hide = false;
+        } else {
+          $('#sidebar').css({'margin-left' : '0px'});
+          $('.main-content').css({'margin-left' : '210px'});
+          $('.hidden-toggle').css({'display' : 'none'});
+          hide = true;
+        }
+      }
+    });
+  }
+  
+  $(document).ready(toggle());
+  
+  $(window).resize(function() {
+    
+    if(browserWidth() < 768) {
+      $('#sidebar').css({'margin-left' : ''});
+      $('.main-content').css({'margin-left' : ''});
+      $('.hidden-toggle').css({'display' : ''});
+    } else {
+      // $('#sidebar').css({'margin-left' : ''});
+      // $('.main-content').css({'margin-left' : ''});
     }
-
-    init();
-});
+    
+    toggle();
+    
+  });

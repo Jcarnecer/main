@@ -58,15 +58,16 @@
 	</ul>
 	<!-- sidebar menu end-->
 </div>
-<div class="main-content">
+<div class="main-content h-100">
 	<div class="topbar">
-		<nav class="navbar navbar-custom navbar-expand-lg d-flex">
+		<nav class="navbar navbar-custom navbar-expand-lg">
 			<div id="nav-icon-open" class="custom-toggle hidden-toggle">
 				<span></span>
 				<span></span>
 				<span></span>
 			</div>
 			<a class="navbar-brand" href="#">PayakApps</a>
+			
 			<ul class="navbar-nav flex-row ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
