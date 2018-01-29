@@ -16,6 +16,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->timekeeping_shift();
         $this->timekeeping_sub_menu();
         $this->timekeeping_file_leave();
+        $this->remove_seed();
         $this->leaves_seed();
         $this->menu_seed();
         $this->shift_seed();
@@ -520,7 +521,6 @@ class Migration_Add_Timekeeping extends CI_Migration {
     
 
     public function menu_seed() {
-
         $data = [
             [
                 "id" => 1,
@@ -697,5 +697,17 @@ class Migration_Add_Timekeeping extends CI_Migration {
         ];
 
         return $this->db->insert_batch("timekeeping_sub_menu", $data);        
+    }
+
+
+    public function remove_seed() {
+
+        $ids = [1,2,3,4,5,6,7,8,9];
+
+        $tables=['timekeeping_leave', 'timekeeping_menu', 'timekeeping_shift', 'timekeeping_sub_menu'];
+        foreach ($tables as $table) {
+            $this->db->where_in("id", $ids);
+            $this->db->delete($table);
+        }
     }
 }
