@@ -76,7 +76,8 @@ color: inherit !important; }
       display: inline-grid;
       white-space: normal; }
   #sidebar .active {
-    background-color: #082742; }
+    background-color: #082742;
+    border-left: 5px solid #3679b2; }
   #sidebar ul.sub li {
     padding-left: 30px; }
   #sidebar ul.sub a {

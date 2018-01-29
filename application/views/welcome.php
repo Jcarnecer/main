@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
-  </head> -->
+  </head>
   <!-- <body> -->
       <!-- navigation.nunjucks -->
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
