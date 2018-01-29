@@ -47,7 +47,7 @@ class Migration_Add_Chat extends CI_Migration {
 
 		$this->dbforge->add_key('id', true);
 		$this->dbforge->add_key('company_id');
-		$this->dbforge->create_table('chat_conversations');
+		$this->dbforge->create_table('chat_conversations', TRUE);
 	}
 
 	public function messages() {
@@ -85,7 +85,7 @@ class Migration_Add_Chat extends CI_Migration {
 
 		$this->dbforge->add_key("id", true);
 		$this->dbforge->add_key("conversation_id");
-		$this->dbforge->create_table("chat_messages");
+		$this->dbforge->create_table("chat_messages", TRUE);
 	}
 
 
@@ -110,7 +110,7 @@ class Migration_Add_Chat extends CI_Migration {
 		]);
 		$this->dbforge->add_key("conversation_id");
 		$this->dbforge->add_key("user_id");
-		$this->dbforge->create_table("chat_participants");
+		$this->dbforge->create_table("chat_participants", TRUE);
 	}
 
 }

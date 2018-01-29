@@ -1,12 +1,12 @@
 # PayakApps
 
 ```
-https://payakapps.com/
+http://payakapps.com/
 ```
 
 ## Requirements
 
-* PHP ^5.6/^7.1
+* PHP ^7.0
 * MariaDB
 * Apache2
 
