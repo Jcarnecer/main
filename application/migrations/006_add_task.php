@@ -84,7 +84,7 @@ class Migration_Add_Task extends CI_Migration {
              
                 'type'           => 'DATE'
             ],
-            'CONSTRAINT `kb_tasks_ibfk_1` FOREIGN KEY (`column_id`) REFERENCES `KB_COLUMNS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `kb_tasks_ibfk_1` FOREIGN KEY (`column_id`) REFERENCES `kb_columns` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 
         ]);
         
