@@ -8,7 +8,7 @@ class Migration_Add_Task extends CI_Migration {
 
         $this->kb_tags(); 
         $this->kb_tasks();
-        $this->kb_tkb_tags();
+        $this->kb_ttags();
         $this->kb_notes();
         $this->pj_projects();
         $this->pj_members();
@@ -17,13 +17,13 @@ class Migration_Add_Task extends CI_Migration {
 
 
     public function down() {
-        $this->dbforge->drop_table('KB_TACTORS', TRUE);
-        $this->dbforge->drop_table('PJ_MEMBERS', TRUE);
-        $this->dbforge->drop_table('PJ_PROJECTS', TRUE);
-        $this->dbforge->drop_table('KB_NOTES', TRUE);
-        $this->dbforge->drop_table('KB_TTAGS', TRUE);
-        $this->dbforge->drop_table('KB_TASKS', TRUE);
-        $this->dbforge->drop_table('KB_TAGS', TRUE);
+        $this->dbforge->drop_table('kb_tactors', TRUE);
+        $this->dbforge->drop_table('pj_members', TRUE);
+        $this->dbforge->drop_table('pj_projects', TRUE);
+        $this->dbforge->drop_table('kb_notes', TRUE);
+        $this->dbforge->drop_table('kb_ttags', TRUE);
+        $this->dbforge->drop_table('kb_tasks', TRUE);
+        $this->dbforge->drop_table('kb_tags', TRUE);
     }
 
 
@@ -90,7 +90,7 @@ class Migration_Add_Task extends CI_Migration {
         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('KB_TASKS', TRUE);
+        return $this->dbforge->create_table('kb_tasks', TRUE);
     }
 
 
@@ -113,11 +113,11 @@ class Migration_Add_Task extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('KB_TAGS', TRUE);
+        return $this->dbforge->create_table('kb_tags', TRUE);
     }
 
 
-    public function kb_tkb_tags() {
+    public function kb_ttags() {
 
 
         $this->dbforge->add_field([
@@ -135,14 +135,14 @@ class Migration_Add_Task extends CI_Migration {
                 'unsigned'       => TRUE
             ],
             
-            'CONSTRAINT `kb_tkb_tags_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `KB_TAGS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `kb_tkb_tags_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `KB_TASKS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `kb_tkb_tags_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `kb_tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `kb_tkb_tags_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `kb_tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key(['tag_id', 'task_id'], TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('KB_TTAGS', TRUE);
+        return $this->dbforge->create_table('kb_ttags', TRUE);
     }
 
 
@@ -177,14 +177,14 @@ class Migration_Add_Task extends CI_Migration {
                 'type'           => 'DATE'
             ],
 
-            'CONSTRAINT `kb_notes_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `KB_TASKS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `kb_notes_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `kb_tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `kb_notes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('KB_NOTES', TRUE);        
+        return $this->dbforge->create_table('kb_notes', TRUE);        
     }
 
 
@@ -220,7 +220,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('admin');
         
-        return $this->dbforge->create_table('PJ_PROJECTS', TRUE);
+        return $this->dbforge->create_table('pj_projects', TRUE);
     }
 
 
@@ -239,14 +239,14 @@ class Migration_Add_Task extends CI_Migration {
                 'constraint'     => 11
             ],
 
-            'CONSTRAINT `pj_members_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `PJ_PROJECTS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `pj_members_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `pj_projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `pj_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key(['project_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('PJ_MEMBERS', TRUE);
+        return $this->dbforge->create_table('pj_members', TRUE);
     }
 
 
@@ -267,13 +267,13 @@ class Migration_Add_Task extends CI_Migration {
                 'unsigned'       => TRUE
             ],
 
-            'CONSTRAINT `kb_tactors_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `KB_TASKS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `kb_tactors_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `kb_tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `kb_tactors_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key(['task_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('KB_TACTORS', TRUE);
+        return $this->dbforge->create_table('kb_tactors', TRUE);
     }
 }
