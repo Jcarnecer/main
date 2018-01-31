@@ -13,8 +13,8 @@ class Migration_Add_Kanban extends CI_Migration {
 
     public function down() {
 
-        $this->dbforge->drop_table('KB_COLUMNS');
-        $this->dbforge->drop_table('KB_BOARDS');
+        $this->dbforge->drop_table('kb_columns');
+        $this->dbforge->drop_table('kb_boards');
     }
 
 
@@ -46,7 +46,7 @@ class Migration_Add_Kanban extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('project_id');
 
-        return $this->dbforge->create_table('KB_BOARDS');
+        return $this->dbforge->create_table('kb_boards');
     }
 
 
@@ -78,12 +78,12 @@ class Migration_Add_Kanban extends CI_Migration {
                 'unsigned'       => TRUE
             ],
 
-            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `KB_BOARDS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `kb_boards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('board_id');
         
-        return $this->dbforge->create_table('KB_COLUMNS');
+        return $this->dbforge->create_table('kb_columns');
     }
 }
