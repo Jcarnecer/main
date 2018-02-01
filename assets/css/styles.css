@@ -52,7 +52,7 @@ color: inherit !important; }
   height: 100%;
   position: fixed;
   background: #273d6a;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: .5s;
   -webkit-transition: .5s;
   -moz-transition: .5s; }
