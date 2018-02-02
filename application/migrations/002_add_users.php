@@ -117,7 +117,8 @@ class Migration_Add_Users extends CI_Migration {
 				"type" => "DATETIME"
 			],
 			"last_login_at" => [
-				"type" => "DATETIME"
+				"type" => "DATETIME",
+				"null" => true
 			],
 			"avatar_url" => [
 				"type" => "VARCHAR",

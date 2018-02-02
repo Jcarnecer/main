@@ -55,8 +55,8 @@ class Migration_Add_Forum extends CI_Migration {
                 'constraint'     => 3
             ],
 
-            'created_at TIMESTAMP',
-            'updated_at TIMESTAMP',
+            'created_at DATETIME',
+            'updated_at DATETIME',
 
             'CONSTRAINT `forum_threads_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `forum_threads_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `PJ_PROJECTS` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
@@ -102,8 +102,8 @@ class Migration_Add_Forum extends CI_Migration {
                 'constraint'     => 3
             ],
 
-            'created_at TIMESTAMP',
-            'updated_at TIMESTAMP',
+            'created_at DATETIME',
+            'updated_at DATETIME',
 
             'CONSTRAINT `forum_replies_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `forum_replies_ibfk_2` FOREIGN KEY (`thread_id`) REFERENCES `forum_threads` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
@@ -146,8 +146,8 @@ class Migration_Add_Forum extends CI_Migration {
                 'unsigned'       => TRUE
             ], 
 
-            'created_at TIMESTAMP',
-            'updated_at TIMESTAMP',
+            'created_at DATETIME',
+            'updated_at DATETIME',
 
             'CONSTRAINT `forum_reactions_ibfk_1` FOREIGN KEY (`reply_id`) REFERENCES `forum_replies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `forum_reactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
