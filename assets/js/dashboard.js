@@ -2,14 +2,14 @@ $(function() {
     var taskNotif = $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://task.payakapps.com/api/task/get_all',
+        url: 'http://localhost/task/api/task/get_all',
         data: {
             author_id: userId
         },
-        dataType: 'jsonp'
+        dataType: 'json'
     }).responseJSON;
-    
-    $('#taskNotif').html();
+
+    $('#taskNotif').html(taskNotif.length);
 });
 
 function close_notif(e) {

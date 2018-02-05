@@ -1,3 +1,8 @@
+<script>
+	// var userId = `${$user->id}`;
+	var userId = 'FpvRLXtG37O';
+</script>
+
 <div id="sidebar">
 	<!-- sidebar menu start-->
 	<div id="nav-icon-close" class="custom-toggle">

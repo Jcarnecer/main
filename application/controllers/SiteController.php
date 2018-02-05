@@ -14,7 +14,7 @@ class SiteController extends BaseController
 	{
 		if (parent::current_user()) {
 			
-			$expiration = new DateTime(date('Y-m-d', strtotime('+15 days', time($this->company->get(parent::current_user()->company_id)['created_at']))));
+			$expiration = (new DateTime($this->company->get(parent::current_user()->company_id)['created_at']))->add(new DateInterval('P15D'));
 			$today 		= new DateTime('now');
 
 			$data['expiration'] 	= $expiration->format('F j, Y');
