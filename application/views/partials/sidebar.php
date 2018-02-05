@@ -136,4 +136,4 @@
 		</nav>
 	</div>
 
-	<div class="inner-content bg-white h-100">
+	<div class="inner-content bg-white h-100" style="overflow-x: auto;">
