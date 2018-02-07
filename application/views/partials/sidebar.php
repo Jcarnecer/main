@@ -1,6 +1,5 @@
 <script>
-	// var userId = `${$user->id}`;
-	var userId = 'FpvRLXtG37O';
+	var userId = '<?= $user->id ?>';
 </script>
 
 <div id="sidebar">

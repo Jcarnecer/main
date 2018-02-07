@@ -38,11 +38,11 @@
     </div>
 
     <div class="card-columns w-100 my-3">
-        <div class="card" onclick="goto('chat')">
+        <!-- <div class="card" onclick="goto('chat')">
             <div class="card-body">
                 <h4><i class="fa fa-comments"></i> Chat</h4>
             </div>
-        </div>
+        </div> -->
         <div class="card" onclick="goto('task')">
             <div class="card-body">
                 <h4><i class="fa fa-tasks"></i> Task <span id="taskNotif" class="badge badge-dark float-right"></span></h4>
