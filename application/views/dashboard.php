@@ -4,7 +4,7 @@
     <div class="card card-notif mb-3">
         <div class="card-header bg-primary" style="overflow: auto;">
             <span class="h5 font-weight-bold">Notice</span>
-            <button class="btn btn-danger btn-sm d-inline-block float-right" onclick="close_notif(event)"><i class="fa fa-close"></i></button>
+            <button class="btn btn-danger btn-sm d-inline-block float-right" onclick="closeNotif(event)"><i class="fa fa-close"></i></button>
         </div>
         <div class="card-body">
             <span>Your free trial will end at <?= $remaining_day ?> day(s).</span>

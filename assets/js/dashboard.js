@@ -1,5 +1,5 @@
 $(function() {
-    var taskPersonal = $.ajax({
+    var task = $.ajax({
         async: false,
         type: 'GET',
         url: 'http://localhost/task/api/task/get_all',
@@ -7,30 +7,38 @@ $(function() {
             author_id: userId
         },
         dataType: 'json'
-    }).responseJSON;
+    });
 
     var note = $.ajax({
         async: false,
         type: 'GET',
         url: 'http://localhost/note/api/note/get_all',
         dataType: 'json'
-    }).responseJSON;
-
-    $('#taskNotif').html(taskPersonal.length);
-    $('#noteNotif').html(note.length);
-
-    taskPersonal.forEach(function(task) {
-        if((new Date()).setHours(0,0,0,0) == (new Date(task['due_date'])).setHours(0,0,0,0)) {
-            $('#taskToday').append(task_builder(task));
-        }
     });
 
-    note.forEach(function(note) {
-        $('#announcement').append(note_builder(note));
-    });
+    task.done(function(data) {displayTask(data)});
+    note.done(function(data) {displayNote(data)});
 });
 
-function task_builder(task) {
+function displayTask(data) {
+    $('#taskNotif').html(data.length);
+
+    data.forEach(function(task) {
+        if((new Date()).setHours(0,0,0,0) == (new Date(task['due_date'])).setHours(0,0,0,0)) {
+            $('#taskToday').append(taskBuilder(task));
+        }
+    });
+}
+
+function displayNote(data) {
+    $('#noteNotif').html(data.length);
+
+    data.forEach(function(note) {
+        $('#announcement').append(noteBuilder(note));
+    });
+}
+
+function taskBuilder(task) {
     var taskElem = 
     `<div class="card" onclick="goto_task('task')">
         <div class="card-body">
@@ -42,7 +50,7 @@ function task_builder(task) {
     return taskElem;
 }
 
-function note_builder(note) {
+function noteBuilder(note) {
     var noteElem = 
     `<div class="card" onclick="goto('note')">
         <div class="card-body" style="background-color: ${note['color']}">
@@ -56,7 +64,7 @@ function note_builder(note) {
     return noteElem;
 }
 
-function close_notif(e) {
+function closeNotif(e) {
     $(e.target).closest('.card').fadeOut();
 }
 
