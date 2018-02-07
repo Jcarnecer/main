@@ -13,19 +13,34 @@
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://chat.payakapps.com/">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/chat/"; break;
+							default: echo "http://chat.payakapps.com/"; break;
+						}
+					?>">
 				<i class="fa fa-comment mr-2"></i>
 				<span>Chat</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://note.payakapps.com/">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/note/"; break;
+							default: echo "http://note.payakapps.com/"; break;
+						}
+					?>">
 				<i class="fa fa-sticky-note mr-2"></i>
 				<span>Note</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="http://task.payakapps.com/">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/task/"; break;
+							default: echo "http://task.payakapps.com/"; break;
+						}
+					?>">
 				<i class="fa fa-tasks mr-2"></i>
 				<span>Task</span>
 			</a>
@@ -58,15 +73,16 @@
 	</ul>
 	<!-- sidebar menu end-->
 </div>
-<div class="main-content">
+<div class="main-content h-100">
 	<div class="topbar">
-		<nav class="navbar navbar-custom navbar-expand-lg d-flex">
+		<nav class="navbar navbar-custom navbar-expand-lg">
 			<div id="nav-icon-open" class="custom-toggle hidden-toggle">
 				<span></span>
 				<span></span>
 				<span></span>
 			</div>
 			<a class="navbar-brand" href="#">PayakApps</a>
+			
 			<ul class="navbar-nav flex-row ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">

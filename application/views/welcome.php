@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
   </head>
-  <body>
+  <!-- <body> -->
       <!-- navigation.nunjucks -->
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
     <a class="navbar-brand" href="#">Payak Apps</a>
@@ -230,5 +230,5 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     
-  </body>
-</html>
+  <!-- </body> -->
+<!-- </html> -->

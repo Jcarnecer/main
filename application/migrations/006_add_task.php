@@ -89,8 +89,9 @@ class Migration_Add_Task extends CI_Migration {
         ]);
         
         $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('column_id');
         
-        return $this->dbforge->create_table('kb_tasks');
+        return $this->dbforge->create_table('kb_tasks', TRUE);
     }
 
 
@@ -113,7 +114,7 @@ class Migration_Add_Task extends CI_Migration {
                         
         $this->dbforge->add_key('id', TRUE);
         
-        return $this->dbforge->create_table('kb_tags');
+        return $this->dbforge->create_table('kb_tags', TRUE);
     }
 
 
@@ -142,7 +143,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['tag_id', 'task_id'], TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('kb_ttags');
+        return $this->dbforge->create_table('kb_ttags', TRUE);
     }
 
 
@@ -184,7 +185,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('task_id');
         
-        return $this->dbforge->create_table('kb_notes');        
+        return $this->dbforge->create_table('kb_notes', TRUE);        
     }
 
 
@@ -220,7 +221,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('admin');
         
-        return $this->dbforge->create_table('pj_projects');
+        return $this->dbforge->create_table('pj_projects', TRUE);
     }
 
 
@@ -246,7 +247,7 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['project_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('pj_members');
+        return $this->dbforge->create_table('pj_members', TRUE);
     }
 
 
@@ -274,6 +275,6 @@ class Migration_Add_Task extends CI_Migration {
         $this->dbforge->add_key(['task_id', 'user_id'], TRUE);
         $this->dbforge->add_key('user_id');
         
-        return $this->dbforge->create_table('kb_tactors');
+        return $this->dbforge->create_table('kb_tactors', TRUE);
     }
 }
