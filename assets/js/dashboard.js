@@ -2,7 +2,7 @@ $(function() {
     var task = $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/task/api/task/get_all',
+        url: `${getUrl('task')}api/task/get_all`,
         data: {
             author_id: userId
         },
@@ -12,13 +12,17 @@ $(function() {
     var note = $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/note/api/note/get_all',
+        url: `${getUrl('note')}api/note/get_all`,
         dataType: 'json'
     });
 
     task.done(function(data) {displayTask(data)});
     note.done(function(data) {displayNote(data)});
 });
+
+function getUrl(app) {
+    return baseUrl === 'http://payakapps.com' || baseUrl === 'http://stage.payakapps.com' ? `http://${app}.payakapps.com/` : `http://localhost/${app}/`;
+}
 
 function displayTask(data) {
     $('#taskNotif').html(data.length);

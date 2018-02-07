@@ -43,18 +43,18 @@
                 <h4><i class="fa fa-comments"></i> Chat</h4>
             </div>
         </div> -->
-        <div class="card" onclick="goto('task')">
+        <div class="card app-card" onclick="goto('task')">
             <div class="card-body">
                 <h4><i class="fa fa-tasks"></i> Task <span id="taskNotif" class="badge badge-dark float-right"></span></h4>
 
             </div>
         </div>
-        <div class="card" onclick="goto('forum')">
+        <div class="card app-card" onclick="goto('forum')">
             <div class="card-body">
                 <h4><i class="fa fa-exchange"></i> Forum</h4>
             </div>
         </div>
-        <div class="card" onclick="goto('note')">
+        <div class="card app-card" onclick="goto('note')">
             <div class="card-body">
                 <h4><i class="fa fa-sticky-note"></i> Note <span id="noteNotif" class="badge badge-dark float-right"></span></h4>
             </div>

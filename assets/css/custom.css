@@ -3,6 +3,16 @@
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15); */
 }
 
+.app-card {
+    transition-duration: 0.2s;
+}
+
+.app-card:hover {
+    background-color: #273d6a;
+    color: #fff;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1), 0 5px 6px rgba(0, 0, 0, 0.15);
+}
+
 .card,
 .card-header,
 .card-footer
