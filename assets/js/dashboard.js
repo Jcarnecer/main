@@ -84,7 +84,7 @@ function displayTask(data) {
     $('#taskNotif').html(data.length);
 
     if (data.length == 0) {
-        $('#taskToday').parent().html('<h1 class="text-center text-muted font-weight-bold">No task for today</h1>');
+        $('#taskToday').parent().html('<h1 class="text-center text-muted font-weight-bold">No tasks for today</h1>');
     } else {
         data.forEach(function(task) {
             if((new Date()).setHours(0,0,0,0) >= (new Date(task['due_date'])).setHours(0,0,0,0)) {
@@ -98,7 +98,7 @@ function displayNote(data) {
     $('#noteNotif').html(data.length);
 
     if (data.length == 0) {
-        $('#announcement').parent().html('<h1 class="text-center text-muted font-weight-bold">No announcement</h1>');
+        $('#announcement').html('<h1 class="text-center text-muted font-weight-bold">No announcements</h1>');
     } else {
         data.forEach(function(note, index) {
             $('#announcement').append(noteBuilder(note));

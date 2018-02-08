@@ -15,7 +15,7 @@
     </div>
 
     <div class="bg-primary text-white w-100 py-3">
-        <h1 class="mt-4 font-weight-bold text-center"><span id="greetings"></span></h1>
+        <h1 class="mt-4 font-weight-bold text-center"><span id="greetings"></span>, <?= $first_name ?>!</h1>
         <h5 class="text-center">Today is <span id="date" class="font-weight-bold"></span></h5>
         <h5 class="text-center">The time is <span id="clock" class="font-weight-bold"></span></h5>
     </div>
@@ -24,7 +24,7 @@
         <div class="row align-items-stretch my-3">
             <div class="col-md-8">
                 <div class="card h-100">
-                    <div class="card-header h5"><i class="fa fa-tasks"></i> Today's Task</div>
+                    <div class="card-header h5"><i class="fa fa-tasks"></i> Today's Tasks</div>
                     <div class="card-body">
                         <div id="taskToday" class="card-columns">
                         
