@@ -15,7 +15,7 @@
     </div>
 
     <div class="bg-primary text-white w-100 py-3">
-        <h1 class="mt-4 text-center"><span id="greetings"></span></h1>
+        <h1 class="mt-4 font-weight-bold text-center"><span id="greetings"></span></h1>
         <h5 class="text-center">Today is <span id="date" class="font-weight-bold"></span></h5>
         <h5 class="text-center">The time is <span id="clock" class="font-weight-bold"></span></h5>
     </div>
@@ -54,9 +54,9 @@
                     <h5><i class="fa fa-tasks"></i> Task <span id="taskNotif" class="badge badge-dark float-right"></span></h5>
                 </div>
             </div>
-            <div class="card app-card" onclick="goto('forum')">
+            <div class="card app-card" onclick="goto('chat')">
                 <div class="card-body">
-                    <h5><i class="fa fa-exchange"></i> Forum</h5>
+                    <h5><i class="fa fa-comment"></i> Chat</h5>
                 </div>
             </div>
             <div class="card app-card" onclick="goto('note')">

@@ -83,19 +83,27 @@ function getUrl(app) {
 function displayTask(data) {
     $('#taskNotif').html(data.length);
 
-    data.forEach(function(task) {
-        if((new Date()).setHours(0,0,0,0) == (new Date(task['due_date'])).setHours(0,0,0,0)) {
-            $('#taskToday').append(taskBuilder(task));
-        }
-    });
+    if (data.length == 0) {
+        $('#taskToday').parent().html('<h1 class="text-center text-muted font-weight-bold">No task for today</h1>');
+    } else {
+        data.forEach(function(task) {
+            if((new Date()).setHours(0,0,0,0) >= (new Date(task['due_date'])).setHours(0,0,0,0)) {
+                $('#taskToday').append(taskBuilder(task));
+            }
+        });
+    }
 }
 
 function displayNote(data) {
     $('#noteNotif').html(data.length);
 
-    data.forEach(function(note) {
-        $('#announcement').append(noteBuilder(note));
-    });
+    if (data.length == 0) {
+        $('#announcement').parent().html('<h1 class="text-center text-muted font-weight-bold">No announcement</h1>');
+    } else {
+        data.forEach(function(note, index) {
+            $('#announcement').append(noteBuilder(note));
+        });
+    }
 }
 
 function pad(n, width, z) {
@@ -106,13 +114,10 @@ function pad(n, width, z) {
 
 function taskBuilder(task) {
     var taskElem = 
-    `<div class="card" onclick="goto('task')">
+    `<div class="card task-card" onclick="goto('task')">
         <div class="card-body">
             <span class="badge badge-pill rounded-circle p-2 mx-1" style="background-color:${task['color']};"> </span>
             <h6 class="card-title mb-0 d-inline font-weight-bold">${task['title']}</h6>
-        </div>
-        <div class="card-footer text-right p-1">
-            <small class="card-text font-weight-bold mb-0">${clock(task['due_date'])}</small>
         </div>
     </div>`;
 
@@ -121,7 +126,7 @@ function taskBuilder(task) {
 
 function noteBuilder(note) {
     var noteElem = 
-    `<div class="card" onclick="goto('note')">
+    `<div class="card note-card" onclick="goto('note')">
         <div class="card-body" style="background-color: ${note['color']}">
             <h5 class="card-title mb-0 d-inline font-weight-bold">${note['title']}</h5>
             </div>
@@ -138,5 +143,5 @@ function closeNotif(e) {
 }
 
 function goto(app) {
-    window.location.href = 'http://localhost/' + app;
+    window.location.href = getUrl(app);
 }
