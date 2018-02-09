@@ -279,10 +279,10 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 'id'             => '5pv3LX6GiB9',
                 'company_id'     => 'astridtech',
-                'email_address'  => 'krishia.ellis@astridtechnologies.com',
+                'email_address'  => 'mohammadz.guro@astridtechnologies.com',
                 'password'       => '2939dc5ddc7c515b680fd02e6c958ffe8a5329363fdc9ad43e2f62e26226e83c5584c79a742f2bf414e896f6b0a07084b13c8cda9e45b7e4fda9ca3dfc17ac5eBa+TaVRnd746vLo4RL+OGzGkAPVHfsDYFPo2E/Ibx+Q=',
-                'first_name'     => 'Krishia',
-                'last_name'      => 'Ellis',
+                'first_name'     => 'Mohammad Zahaire',
+                'last_name'      => 'Guro',
                 'role'           => '2',
                 'created_at'     => date("Y-m-d H:i:s"),
                 'last_login_at'  => date("Y-m-d H:i:s"),
