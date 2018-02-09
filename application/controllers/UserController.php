@@ -85,7 +85,7 @@ class UserController extends BaseController
 					'role' => $this->input->post('role'),
 					'created_at' => date("Y-m-d H:i:s"),
 					'last_login_at' => null,
-					'avatar_url' => base_url("upload/avatar/default.png")
+					'avatar_url' => DEFAULT_AVATAR_URL
 				];
 				$this->user->insert($user);
 				return redirect("users/create");

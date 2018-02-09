@@ -89,6 +89,7 @@ class Migration_Add_Task extends CI_Migration {
         ]);
         
         $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('column_id');
         
         return $this->dbforge->create_table('kb_tasks', TRUE);
     }
