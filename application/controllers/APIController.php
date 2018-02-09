@@ -19,14 +19,14 @@ class APIController extends BaseController
 
 	public function get_company_users()
 	{
-		$data = [];
+		$data['data'] = [];
 		if (parent::can_user("USER_LIST")) {
 			$current_user = parent::current_user();
 			foreach ($this->user->get_many_by(["company_id" => $current_user->company_id]) as $user) {
 				$user["role"] = $this->role->get($user["role"]);
 				unset($user["password"]);
 				unset($user["role"]["id"]);
-				$data[] = $user;
+				$data['data'][] = $user;
 			}
 		} else {
 			$data["error"] = [
@@ -42,10 +42,10 @@ class APIController extends BaseController
 		$data = [];
 		if (parent::can_user("ROLE_LIST")) {
 			$current_user = parent::current_user();
-			$data["roles"] = [];
+			$data["data"] = [];
 			foreach ($this->role->get_many_by("company_id", $current_user->company_id) as $role) {
 				unset($role["company_id"]);
-				$data["roles"][] = $role;
+				$data["data"][] = $role;
 			}
 		} else {
 			$data["error"] = [
