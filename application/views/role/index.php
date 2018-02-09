@@ -31,6 +31,7 @@
 							</div>
 						</div>
 					<?php endif; ?>
+					<div class="w-100 my-3"></div>
 					<table class="table table-hover table-bordered" id="rolesTbl"></table>
 				</div>
 			</div>
@@ -64,19 +65,19 @@
 				select: "single",
 				info: false,
 				lengthChange: false,
-				data: [],
+				ajax: apiUrl + "/companies/roles",
 				columns: [
 					{ title: "Name", data: "name" },
 					{ title: "Created at", data: "created_at" }
 				]
 			});
 
-			getRoles()
-				.then(function(data) {
-					rolesTbl.clear()
-						.rows.add(data.roles)
-						.draw();
-				});
+			// getRoles()
+			// 	.then(function(data) {
+			// 		rolesTbl.clear()
+			// 			.rows.add(data.roles)
+			// 			.draw();
+			// 	});
 
 			rolesTbl.on("select", function(e, dt, type, indexes) {
 				if (type === "row") {
