@@ -1,0 +1,32 @@
+.card-notif {
+    display: block;
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15); */
+}
+
+.app-card {
+    transition-duration: 0.2s;
+}
+
+.app-card:hover {
+    background-color: #273d6a;
+    color: #fff;
+    margin-top: -3px;
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5)
+}
+
+.card,
+.card-header,
+.card-footer {
+    border-radius: 0px !important;
+}
+
+.note-card,
+.task-card {
+    transition-duration: 0.2s;
+}
+
+.note-card:hover,
+.task-card:hover {
+    /* margin-top: -3px; */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1)
+}
