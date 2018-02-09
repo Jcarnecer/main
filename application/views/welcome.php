@@ -14,7 +14,7 @@
   <!-- <body> -->
       <!-- navigation.nunjucks -->
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
-    <a class="navbar-brand" href="#">Payak Apps</a>
+    <a class="navbar-brand" href="#"><img src="assets/images/payak-icon.png" alt="Payak logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,7 +37,7 @@
 </nav>
       <!-- You write code for this content block in another file -->
       
-<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +51,7 @@
           <div class="form-group">
             <label>Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label>First Name</label>
@@ -65,7 +65,7 @@
             <label>Country</label>
             <input type="text" class="form-control" id="country" placeholder="Enter country">
           </div>
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
@@ -74,7 +74,7 @@
               <input type="checkbox" class="form-check-input">
               Check me out
             </label>
-          </div> -->
+          </div>
       </div>
       <div class="modal-footer">
           <button class="sign-up-btn center-block">Sign Up</button>
@@ -82,16 +82,17 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="container-fluid">
     <div class="row full-page first-fold">
-        <div class="col-md-6 align-self-center">
-            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="product-thumb mx-auto d-block img-fluid">
+        <div class="col-md-7 align-self-center">
+            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="w-100 mx-auto d-block img-fluid">
         </div>
-        <div class="col-md-6 align-self-center">
-            <p class="title">Payak Apps</p>
-            <p>The no-frills business productivity suite built for fast-growing businesses.</p>
-            <button type="button"  class="sign-up-btn" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+        <div class="col-md-5 align-self-center">
+            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo">
+            <p class="first-fold-title">Keeping things simple.</p>
+            <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
+            <button type="button"  class="sign-up-btn" data-toggle="modal" data-target="#signUpModal">Get Started</button>
         </div>
     </div>
 
@@ -99,32 +100,64 @@
         <div class="col-md-12">
             <h1 class="text-center">Products</h1>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <p class="product-name">Hire Tracker</p>
-            <p class="product-description">Makes sure that all the stages of the hiring lifecycle are monitored.</p>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
+            <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+            <p class="product-name text-center">Project</p>
+            <ul class="products-list d-table mx-auto">
+                <li>Dashboard</li>
+                <li>Bulletin Board</li>
+                <li>Projects</li>
+                    <ul class="products-nested-list">
+                        <li>Kanban</li>
+                        <li>Chat</li>
+                        <li>Discussion</li>
+                        <li>Files</li>
+                    </ul>
+                <li>Chat</li>
+                <li>To do</li>
+            </ul>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <p class="product-name">Time Tracker</p>
-            <p class="product-description">A timekeeping app that monitors regular and flexible work hours.</p>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
+            <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+            <p class="product-name text-center">Shift Management</p>
+            <ul class="products-list d-table mx-auto">
+                <li>Dashboard</li>
+                <li>Bulletin Board</li>
+                <li>Timekeeping</li>
+                    <ul class="products-nested-list">
+                        <li>Timekeeping</li>
+                        <li>Leave Management</li>
+                        <li>Discussion</li>
+                    </ul>
+                <li>Chat</li>
+            </ul>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <img src="assets/images/expense-manager.png" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <p class="product-name">Expense Manager</p>
-            <p class="product-description">Tracks all expenses including reimbursements, liquidations, and claiming of benefits.</p>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <img src="assets/images/hr.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
+            <!-- <img src="assets/images/expense-manager.png" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+            <p class="product-name text-center">HR</p>
+            <ul class="products-list d-table mx-auto">
+                <li>Bulletin Board</li>
+                <li>Resumé Management</li>
+                <li>Timekeeping</li>
+                <li>Expense</li>
+                <li>Chat</li>
+            </ul>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <p class="product-name">My Kanban</p>
-            <p class="product-description">Based on the Japanese system of lean manufacturing, MyKanban organizes tasks into different categories.</p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <p class="product-name">Bulletin Board</p>
-            <p class="product-description">Displays all news about the company so employees remain updated.</p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-            <p class="product-name">Chat App</p>
-            <p class="product-description">An enterprise chat application that eases communications in a company.</p>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <img src="assets/images/suite.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
+            <p class="product-name text-center">Suite</p>
+            <ul class="products-list d-table mx-auto">
+                <li>Dashboard</li>
+                <li>Bulletin Board</li>
+                <li>Resumé Management</li>
+                <li>Timekeeping</li>
+                <li>Expense</li>
+                <li>Chat</li>
+                <li>Kanban</li>
+            </ul>
         </div>
         <div class="col-md-12">
             <button class="sign-up-btn center-block">Get Started</button>
@@ -144,7 +177,7 @@
                     <li>App Suite</li>
                     <li>Unlimited Users</li>
                 </ul>
-            <button class="sign-up-btn center">Get Started</button>
+            <button class="sign-up-btn center">Subscribe</button>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
             <p class="plan-name">
@@ -156,7 +189,7 @@
                 <li>Single app</li>
                 <li>One user</li>
             </ul>
-            <button class="sign-up-btn center">Get Started</button>
+            <button class="sign-up-btn center">Subscribe</button>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
                 <p class="plan-name">
@@ -168,7 +201,7 @@
                     <li>Single app</li>
                     <li>Unlimited Users</li>
                 </ul>
-            <button class="sign-up-btn center">Get Started</button>
+            <button class="sign-up-btn center">Subscribe</button>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
             
@@ -183,7 +216,7 @@
                     <li>All apps</li>
                     <li>Unlimited Users</li>
                 </ul>
-                <button class="sign-up-btn center">Get Started</button>
+                <button class="sign-up-btn center">Subscribe</button>
             </div>
         </div>
     </div>
