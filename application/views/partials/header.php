@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 		<script src="assets/js/jquery.js"></script>
 		<script src="assets/js/script.js"></script>
 	</head>
