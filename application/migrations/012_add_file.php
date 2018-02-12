@@ -42,6 +42,11 @@ class Migration_Add_File extends CI_Migration {
                 'type'           => 'TINYINT',
                 'constraint'     => 1,
             ],
+            'deleted'         => [
+
+                'type'           => 'TINYINT',
+                'constraint'     => 3
+            ],
             'created_by'      => [
 
                 'type'           => 'VARCHAR',
@@ -91,6 +96,11 @@ class Migration_Add_File extends CI_Migration {
 
                 'type'           => 'VARCHAR',
                 'constraint'     => 255,
+            ],
+            'deleted'         => [
+
+                'type'           => 'TINYINT',
+                'constraint'     => 3
             ],
             'created_by'      => [
 
