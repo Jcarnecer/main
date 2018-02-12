@@ -53,8 +53,8 @@ class Migration_Add_File extends CI_Migration {
                 'constraint'     => 11,
             ],
 
-            'created_at DATETIME',
-            'updated_at DATETIME',
+            'created_at DATETIME NOT NULL',
+            'updated_at DATETIME NOT NULL',
 
             'CONSTRAINT `file_folders_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `file_folders_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
