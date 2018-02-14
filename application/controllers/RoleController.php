@@ -23,7 +23,8 @@ class RoleController extends BaseController
 	public function show_create()
 	{
 		if (parent::can_user("ROLE_CREATE")) {
-			return parent::main_page("role/create.php", ["permissions" => $this->permission->get_all()]);
+			$company = $this->company->get(parent::current_user()->company_id);
+			return parent::main_page("role/create.php", ["permissions" => $this->permission->get_all(), "company" =>  $company['name']]);
 		} else {
 			return redirect("/");
 		}
@@ -35,7 +36,7 @@ class RoleController extends BaseController
 		if (parent::can_user("ROLE_CREATE")) {
 			$current_user = parent::current_user();
 
-			$this->form_validation->set_rules("name", "role name", "trim|ucwords|required|is_unique[roles.name]");
+			$this->form_validation->set_rules("name", "role name", "trim|ucwords|required"); //|is_unique[roles.name]
 			
 			if ($this->form_validation->run()) {
 				$role = [
@@ -57,7 +58,7 @@ class RoleController extends BaseController
 				}
 				return redirect("roles");
 			}
-			return parent::main_page("role/create.php", ["permissions" => $this->permission->get_all()]);
+			return $this->show_create();
 		} else {
 			return redirect("/");
 		}
@@ -68,14 +69,17 @@ class RoleController extends BaseController
 	{
 		if (parent::can_user("ROLE_UPDATE")) {
 			$current_user = parent::current_user();
+			$company = $this->company->get($current_user->company_id);
 			$name = urldecode($name);
 			$role = $this->role->get_by(["company_id" => $current_user->company_id, "name" => $name]) ?? 
 					show_error(404);
 			$role["permissions"] = $this->role->get_permissions($role["id"]);
+			$role["name"] = preg_replace('/^' . preg_quote($company['name'] . ' ','/') . '/', '', $name);
 
 			return parent::main_page(
 				"role/update.php", [
-					"role" => $role,  
+					"role" => $role,
+					"company" => $company['name'],  
 					"permissions" => $this->permission->get_all()
 				]
 			);
@@ -95,9 +99,9 @@ class RoleController extends BaseController
 			$role["permissions"] = $this->role->get_permissions($role["id"]);
 			
 			$validation["name"] = "trim|ucwords|required";
-			if ($role["name"] !== $this->input->post("name")) {
-				$validation["name"] .= "|is_unique[roles.name]";
-			}
+			// if ($role["name"] !== $this->input->post("name")) {
+			// 	$validation["name"] .= "|is_unique[roles.name]";
+			// }
 			$this->form_validation->set_rules("name", "role name", $validation["name"]);
 
 			if ($this->form_validation->run()) {
@@ -113,12 +117,7 @@ class RoleController extends BaseController
 				return redirect("roles");
 			}
 
-			return parent::main_page(
-				"role/update.php", [
-					"role" => $role,  
-					"permissions" => $this->permission->get_all()
-				]
-			);
+			return $this->show_update($name);
 		} else {
 			return redirect("/");
 		}
