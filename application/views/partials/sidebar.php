@@ -55,6 +55,12 @@
 				<span>Timekeeping</span>
 			</a>
 		</li>
+		<li class="">
+			<a class="" href="http://localhost/expense/"> 	
+				<i class="far fa-address-book"></i>
+				<span>Expense</span>
+			</a>
+		</li>
 		<?php if (in_array("USER_LIST", $user->permissions) ||
 				  in_array("USER_VIEW", $user->permissions) ||
 				  in_array("USER_CREATE", $user->permissions) ||
