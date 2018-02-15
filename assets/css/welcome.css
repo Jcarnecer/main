@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.125em;
+  font-size: 16px;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%; }
@@ -13,19 +13,56 @@ html, body {
   margin: 0 auto; }
 
 p {
-  font-size: 1.125em; }
+  font-size: 16px; }
 
 h1 {
   margin-bottom: 25px; }
 
-.modal-footer {
-  border: 0; }
+.modal {
+  font-size: 16px; }
+  .modal label {
+    font-weight: 400;
+    text-transform: uppercase !important; }
+  .modal .modal-title {
+    margin-bottom: 30px;
+    text-align: center; }
+  .modal .modal-header {
+    border-bottom: none;
+    border-top: 3px solid #38b5ff;
+    border-radius: 0; }
+  .modal .modal-footer {
+    border: 0; }
+  .modal .modal-content {
+    border: none;
+    border-radius: 0; }
 
-.modal .modal-content {
-  border: none; }
+.sign-up-modal .sign-up-btn {
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px; }
 
-.modal label {
-  font-weight: 400; }
+.log-in-modal .modal-footer {
+  display: block;
+  margin-top: 40px;
+  text-align: center; }
+
+.log-in-modal .forgot-password {
+  display: flex;
+  justify-content: flex-end; }
+
+.log-in-modal .sign-up-text {
+  color: #38b5ff;
+  font-weight: 700;
+  text-transform: uppercase !important; }
+
+.log-in-modal a {
+  text-decoration: none; }
+
+.form-control {
+  font-size: .9em;
+  font-weight: 300;
+  height: 40px; }
 
 .sign-up-btn {
   background: #38b5ff;
@@ -42,19 +79,27 @@ h1 {
 
 .navbar {
   background: #ffffff !important;
-  border-bottom: 3px solid #38b5ff; }
+  border-bottom: 3px solid #38b5ff;
+  z-index: 99; }
   .navbar .nav-link {
     color: #1B1B1B !important;
+    font-size: 16px;
     font-weight: 400;
     text-transform: uppercase; }
     .navbar .nav-link:hover {
       color: #38b5ff !important; }
   .navbar .sign-up-btn {
-    margin: 0.3rem;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 3px;
     width: auto; }
 
+.first-fold-title {
+  color: #ffffff;
+  font-weight: bold; }
+
 .title {
-  font-size: 2.5em;
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 0; }
 
@@ -64,14 +109,22 @@ h1 {
     width: 250px; }
 
 .products-section {
-  padding: 30px 0px 30px 0px; }
+  padding: 30px 20px 30px 20px; }
+  .products-section .product-thumb {
+    height: auto;
+    padding: 10px 30px 10px 30px;
+    width: 180px; }
   .products-section p.product-name {
+    font-size: 22px;
     font-weight: 500;
     margin-bottom: 0; }
-  .products-section p.product-description {
-    font-size: .8em; }
   .products-section .sign-up-btn {
     width: 250px; }
+  .products-section .products-list {
+    list-style: disc; }
+  .products-section .products-list .products-nested-list{
+    list-style: circle;
+    padding-left: 30px; }
 
 .plans-section {
   background: #273d6a;
@@ -86,8 +139,9 @@ h1 {
     padding-left: 5px;
     top: -1.6em; }
   .plans-section h2 {
-    font-size: 3em; }
+    font-size: 48px; }
   .plans-section .plan-name {
+    font-size: 16px;
     font-weight: 400; }
   .plans-section .recommended-banner {
     background: #66BB6A;
@@ -103,9 +157,9 @@ h1 {
   .plans-section .sign-up-btn {
     margin-bottom: 30px; }
   .plans-section .per-month-text {
-    font-size: .7em; }
+    font-size: 12px; }
   .plans-section ul li {
-    font-size: .8em; }
+    font-size: 16px; }
 
 .get-started-section {
   background: #ebebeb;
@@ -122,16 +176,15 @@ footer {
     footer a:hover {
       color: #38b5ff; }
   footer .footer-heading {
-    font-size: .8em;
     text-transform: uppercase;
     font-weight: bold;
     margin-top: 20px; }
   footer .footer-content {
-    font-size: .7em;
+    font-size: 12px;
     font-weight: 400;
     text-decoration: none; }
   footer .footer-icon {
-    font-size: 1.5em;
+    font-size: 24px;
     padding: 5px; }
 
 .footer-hr {
@@ -141,7 +194,8 @@ footer {
 
 @media screen and (max-width: 300px) {
   .first-fold {
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_300.png") no-repeat left center fixed;
+    background: linear-gradient(rgba(56, 181, 255, .5), rgba(40, 61, 105, .8)), url(../images/home_bg_1920.png) no-repeat center center fixed;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_300.png") no-repeat left center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -149,7 +203,8 @@ footer {
 
 @media screen and (min-width: 301px) and (max-width: 600px) {
   .first-fold {
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_600.png") no-repeat left center fixed;
+    background: linear-gradient(rgba(56, 181, 255, .5), rgba(40, 61, 105, .8)), url(../images/home_bg_1920.png) no-repeat center center fixed;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_600.png") no-repeat left center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -157,7 +212,8 @@ footer {
 
 @media screen and (min-width: 601px) and (max-width: 800px) {
   .first-fold {
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_800.png") no-repeat center center fixed;
+    background: linear-gradient(rgba(56, 181, 255, .5), rgba(40, 61, 105, .8)), url(../images/home_bg_1920.png) no-repeat center center fixed;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_800.png") no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -165,7 +221,8 @@ footer {
 
 @media screen and (min-width: 801px) and (max-width: 1366px) {
   .first-fold {
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_1366.png") no-repeat center center fixed;
+    background: linear-gradient(rgba(56, 181, 255, .5), rgba(40, 61, 105, .8)), url(../images/home_bg_1920.png) no-repeat center center fixed;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_1366.png") no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -173,7 +230,8 @@ footer {
 
 @media screen and (min-width: 1001px) {
   .first-fold {
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_1920.png") no-repeat center center fixed;
+    background: linear-gradient(rgba(56, 181, 255, .5), rgba(40, 61, 105, .8)), url(../images/home_bg_1920.png) no-repeat center center fixed;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url("../images/home_bg_1920.png") no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -183,6 +241,7 @@ footer {
   .products-section {
     text-align: center; }
   h1 {
-    font-size: 2em; }
+    font-size: 32px; }
   .plans-section h2 {
-    font-size: 2em; } }
+    font-size: 32px; } }
+  

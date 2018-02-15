@@ -20,7 +20,7 @@ class Migration_Add_Companies extends CI_Migration {
 			],
 			"name" => [
 				"type" => "VARCHAR",
-				"constraint" => 20
+				"constraint" => 50
 			],
 			"created_at" => [
 				"type" => "DATETIME",
@@ -28,6 +28,6 @@ class Migration_Add_Companies extends CI_Migration {
 		]);
 
 		$this->dbforge->add_key("id", TRUE);
-		$this->dbforge->create_table("companies");
+		$this->dbforge->create_table("companies", TRUE);
 	}
 }

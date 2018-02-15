@@ -12,12 +12,17 @@
 			<div class="card">
 				<div class="card-header">Users</div>
 				<div class="card-body">
-					<div class="btn-group">
-						<a class="btn btn-primary" href="<?= base_url("users/create") ?>">Create user</a>
-					</div>
-					<div class="btn-group">
-						<button class="btn btn-secondary" id="updateUserBtn" disabled>Update user</button>
-					</div>
+					<?php if (in_array("ROLE_CREATE", $user->permissions)): ?>
+						<div class="btn-group">
+							<a class="btn btn-primary" href="<?= base_url("users/create") ?>">Create user</a>
+						</div>
+					<?php endif; ?>
+					<?php if (in_array("ROLE_UPDATE", $user->permissions)): ?>
+						<div class="btn-group">
+							<button class="btn btn-secondary" id="updateUserBtn" disabled>Update user</button>
+						</div>
+					<?php endif; ?>
+					<div class="w-100 my-3"></div>
 					<table class="table table-bordered table-hover" id="usersTbl"></table>
 				</div>
 			</div>
@@ -46,10 +51,19 @@
 			updateUserBtn = $("#updateUserBtn");
 
 			usersTbl = $("#usersTbl").DataTable({
+				// select: "single",
+				// data: [],
+				// info: false,
+				// lengthChange: false,
+				// columns: [
+				// 	{ title: "Last Name", data: "last_name" },
+				// 	{ title: "First Name", data: "first_name" },
+				// 	{ title: "E-mail Address", data: "email_address" },
+				// 	{ title: "Role", data: "role.name" }
+				// ]
 				select: "single",
-				data: [],
 				info: false,
-				lengthChange: false,
+				ajax:`${apiUrl}/companies/users`,
 				columns: [
 					{ title: "Last Name", data: "last_name" },
 					{ title: "First Name", data: "first_name" },
@@ -77,12 +91,12 @@
 				}
 			})
 
-			getUsers()
-				.then(function(data) {
-					usersTbl.clear()
-						.rows.add(data)
-						.draw();
-				});
+			// getUsers()
+			// 	.then(function(data) {
+			// 		usersTbl.clear()
+			// 			.rows.add(data)
+			// 			.draw();
+			// 	});
 		}
 
 		init();

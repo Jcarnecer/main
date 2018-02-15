@@ -42,7 +42,7 @@ class Migration_Add_Users extends CI_Migration {
 
 		$this->dbforge->add_key("id", TRUE);
 		$this->dbforge->add_key("company_id");
-		$this->dbforge->create_table("roles");
+		$this->dbforge->create_table("roles", TRUE);
 	}
 
 	public function permissions() {
@@ -61,7 +61,7 @@ class Migration_Add_Users extends CI_Migration {
 		]);
 
 		$this->dbforge->add_key("id", TRUE);
-		$this->dbforge->create_table("permissions");
+		$this->dbforge->create_table("permissions", TRUE);
 	}
 
 	public function roles_permissions() {
@@ -80,7 +80,7 @@ class Migration_Add_Users extends CI_Migration {
 
 		$this->dbforge->add_key("role_id");
 		$this->dbforge->add_key("permission_id");
-		$this->dbforge->create_table("roles_permissions");
+		$this->dbforge->create_table("roles_permissions", TRUE);
 	}
 
 	public function users() {
@@ -117,7 +117,8 @@ class Migration_Add_Users extends CI_Migration {
 				"type" => "DATETIME"
 			],
 			"last_login_at" => [
-				"type" => "DATETIME"
+				"type" => "DATETIME",
+				"null" => true
 			],
 			"avatar_url" => [
 				"type" => "VARCHAR",
@@ -134,6 +135,6 @@ class Migration_Add_Users extends CI_Migration {
 
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->add_key('company_id');
-		$this->dbforge->create_table('users');
+		$this->dbforge->create_table('users', TRUE);
 	}
 }

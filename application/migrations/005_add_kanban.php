@@ -6,21 +6,19 @@ class Migration_Add_Kanban extends CI_Migration {
 
     public function up() {
 
-        $this->boards();
-        $this->columns();
-        $this->tasks();
+        $this->kb_boards();
+        $this->kb_columns();
     }
 
 
     public function down() {
 
-        $this->dbforge->drop_table('kanban_tasks');
-        $this->dbforge->drop_table('kanban_columns');
-        $this->dbforge->drop_table('kanban_boards');
+        $this->dbforge->drop_table('kb_columns', TRUE);
+        $this->dbforge->drop_table('kb_boards', TRUE);
     }
 
 
-    public function boards() {
+    public function kb_boards() {
 
         $this->dbforge->add_field([
 
@@ -35,7 +33,7 @@ class Migration_Add_Kanban extends CI_Migration {
 
                 'type'           => 'TEXT'
             ],
-            'team_id'         => [
+            'project_id'         => [
 
                 'type'           => 'VARCHAR',
                 'constraint'     => 11,
@@ -46,13 +44,13 @@ class Migration_Add_Kanban extends CI_Migration {
         ]);
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key('team_id');
+        $this->dbforge->add_key('project_id');
 
-        return $this->dbforge->create_table('kanban_boards');
+        return $this->dbforge->create_table('kb_boards', TRUE);
     }
 
 
-    public function columns() {
+    public function kb_columns() {
 
         $this->dbforge->add_field([
 
@@ -80,41 +78,12 @@ class Migration_Add_Kanban extends CI_Migration {
                 'unsigned'       => TRUE
             ],
 
-            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `kanban_boards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `kanban_columns_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `kb_boards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
                         
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('board_id');
         
-        return $this->dbforge->create_table('kanban_columns');
-    }
-
-
-    public function tasks() {
-
-
-        $this->dbforge->add_field([
-
-            'id'              => [
-
-                'type'           => 'INT',
-                'constraint'     => 11,
-                'unsigned'       => TRUE
-            ],
-            'column_id'       => [
-                
-                'type'           => 'INT',
-                'constraint'     => 11,
-                'unsigned'       => TRUE
-            ],
-            
-            'CONSTRAINT `kanban_tasks_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `kanban_tasks_ibfk_2` FOREIGN KEY (`column_id`) REFERENCES `kanban_columns` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
-        ]);
-                        
-        $this->dbforge->add_key(['id', 'column_id'], TRUE);
-        $this->dbforge->add_key('column_id');
-        
-        return $this->dbforge->create_table('kanban_tasks');
+        return $this->dbforge->create_table('kb_columns', TRUE);
     }
 }
