@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,10 +9,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/flavored-reset-and-normalize.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
-    <link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
-  </head>
+  </head> -->
   <!-- <body> -->
       <!-- navigation.nunjucks -->
+<link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
+
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
     <a class="navbar-brand" href="#"><img src="assets/images/payak-icon.png" alt="Payak logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -233,7 +234,7 @@
     </div>
 </div>
 
-      <footer>
+<footer>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-3 col-md-3">
@@ -258,9 +259,9 @@
     </div>
 </footer>
 
-    <script src="assets/js/jquery.js"></script>
+    <!-- <script src="assets/js/jquery.js"></script>
     <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script> -->
     <script src="assets/js/main.js"></script>
     
   <!-- </body> -->

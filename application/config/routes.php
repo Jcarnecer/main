@@ -3,8 +3,12 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 
 $route["default_controller"] = "SiteController/index";
 
+$route["companies/selection"]["GET"] = "CompanyController/show_selection";
 $route["companies/register"]["GET"] = "CompanyController/show_register";
+$route["companies/register_success"]["GET"] = "CompanyController/show_register_success";
+$route["companies/register_failed"]["GET"] = "CompanyController/show_register_failed";
 $route["companies/register"]["POST"] = "CompanyController/register";
+$route["companies/checkout"]["POST"] = "CompanyController/checkout";
 
 $route["users/login"]["GET"] = "UserController/show_login";
 $route["users/login"]["POST"] = "UserController/login";
@@ -34,11 +38,6 @@ $route["roles/(:any)/update"]["POST"] = "RoleController/update/$1";
 $route["api/dev/companies"]["GET"] = "APIController/get_companies";
 $route["api/dev/companies/users"]["GET"] = "APIController/get_company_users";
 $route["api/dev/companies/roles"]["GET"] = "APIController/get_company_roles";
-
-
-//Payments
-$route['transaction/checkout']="PaymentController/Checkout";
-$route['transaction/paypal']="PaymentController/paypal_checkout";
 
 $route["404_override"] = "";
 $route["translate_uri_dashes"] = FALSE;

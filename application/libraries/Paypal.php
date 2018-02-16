@@ -72,7 +72,7 @@ class Paypal {
         $config["no_note"]                  = 1; //[0,1] 0 show, 1 hide
 
         #Payment Page Information -->
-        $config["return"]           = ''; //The URL to which PayPal redirects buyers’ browser after they complete their payments.
+        $config["return"]           = '';
         $config["cancel_return"]    = ''; //Specify a URL on your website that displays a “Payment Canceled” page.
         $config["notify_url"]       = '';  //The URL to which PayPal posts information about the payment
         $config["rm"]               = '2'; //Leave this to get payment information 
