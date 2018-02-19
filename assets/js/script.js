@@ -2,6 +2,8 @@ var baseUrl;
 
 if (window.location.origin === "http://payakapps.com") {
     baseUrl = "http://payakapps.com";
+} else if (window.location.origin === "http://stage.payakapps.com") {
+    baseUrl = "http://stage.payakapps.com";
 } else {
     baseUrl = "http://localhost/main";
 }
