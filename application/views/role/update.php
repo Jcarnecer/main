@@ -17,8 +17,11 @@
 						<div class="form-group row">
 							<label class="col-md-2 col-form-label text-right font-weight-bold">Name</label>
 							<div class="col-md-6">
-								<input class="form-control" type="text" name="name" placeholder="Name" value="<?= set_value("name") ? set_value("name") : $role["name"] ?>" />
-								<?= form_error("name", '<small class="text-danger" />', '</small>') ?>
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon"><?=$company?></div>
+									<input class="form-control" type="text" name="name" placeholder="Name" value="<?= set_value("name") ? set_value("name") : $role["name"] ?>" />
+									<?= form_error("name", '<small class="text-danger" />', '</small>') ?>
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
