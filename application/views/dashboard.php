@@ -2,7 +2,7 @@
     
     <div id="notif" class="w-100">
         <?php if($remaining_day < 7): ?>
-        <div class="card card-notif mt-1 mb-3">
+        <div class="card card-notif m-2 m-md-3">
             <div class="card-header bg-primary" style="overflow: auto;">
                 <span class="h5 font-weight-bold">Notice</span>
                 <button class="btn btn-danger btn-sm d-inline-block float-right" onclick="closeNotif(event)"><i class="fa fa-close"></i></button>
@@ -51,7 +51,7 @@
             </div> -->
             <div class="card app-card" onclick="goto('task')">
                 <div class="card-body">
-                    <h5><i class="fa fa-tasks"></i> Task <span id="taskNotif" class="badge badge-dark float-right"></span></h5>
+                    <h5><i class="fa fa-tasks mr-2"></i>Tasks <span id="taskNotif" class="badge badge-dark float-right"></span></h5>
                 </div>
             </div>
             <div class="card app-card" onclick="goto('chat')">
@@ -61,7 +61,7 @@
             </div>
             <div class="card app-card" onclick="goto('note')">
                 <div class="card-body">
-                    <h5><i class="fa fa-sticky-note"></i> Note <span id="noteNotif" class="badge badge-dark float-right"></span></h5>
+                    <h5><i class="fa fa-sticky-note mr-2"></i>Notes <span id="noteNotif" class="badge badge-dark float-right"></span></h5>
                 </div>
             </div>
         </div>

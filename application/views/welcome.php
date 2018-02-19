@@ -33,6 +33,9 @@
         <li class="nav-item">
             <a class="btn btn-primary sign-up-btn" href="<?= base_url("users/login") ?>">Login</a>
         </li>
+        <li class="nav-item">
+            <a class="btn btn-primary sign-up-btn" href="<?= base_url("companies/register") ?>">Sign Up</a>
+        </li>
       </ul>
     </div>
 </nav>
@@ -263,6 +266,13 @@
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script> -->
     <script src="assets/js/main.js"></script>
+    <script>
+    $(function(){
+        $(document).on('click', '.sign-up-btn', function() {
+            window.location.href = "<?= base_url('companies/register') ?>";
+        });
+    });
+    </script>
     
   <!-- </body> -->
 <!-- </html> -->

@@ -22,7 +22,7 @@ class CompanyController extends BaseController
 
 	public function show_selection()
 	{
-		if (!parent::current_user() && $this->session->has_userdata('company')) {
+		if (!parent::current_user() && $this->session->has_userdata('company_register')) {
 			return parent::guest_page("company/cart"); 
 		} else {
 			return redirect("/");
@@ -32,11 +32,15 @@ class CompanyController extends BaseController
 
 	public function show_register_success()
 	{
-		if (!parent::current_user() && $this->session->has_userdata('company') && $this->session->has_userdata('subscription')) {
-			$data['company'] = $this->session->userdata('company');
+		if (!parent::current_user() && $this->session->has_userdata('company_register') && $this->session->has_userdata('subscription')) {
+			$data['company'] = $this->session->userdata('company_register');
 			$data['subscription'] = $this->session->userdata('subscription');
 
+			$this->company->insert($this->session->userdata('company_register'));
+			$this->user->insert($this->session->userdata('user_register'));
+
 			$this->session->unset_userdata('company');
+			$this->session->unset_userdata('user');
 			$this->session->unset_userdata('subscription');
 
 			return parent::guest_page("company/register_success", $data); 
@@ -84,11 +88,9 @@ class CompanyController extends BaseController
 	                "last_login_at" => date("Y-m-d H:i:s"),
 	                "avatar_url" => base_url("upload/avatar/default.png")
 				];
-				
-				$this->company->insert($company);
-				$this->user->insert($user);
 
-				$this->session->set_userdata('company', $company);
+				$this->session->set_userdata('company_register', $company);
+				$this->session->set_userdata('user_register', $user);
 				return redirect("companies/selection");
 			}
 			return parent::guest_page("company/register");

@@ -149,8 +149,8 @@
 					<div class="card-body">
 						<div class="list-group">
 							<button class="list-group-item list-group-item-action p-0" onclick="openSelection(event)" data-target="#selectionModal" data-toggle="modal" data-content="#projectContent" data-value="project">
-								<div class="products-section d-flex w-100 p-3">
-									<div class="row align-items-center">
+								<div class="d-flex w-100">
+									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
 											<img src="assets/images/project.svg" class="img-fluid" alt="PayakApps">
 										</div>
@@ -161,8 +161,8 @@
 								</div>
 							</button>
 							<button class="list-group-item list-group-item-action p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#shiftContent" data-value="shift">
-								<div class="products-section d-flex w-100 p-3">
-									<div class="row align-items-center">
+								<div class="d-flex w-100">
+									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
 											<img src="assets/images/personal.svg" class="img-fluid" alt="PayakApps">
 										</div>
@@ -172,26 +172,26 @@
 									</div>
 								</div>
 							</button>
-							<button class="list-group-item list-group-item-action p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#hrContent" data-value="hr">
-								<div class="products-section d-flex w-100 p-3">
-									<div class="row align-items-center">
+							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#hrContent" data-value="hr">
+								<div class="d-flex w-100">
+									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
 											<img src="assets/images/hr.svg" class="img-fluid" alt="PayakApps">
 										</div>
 										<div class="col-9">
-											<p class="product-name">HR</p>
+											<p class="product-name">HR <small class="text-primary">(Coming Soon)</small></p>
 										</div>
 									</div>
 								</div>
 							</button>
-							<button class="list-group-item list-group-item-action p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#suiteContent" data-value="suite">
-								<div class="products-section d-flex w-100 p-3">
-									<div class="row align-items-center">
+							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#suiteContent" data-value="suite">
+								<div class="d-flex w-100">
+									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
 											<img src="assets/images/suite.svg" class="img-fluid" alt="PayakApps">
 										</div>
 										<div class="col-9">
-											<p class="product-name">Suite</p>
+											<p class="product-name">Suite <small class="text-primary">(Coming Soon)</small></p>
 										</div>
 									</div>
 								</div>
