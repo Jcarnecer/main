@@ -62,12 +62,15 @@ class Migration_Add_File extends CI_Migration {
             'updated_at DATETIME NOT NULL',
 
             'CONSTRAINT `file_folders_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `file_folders_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `file_folders_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `file_folders_ibfk_3` FOREIGN KEY (`location`) REFERENCES `file_folders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 
         ]);
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key(['created_by', 'updated_by']);
+        $this->dbforge->add_key('created_by');
+        $this->dbforge->add_key('updated_by');
+        $this->dbforge->add_key('location');
 
         return $this->dbforge->create_table('file_folders', TRUE);
     }
@@ -117,12 +120,15 @@ class Migration_Add_File extends CI_Migration {
             'updated_at DATETIME',
 
             'CONSTRAINT `file_data_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `file_data_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `file_data_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `file_data_ibfk_3` FOREIGN KEY (`location`) REFERENCES `file_folders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 
         ]);
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key(['created_by', 'updated_by']);
+        $this->dbforge->add_key('created_by');
+        $this->dbforge->add_key('updated_by');
+        $this->dbforge->add_key('location');
 
         return $this->dbforge->create_table('file_data', TRUE);
     }

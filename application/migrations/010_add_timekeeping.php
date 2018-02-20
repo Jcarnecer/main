@@ -601,7 +601,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ],
-            'user_id'        => [
+            'users_id'        => [
 
                 'type'           => 'VARCHAR',
                 'constraint'     => 11
@@ -610,18 +610,19 @@ class Migration_Add_Timekeeping extends CI_Migration {
 
                 'type'           => 'INT',
                 'constraint'     => 11,
+                'unsigned'       => TRUE,
                 'null'           => TRUE
             ],
 
             'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
 
-            'CONSTRAINT `timekeeping_users_shift_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `timekeeping_users_shift_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `timekeeping_users_shift_ibfk_2` FOREIGN KEY (`shift_id`) REFERENCES `timekeeping_shift` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
         ]);
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key('user_id');
+        $this->dbforge->add_key('users_id');
         $this->dbforge->add_key('shift_id');
 
         return $this->dbforge->create_table('timekeeping_users_shift', TRUE);
@@ -842,24 +843,24 @@ class Migration_Add_Timekeeping extends CI_Migration {
             [
                 "id" => 1,
                 "permission_id" => "TK_ADMIN",
-                "priveleges" => "3,4,8,9",
-                "privelege_sub_menu" => "1,2,3,4,5,6,7,8,9"
+                "privileges" => "3,4,8,9",
+                "privilege_sub_menu" => "1,2,3,4,5,6,7,8,9",
                 "created_at"   => "2018-01-01 00:00:00",
                 "updated_at" => "2018-01-01 00:00:00"
             ],
             [
                 "id" => 2,
                 "permission_id" => "TK_EMPLOYEE",
-                "priveleges" => "3,8",
-                "privelege_sub_menu" => "2,3,4,5,6"
+                "privileges" => "3,8",
+                "privilege_sub_menu" => "2,3,4,5,6",
                 "created_at"   => "2018-01-01 00:00:00",
                 "updated_at" => "2018-01-01 00:00:00"
             ],
             [
                 "id" => 3,
                 "permission_id" => "TK_INTERN",
-                "priveleges" => "3",
-                "privelege_sub_menu" => "3"
+                "privileges" => "3",
+                "privilege_sub_menu" => "3",
                 "created_at"   => "2018-01-01 00:00:00",
                 "updated_at" => "2018-01-01 00:00:00"
             ]
@@ -869,7 +870,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
     }
 
 
-    public function tk_permission_seed() {
+    public function tk_users_shift_seed() {
 
         $data = [
             [
@@ -955,7 +956,7 @@ class Migration_Add_Timekeeping extends CI_Migration {
                 "shift_id" => NULL,
                 "created_at" => "2018-02-12 03:25:08",
                 "updated_at" => "2018-02-12 11:25:08"
-            ];
+            ]
 
         ];
 
