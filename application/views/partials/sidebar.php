@@ -1,3 +1,7 @@
+<script>
+	var userId = '<?= $user->id ?>';
+</script>
+
 <div id="sidebar">
 	<!-- sidebar menu start-->
 	<div id="nav-icon-close" class="custom-toggle">
@@ -12,6 +16,17 @@
 				<span>Dashboard</span>
 			</a>
 		</li>
+		<li class="">
+			<a class="" href="<?php
+			switch(ENVIRONMENT){
+				case 'development': echo "http://localhost/timekeeping/"; break;
+				default: echo "http://timekeeping.payakapps.com/"; break;
+			}
+			?>">
+				<i class="fa fa-clock-o"></i>
+				<span>Timekeeping</span>
+			</a>
+		</li>	
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
@@ -45,6 +60,7 @@
 				<span>Task</span>
 			</a>
 		</li>
+		
 		<?php if (in_array("USER_LIST", $user->permissions) ||
 				  in_array("USER_VIEW", $user->permissions) ||
 				  in_array("USER_CREATE", $user->permissions) ||
@@ -73,8 +89,8 @@
 	</ul>
 	<!-- sidebar menu end-->
 </div>
-<div class="main-content h-100">
-	<div class="topbar">
+<div class="main-content d-flex flex-column h-100">
+	<div class="topbar w-100" style="margin-bottom: -20px;">
 		<nav class="navbar navbar-custom navbar-expand-lg">
 			<div id="nav-icon-open" class="custom-toggle hidden-toggle">
 				<span></span>
@@ -130,3 +146,5 @@
 			</div> -->
 		</nav>
 	</div>
+
+	<div class="inner-content bg-white h-100" style="overflow-x: auto;">

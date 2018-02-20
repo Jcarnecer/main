@@ -6,6 +6,16 @@ body {
   background-color: #f2f2f2;
   font-size: 14px; }
 
+.login-body {
+  background: #273d6a;
+  background: -moz-linear-gradient(top, #38b5ff 0%, #273d6a 100%);
+  background: -webkit-linear-gradient(top, #38b5ff 0%, #273d6a 100%);
+  background: linear-gradient(to bottom, #38b5ff 0%, #273d6a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38b5ff', endColorstr='#273d6a',GradientType=0 );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .center-block {
   display: block;
   margin: 0 auto; }
@@ -52,7 +62,7 @@ color: inherit !important; }
   height: 100%;
   position: fixed;
   background: #273d6a;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: .5s;
   -webkit-transition: .5s;
   -moz-transition: .5s; }
@@ -174,3 +184,19 @@ color: inherit !important; }
     display: none; }
   .form-horizontal .control-label {
     text-align: left; } }
+
+.login-card {
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+       box-shadow: 0 8px 6px -6px black;
+}
+
+.login-card input {
+  font-size: 14px;
+}
+
+.login-card .card-header, .card-footer {
+  background: none;
+}
