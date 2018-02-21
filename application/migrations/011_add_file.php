@@ -24,7 +24,7 @@ class Migration_Add_File extends CI_Migration {
 
             'id'              => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
             'name'            => [
 
@@ -50,12 +50,12 @@ class Migration_Add_File extends CI_Migration {
             'created_by'      => [
 
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
             'updated_by'      => [
 
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
 
             'created_at DATETIME NOT NULL',
@@ -82,7 +82,7 @@ class Migration_Add_File extends CI_Migration {
 
             'id'              => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
             'name'            => [
 
@@ -98,7 +98,7 @@ class Migration_Add_File extends CI_Migration {
             'source'          => [
 
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
+                'constraint'     => 255
             ],
             'deleted'         => [
 
@@ -108,12 +108,12 @@ class Migration_Add_File extends CI_Migration {
             'created_by'      => [
 
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
             'updated_by'      => [
 
                 'type'           => 'VARCHAR',
-                'constraint'     => 11,
+                'constraint'     => 11
             ],
 
             'created_at DATETIME',
