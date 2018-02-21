@@ -53,7 +53,7 @@ class Paypal {
     function __initialize($props = array())
     {
         #Account information
-        $config["business"]     = 'astrid-seller@gmail.com'; //Your PayPal account
+        $config["business"]     = ''; //Your PayPal account
         $config["cmd"]          = '_cart'; //Do not modify
         $config["production"]   = FALSE;
 
@@ -67,13 +67,13 @@ class Paypal {
         $config["disp_tot"]         = 'Y';
 
         #Page Layout -->
-        $config["cpp_header_image"]         = 'http://payakapps.com/assets/images/payak-logo-blue-50.png'; //Image header url [750 pixels wide by 90 pixels high]
+        $config["cpp_header_image"]         = ''; //Image header url [750 pixels wide by 90 pixels high]
         $config["cpp_cart_border_color"]    = '000'; //The HTML hex code for your principal identifying color
         $config["no_note"]                  = 1; //[0,1] 0 show, 1 hide
 
         #Payment Page Information -->
-        $config["return"]           = 'http://localhost/main/companies/register_success';
-        $config["cancel_return"]    = 'http://localhost/main/companies/register_failed'; //Specify a URL on your website that displays a “Payment Canceled” page.
+        $config["return"]           = ''; //The URL to which PayPal redirects buyers’ browser after they complete their payments.
+        $config["cancel_return"]    = ''; //Specify a URL on your website that displays a “Payment Canceled” page.
         $config["notify_url"]       = '';  //The URL to which PayPal posts information about the payment
         $config["rm"]               = '2'; //Leave this to get payment information 
         $config["lc"]               = 'EN'; //Languaje [EN,ES]

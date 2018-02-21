@@ -34,13 +34,14 @@ class CompanyController extends BaseController
 	{
 		if (!parent::current_user() && $this->session->has_userdata('company_register') && $this->session->has_userdata('subscription')) {
 			$data['company'] = $this->session->userdata('company_register');
+			$data['user'] = $this->session->userdata('user_register');
 			$data['subscription'] = $this->session->userdata('subscription');
 
 			$this->company->insert($this->session->userdata('company_register'));
 			$this->user->insert($this->session->userdata('user_register'));
 
-			$this->session->unset_userdata('company');
-			$this->session->unset_userdata('user');
+			$this->session->unset_userdata('company_register');
+			$this->session->unset_userdata('user_register');
 			$this->session->unset_userdata('subscription');
 
 			return parent::guest_page("company/register_success", $data); 
@@ -53,6 +54,10 @@ class CompanyController extends BaseController
 	public function show_register_failed()
 	{
 		if (!parent::current_user()) {
+			$this->session->unset_userdata('company_register');
+			$this->session->unset_userdata('user_register');
+			$this->session->unset_userdata('subscription');
+
 			return parent::guest_page("company/register_failed"); 
 		} else {
 			return redirect("/");
@@ -100,19 +105,26 @@ class CompanyController extends BaseController
 	}
 
 
-	public function checkout(){
-        $config['business']             = 'astrid-seller@gmail.com'; //Your PayPal account
-        $config['cpp_header_image']     = 'payakapps.com/assets/images/payak-logo-blue-50.png'; //Image header url [750 pixels wide by 90 pixels high]
-        $config['return']               = base_url('companies/register_success');
-        $config['cancel_return']        = base_url('companies/register_failed');
-        $config['notify_url']           = 'process_payment.php';
-        $config['production']           = FALSE; //Its false by default and will use sandbox
-        $config['discount_rate_cart']   = 0; //This means 20% discount
-        $config["invoice"]              = '843843'; //The invoice id
+	public function checkout()
+	{
+		if(ENVIRONMENT == 'production') {
+			$config['business']             = 'jun.carnecer@astridtechnologies.com';
+			$config['cpp_header_image']     = base_url('assets/images/payak-logo-blue-50.png');
+			$config['return']               = base_url('companies/register_success');
+			$config['cancel_return']        = base_url('companies/register_failed');
+			$config['notify_url']           = '';
+			$config['production']           = TRUE;
+		} else {
+			$config['business']             = 'astrid-seller@gmail.com';
+			$config['cpp_header_image']     = base_url('assets/images/payak-logo-blue-50.png');
+			$config['return']               = base_url('companies/register_success');
+			$config['cancel_return']        = base_url('companies/register_failed');
+			$config['notify_url']           = '';
+			$config['production']           = FALSE;
+			// $config["invoice"]              = '843843';
+		}
 
         $this->load->library('Paypal', $config);
-
-        #$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
 
         switch($this->input->post('package')) {
             case 'project':
@@ -146,12 +158,15 @@ class CompanyController extends BaseController
                 $item['type']='App Suite';
                 $item['price']=59.00;
                 break;
-        }
+		}
 
-        $this->paypal->add($item['package'].' ('.$item['type'].')',$item['price']); //First item
 		$this->session->set_userdata('subscription', $item);
+		
+		if($item['type'] == 'Trial' && $item['price'] == 0.00) {
+			return redirect('companies/register_success');
+		}
 
-        $this->paypal->pay(); //Proccess the payment 
-        // $received_post = print_r($this->input->post(),TRUE);
+        $this->paypal->add($item['package'].' ('.$item['type'].')',$item['price']);
+        $this->paypal->pay();
     }
 }

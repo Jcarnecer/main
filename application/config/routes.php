@@ -5,8 +5,10 @@ $route["default_controller"] = "SiteController/index";
 
 $route["companies/selection"]["GET"] = "CompanyController/show_selection";
 $route["companies/register"]["GET"] = "CompanyController/show_register";
+$route["companies/register_success"]["GET"] = "CompanyController/show_register_success";
 $route["companies/register_success"]["POST"] = "CompanyController/show_register_success";
 $route["companies/register_failed"]["GET"] = "CompanyController/show_register_failed";
+$route["companies/register_failed"]["POST"] = "CompanyController/show_register_failed";
 $route["companies/register"]["POST"] = "CompanyController/register";
 $route["companies/checkout"]["POST"] = "CompanyController/checkout";
 

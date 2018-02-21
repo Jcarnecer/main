@@ -14,7 +14,7 @@
                         <dl class="row mb-4">
                             <dt class="col-4">Company</dt>
                             <dd class="col-8"><?= $company['name'] ?></dd>
-                            <div class="w-100 mb-2"></div>
+                            <div class="w-100 mb-3"></div>
                             <dt class="col-4">Package</dt>
                             <dd class="col-8"><?= $subscription['package'] ?></dd>
                             <dt class="col-4">Subscription</dt>
@@ -25,6 +25,13 @@
                             <dd class="col-8"><?= date('d F Y') ?></dd>
                             <dt class="col-4">Expiration Date</dt>
                             <dd class="col-8"><?= ((new DateTime('now'))->add(new DateInterval('P30D')))->format('j F Y') ?></dd>
+							<div class="w-100 mb-3"></div>
+                            <dt class="col-4">First Name</dt>
+                            <dd class="col-8"><?= $user['first_name'] ?></dd>
+                            <dt class="col-4">Last Name</dt>
+                            <dd class="col-8"><?= $user['last_name'] ?></dd>
+                            <dt class="col-4">Email Address</dt>
+                            <dd class="col-8"><?= $user['email_address'] ?></dd>
                         </dl>
 						<p class="mb-2">Thank you for using PayakApps!</p>
                         <a href="<?= base_url('users/login') ?>" class="btn btn-primary float-right">Login</a>

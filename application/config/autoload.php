@@ -66,8 +66,7 @@ $autoload['libraries'] = [
 	"migration",
 	"session",
 	"upload",
-	"utilities",
-	'Paypal'
+	"utilities"
 ];
 
 /*

@@ -18,6 +18,7 @@
 		<div class="card login-card">
 			<div class="card-header border-bottom-0">
 				<h3 class="text-center mt-3">Select Subscription</h3>
+				<span class="d-block text-center">Pay with <img class="img-fluid w-25" src="<?= base_url('assets/images/paypal.png') ?>" alt="PayPal" srcset=""></span>
 			</div>
 			<div class="card-body">
 				<div class="list-group">
