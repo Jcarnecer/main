@@ -109,6 +109,21 @@ class Migration_Add_Seed extends CI_Migration {
                 "id" => "USER_UPDATE",
                 "name" => "USER_UPDATE",
                 "description" => "Allow user to update users"
+            ],
+            [   
+                "id" => "TK_ADMIN",
+                "name" => "TK_ADMIN",
+                "description" => "Allow user to have Level 3 access(Timekeeping)"
+            ],
+            [   
+                "id" => "TK_EMPLOYEE",
+                "name" => "TK_EMPLOYEE",
+                "description" => "Allow user to have Level 2 access(Timekeeping)"
+            ],
+            [   
+                "id" => "TK_INTERN",
+                "name" => "TK_INTERN",
+                "description" => "Allow user to have Level 1\r\naccess(Timekeeping)"
             ]
         ];
 
@@ -148,6 +163,18 @@ class Migration_Add_Seed extends CI_Migration {
             [
                 "role_id" => "1",
                 "permission_id" => "USER_UPDATE"
+            ],
+            [
+                "role_id" => "1",
+                "permission_id" => "TK_ADMIN"
+            ],
+            [
+                "role_id" => "2",
+                "permission_id" => "TK_EMPLOYEE"
+            ],
+            [
+                "role_id" => "3",
+                "permission_id" => "TK_INTERN"
             ]
         ];
 

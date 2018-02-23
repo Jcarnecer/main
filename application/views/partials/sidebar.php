@@ -24,6 +24,17 @@
 		</li>
 		<li class="">
 			<a class="" href="<?php
+			switch(ENVIRONMENT){
+				case 'development': echo "http://localhost/timekeeping/"; break;
+				default: echo "http://timekeeping.payakapps.com/"; break;
+			}
+			?>">
+				<i class="fa fa-clock-o"></i>
+				<span>Timekeeping</span>
+			</a>
+		</li>	
+		<li class="">
+			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/chat/"; break;
 							default: echo "http://chat.payakapps.com/"; break;
@@ -55,6 +66,7 @@
 				<span>Task</span>
 			</a>
 		</li>
+		
 		<?php if (in_array("USER_LIST", $user->permissions) ||
 				  in_array("USER_VIEW", $user->permissions) ||
 				  in_array("USER_CREATE", $user->permissions) ||

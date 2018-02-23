@@ -16,20 +16,30 @@ class Migration_Add_Timekeeping extends CI_Migration {
         $this->timekeeping_shift();
         $this->timekeeping_sub_menu();
         $this->timekeeping_file_leave();
+        $this->permissions();
+        $this->users_leave();
+        $this->users_shift();
         $this->remove_seed();
         $this->leaves_seed();
         $this->menu_seed();
         $this->shift_seed();
         $this->sub_menu_seed();
+        $this->tk_permission_seed();
+        $this->tk_users_shift_seed();
     }
 
 
     public function down() {
         
+        $this->db->empty_table('timekeeping_users_shift');
+        $this->db->empty_table('timekeeping_permissions');
         $this->db->empty_table('timekeeping_sub_menu');
         $this->db->empty_table('timekeeping_shift');
         $this->db->empty_table('timekeeping_menu');
         $this->db->empty_table('timekeeping_leave');
+        $this->dbforge->drop_table('timekeeping_users_shift', TRUE);
+        $this->dbforge->drop_table('timekeeping_users_leave', TRUE);
+        $this->dbforge->drop_table('timekeeping_permissions', TRUE);
         $this->dbforge->drop_table('timekeeping_file_leave', TRUE);
         $this->dbforge->drop_table('timekeeping_sub_menu', TRUE);
         $this->dbforge->drop_table('timekeeping_shift', TRUE);
@@ -499,6 +509,125 @@ class Migration_Add_Timekeeping extends CI_Migration {
     }
 
 
+    public function permissions() {
+
+        $this->dbforge->add_field([
+
+            'id'              => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
+            'permission_id'   => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
+            'privileges'      => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 100
+            ],
+            'privilege_sub_menu' => [
+
+                'type'              => 'VARCHAR',
+                'constraint'        => 100
+            ],
+
+            'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+
+            'CONSTRAINT `timekeeping_file_permissions_ibfk_1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+        ]);
+
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('permission_id');
+
+        return $this->dbforge->create_table('timekeeping_permissions', TRUE);   
+    }
+
+
+    public function users_leave() {
+
+        $this->dbforge->add_field([
+
+            'id'              => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'auto_increment' => TRUE
+            ],
+            'user_id'        => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
+            'leave_id'        => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE
+            ],
+            'remaining_leave' => [
+
+                'type'           => 'INT',
+                'constraint'     => 11
+            ],
+
+            'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+
+            'CONSTRAINT `timekeeping_users_leave_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `timekeeping_users_leave_ibfk_2` FOREIGN KEY (`leave_id`) REFERENCES `timekeeping_leave` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+        ]);
+
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('user_id');
+        $this->dbforge->add_key('leave_id');
+
+        return $this->dbforge->create_table('timekeeping_users_leave', TRUE);
+    }
+
+
+    public function users_shift() {
+
+        $this->dbforge->add_field([
+
+            'id'              => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'auto_increment' => TRUE
+            ],
+            'users_id'        => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
+            'shift_id'        => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'null'           => TRUE
+            ],
+
+            'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+
+            'CONSTRAINT `timekeeping_users_shift_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `timekeeping_users_shift_ibfk_2` FOREIGN KEY (`shift_id`) REFERENCES `timekeeping_shift` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+        ]);
+
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('users_id');
+        $this->dbforge->add_key('shift_id');
+
+        return $this->dbforge->create_table('timekeeping_users_shift', TRUE);
+    }
+
     public function leaves_seed() {
 
         $data = [
@@ -693,18 +822,153 @@ class Migration_Add_Timekeeping extends CI_Migration {
                 "menu_id"   => 4,
                 "intern" => NULL,
                 "admin_hr" => 1
+            ],
+            [
+                "id" => 9,
+                "sub" => "Employee Leave",
+                "url" => "leave/employee",
+                "menu_id"   => 3,
+                "intern" => NULL,
+                "admin_hr" => 1
             ]
         ];
 
         return $this->db->insert_batch("timekeeping_sub_menu", $data);        
     }
 
+    
+    public function tk_permission_seed() {
+
+        $data = [
+            [
+                "id" => 1,
+                "permission_id" => "TK_ADMIN",
+                "privileges" => "3,4,8,9",
+                "privilege_sub_menu" => "1,2,3,4,5,6,7,8,9",
+                "created_at"   => "2018-01-01 00:00:00",
+                "updated_at" => "2018-01-01 00:00:00"
+            ],
+            [
+                "id" => 2,
+                "permission_id" => "TK_EMPLOYEE",
+                "privileges" => "3,8",
+                "privilege_sub_menu" => "2,3,4,5,6",
+                "created_at"   => "2018-01-01 00:00:00",
+                "updated_at" => "2018-01-01 00:00:00"
+            ],
+            [
+                "id" => 3,
+                "permission_id" => "TK_INTERN",
+                "privileges" => "3",
+                "privilege_sub_menu" => "3",
+                "created_at"   => "2018-01-01 00:00:00",
+                "updated_at" => "2018-01-01 00:00:00"
+            ]
+        ];
+
+        return $this->db->insert_batch("timekeeping_permissions", $data);
+    }
+
+
+    public function tk_users_shift_seed() {
+
+        $data = [
+            [
+                "id" => 1,
+                "users_id" => "5pv3LX6GiB9",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 2,
+                "users_id" => "A2d3LiX1iUK",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 3,
+                "users_id" => "e21cLiCsVUK",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 4,
+                "users_id" => "eGd2Lit5ic9",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 5,
+                "users_id" => "epdcLitviUK",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 6,
+                "users_id" => "epv3LXtGiBO",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 7,
+                "users_id" => "Ex31rijL0zT",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 8,
+                "users_id" => "FpvRLXtG37O",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 9,
+                "users_id" => "Ipv123tGHBO",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 10,
+                "users_id" => "Rp23LXt19BO",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 11,
+                "users_id" => "UpY3RXttiBO",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ],
+            [
+                "id" => 12,
+                "users_id" => "XzdG2i1vRUK",
+                "shift_id" => NULL,
+                "created_at" => "2018-02-12 03:25:08",
+                "updated_at" => "2018-02-12 11:25:08"
+            ]
+
+        ];
+
+        return $this->db->insert_batch("timekeeping_users_shift", $data);
+    }
+
 
     public function remove_seed() {
 
-        $ids = [1,2,3,4,5,6,7,8,9];
+        $ids = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-        $tables=['timekeeping_leave', 'timekeeping_menu', 'timekeeping_shift', 'timekeeping_sub_menu'];
+        $tables=['timekeeping_leave', 'timekeeping_menu', 'timekeeping_shift', 'timekeeping_sub_menu', 'timekeeping_permissions', 'timekeeping_users_shift'];
         foreach ($tables as $table) {
             $this->db->where_in("id", $ids);
             $this->db->delete($table);
