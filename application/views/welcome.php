@@ -16,8 +16,8 @@
       <!-- navigation.nunjucks -->
 <link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
 
-<nav class="navbar navbar-expand-lg bg-light navbar-light">
-    <a class="navbar-brand" href="#"><img src="assets/images/payak-icon.png" alt="Payak logo"></a>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><img src="assets/images/payak-logo-blue-40.png" alt="Payak logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
