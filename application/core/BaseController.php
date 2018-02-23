@@ -18,6 +18,7 @@ class BaseController extends CI_Controller {
 
 		$this->load->view("partials/header", ["title" => $title]);
 		$this->load->view("partials/sidebar", ["user" => $user]);
+		$this->load->view("partials/tutorial");
 		$this->load->view($view, $data);
 		$this->load->view("partials/footer");
 	}
