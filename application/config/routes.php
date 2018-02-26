@@ -15,6 +15,7 @@ $route["companies/checkout"]["POST"] = "CompanyController/checkout";
 $route["users/login"]["GET"] = "UserController/show_login";
 $route["users/login"]["POST"] = "UserController/login";
 $route["users/logout"]["GET"] = "UserController/logout";
+$route["users/forgot"]["GET"] = "UserController/forgot";
 
 $route["users/profile"]["GET"] = "UserController/profile";
 $route["users/profile/update"]["POST"] = "UserController/update_profile";

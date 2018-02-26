@@ -31,11 +31,11 @@
 								<input class="form-control" type="password" name="password" placeholder="Password" />
 							</div>
 						</form>
-						<a href="#"><small class="text-muted">Forgot Password?</small></a>
+						<a href="<?= base_url("users/forgot")?>"><small class="text-muted">Forgot Password?</small></a>
 						<button class="btn custom-button float-right" type="submit" form="loginUser">Login</button>
 					</div>
 					<div class="card-footer text-center">
-						<small>Don't have an account? <a href="#">Create an account</a></small>
+						<small>Don't have an account? <a href="<?= base_url("companies/register")?>">Sign up</a></small>
 					</div>
 				</div>
 			</div>
