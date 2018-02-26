@@ -29,6 +29,7 @@ class UserModel extends BaseModel {
 			$this->user->update($user->id, ['last_login_at' => date("Y-m-d H:i:s")]);
 			return TRUE;
 		}
+		$this->session->set_flashdata("message", "Incorrect email address or password.");
 		return FALSE;
 	}
 }
