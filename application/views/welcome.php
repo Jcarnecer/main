@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="project time management software">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Payak Apps</title>
     <meta name="description" content="">
@@ -9,12 +11,13 @@
     <link rel="stylesheet" type="text/css" href="assets/css/flavored-reset-and-normalize.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" >
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" >
-    <link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
-  </head>
+  </head> -->
   <!-- <body> -->
       <!-- navigation.nunjucks -->
-<nav class="navbar navbar-expand-lg bg-light navbar-light">
-    <a class="navbar-brand" href="#"><img src="assets/images/payak-icon.png" alt="Payak logo"></a>
+<link rel="stylesheet" type="text/css" href="assets/css/welcome.css">
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><img src="assets/images/payak-logo-blue-40.png" alt="Payak logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,6 +34,9 @@
         </li>
         <li class="nav-item">
             <a class="btn btn-primary sign-up-btn" href="<?= base_url("users/login") ?>">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-primary sign-up-btn" href="<?= base_url("companies/register") ?>">Sign Up</a>
         </li>
       </ul>
     </div>
@@ -85,14 +91,14 @@
 </div> -->
 <div class="container-fluid">
     <div class="row full-page first-fold">
-        <div class="col-md-7 align-self-center">
-            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="w-100 mx-auto d-block img-fluid">
+        <div class="col-md-7 my-auto">
+            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid">
         </div>
-        <div class="col-md-5 align-self-center">
-            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo">
+        <div class="col-md-5 my-auto p-5">
+            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="logo-shadow">
             <p class="first-fold-title">Keeping things simple.</p>
             <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
-            <button type="button"  class="sign-up-btn" data-toggle="modal" data-target="#signUpModal">Get Started</button>
+            <button type="button"  class="sign-up-btn d-block" data-toggle="modal" data-target="#signUpModal">Get Started</button>
         </div>
     </div>
 
@@ -101,66 +107,84 @@
             <h1 class="text-center">Products</h1>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
-            <p class="product-name text-center">Project</p>
-            <ul class="products-list d-table mx-auto">
-                <li>Dashboard</li>
-                <li>Bulletin Board</li>
-                <li>Projects</li>
-                    <ul class="products-nested-list">
-                        <li>Kanban</li>
-                        <li>Chat</li>
-                        <li>Discussion</li>
-                        <li>Files</li>
-                    </ul>
-                <li>Chat</li>
-                <li>To do</li>
-            </ul>
+            <div class="border product-details">
+                <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
+                <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+                <h2 class="font-weight-bold text-center mb-3 mt-3">Project</h2>
+                <ul class="products-list d-table mx-auto">
+                    <li>Dashboard</li>
+                    <li>Bulletin Board</li>
+                    <li>Projects</li>
+                        <ul class="products-nested-list">
+                            <li>Kanban</li>
+                            <li>Blog/Forum</li>
+                            <li>Files</li>
+                        </ul>
+                    <li>Personal Tasks</li>                    
+                    <li>Chat</li>
+                </ul>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
-            <p class="product-name text-center">Shift Management</p>
-            <ul class="products-list d-table mx-auto">
-                <li>Dashboard</li>
-                <li>Bulletin Board</li>
-                <li>Timekeeping</li>
-                    <ul class="products-nested-list">
-                        <li>Timekeeping</li>
-                        <li>Leave Management</li>
-                        <li>Discussion</li>
-                    </ul>
-                <li>Chat</li>
-            </ul>
+            <div class="border product-details">
+                <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
+                <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+                <h2 class="font-weight-bold text-center mb-3 mt-3">Shift</h2>
+                <ul class="products-list d-table mx-auto">
+                    <li>Dashboard</li>
+                    <li>Bulletin Board</li>
+                    <li>Timekeeping</li>
+                        <ul class="products-nested-list">
+                            <li>Timekeeping Module</li>
+                            <li>Leave Management</li>
+                            <li>Shift Monitoring</li>
+                        </ul>
+                    <li>Personal Tasks</li>
+                    <li>Chat</li>
+                </ul>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <img src="assets/images/hr.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <!-- <img src="assets/images/expense-manager.png" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
-            <p class="product-name text-center">HR</p>
-            <ul class="products-list d-table mx-auto">
-                <li>Bulletin Board</li>
-                <li>Resumé Management</li>
-                <li>Timekeeping</li>
-                <li>Expense</li>
-                <li>Chat</li>
-            </ul>
+            <div class="border product-details">
+                <div class="beta">
+                    Beta
+                </div>
+                <img src="assets/images/hr.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
+                <!-- <img src="assets/images/expense-manager.png" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
+                <h2 class="font-weight-bold text-center mb-3 mt-3">HR</h2>
+                <ul class="products-list d-table mx-auto">
+                    <li>Dashboard</li>
+                    <li>Bulletin Board</li>
+                    <li>Resumé Management</li>
+                    <li>Hiring Lifecycle</li>
+                    <li>Timekeeping</li>
+                    <li>Expense</li>
+                    <li>Personal Tasks</li>
+                    <li>Chat</li>
+                </ul>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <img src="assets/images/suite.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
-            <p class="product-name text-center">Suite</p>
-            <ul class="products-list d-table mx-auto">
-                <li>Dashboard</li>
-                <li>Bulletin Board</li>
-                <li>Resumé Management</li>
-                <li>Timekeeping</li>
-                <li>Expense</li>
-                <li>Chat</li>
-                <li>Kanban</li>
-            </ul>
+            <div class="border product-details">
+                <div class="beta">
+                    Beta
+                </div>
+                <img src="assets/images/suite.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
+                <h2 class="font-weight-bold text-center mb-3 mt-3">PayakApps</h2>
+                <ul class="products-list d-table mx-auto">
+                    <li>Dashboard</li>
+                    <li>Bulletin Board</li>
+                    <li>Projects</li>
+                    <li>Resumé Management</li>
+                    <li>Timekeeping</li>
+                    <li>Expense</li>
+                    <li>Personal Tasks</li>
+                    <li>Chat</li>
+                </ul>
+            </div>
         </div>
         <div class="col-md-12">
-            <button class="sign-up-btn center-block">Get Started</button>
+            <button class="sign-up-btn center-block mt-5">Get Started</button>
         </div>
     </div>
     <div class="row plans-section text-center align-items-center" id="pricing">
@@ -233,7 +257,7 @@
     </div>
 </div>
 
-      <footer>
+<footer>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-3 col-md-3">
@@ -258,10 +282,17 @@
     </div>
 </footer>
 
-    <script src="assets/js/jquery.js"></script>
+    <!-- <script src="assets/js/jquery.js"></script>
     <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script> -->
     <script src="assets/js/main.js"></script>
+    <script>
+    $(function(){
+        $(document).on('click', '.sign-up-btn', function() {
+            window.location.href = "<?= base_url('companies/register') ?>";
+        });
+    });
+    </script>
     
   <!-- </body> -->
 <!-- </html> -->

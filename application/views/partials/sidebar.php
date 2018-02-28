@@ -11,20 +11,15 @@
 
 	<ul class="sidebar-menu">		
 		<li class="">
-			<a class="" href="<?= base_url('/') ?>">
-				<i class="fa fa-dashboard mr-2"></i>
-				<span>Dashboard</span>
+			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
+				<i class="fa fa-star mr-2"></i>
+				<span>Get Started</span>
 			</a>
 		</li>
 		<li class="">
-			<a class="" href="<?php
-						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/chat/"; break;
-							default: echo "http://chat.payakapps.com/"; break;
-						}
-					?>">
-				<i class="fa fa-comment mr-2"></i>
-				<span>Chat</span>
+			<a class="" href="<?= base_url('/') ?>">
+				<i class="fa fa-dashboard mr-2"></i>
+				<span>Dashboard</span>
 			</a>
 		</li>
 		<li class="">
@@ -35,7 +30,29 @@
 						}
 					?>">
 				<i class="fa fa-sticky-note mr-2"></i>
-				<span>Note</span>
+				<span>Bulletin Board</span>
+			</a>
+		</li>
+		<!-- <li class="">
+			<a class="" href="<?php
+			switch(ENVIRONMENT){
+				case 'development': echo "http://localhost/timekeeping/"; break;
+				default: echo "http://timekeeping.payakapps.com/"; break;
+			}
+			?>">
+				<i class="fa fa-clock-o mr-2"></i>
+				<span>Timekeeping</span>
+			</a>
+		</li>	 -->
+		<li class="">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/chat/"; break;
+							default: echo "http://chat.payakapps.com/"; break;
+						}
+					?>">
+				<i class="fa fa-comment mr-2"></i>
+				<span>Chat</span>
 			</a>
 		</li>
 		<li class="">
@@ -61,7 +78,7 @@
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
-				<span>Access</span>
+				<span>Account Management</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
 				<?php if (in_array("USER_LIST", $user->permissions)): ?>
@@ -73,7 +90,6 @@
 			</ul>
 		</li>
 		<?php endif; ?>
-		<li class="sub-menu">
 	</ul>
 	<!-- sidebar menu end-->
 </div>

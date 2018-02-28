@@ -95,12 +95,15 @@ function displayTask(data) {
 }
 
 function displayNote(data) {
-    $('#noteNotif').html(data.length);
+    // $('#noteNotif').html(data.length);
 
     if (data.length == 0) {
-        $('#announcement').html('<h1 class="text-center text-muted font-weight-bold">No announcements</h1>');
+        $('#announcement').parent().html('<h1 class="text-center text-muted font-weight-bold">No announcements</h1>');
     } else {
         data.forEach(function(note, index) {
+            if (index > 5) {
+                return;
+            }
             $('#announcement').append(noteBuilder(note));
         });
     }
@@ -126,12 +129,14 @@ function taskBuilder(task) {
 
 function noteBuilder(note) {
     var noteElem = 
-    `<div class="card note-card" onclick="goto('note')">
-        <div class="card-body" style="background-color: ${note['color']}">
-            <h5 class="card-title mb-0 d-inline font-weight-bold">${note['title']}</h5>
+    `<div class="col-6">
+        <div class="card note-card my-2" onclick="goto('note')">
+            <div class="card-body" style="background-color: ${note['color']}">
+                <h5 class="card-title mb-0 d-inline font-weight-bold">${note['title']}</h5>
+                </div>
+            <div class="card-footer bg-light text-right p-1">
+                <small class="card-text font-weight-bold mb-0">${date(note['updated_at'])} | ${clock(note['updated_at'])}</small>
             </div>
-        <div class="card-footer bg-light text-right p-1">
-            <small class="card-text font-weight-bold mb-0">${date(note['updated_at'])} | ${clock(note['updated_at'])}</small>
         </div>
     </div>`;
 
@@ -139,7 +144,7 @@ function noteBuilder(note) {
 }
 
 function closeNotif(e) {
-    $(e.target).closest('.card').fadeOut();
+    $(e.target).closest('.alert').fadeOut();
 }
 
 function goto(app) {

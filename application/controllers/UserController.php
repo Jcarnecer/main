@@ -33,6 +33,11 @@ class UserController extends BaseController
 	}
 
 
+	public function forgot() {
+		return parent::guest_page("users/forgot-password");
+	}
+
+
 	public function logout()
 	{
 		$this->session->unset_userdata("user");
