@@ -22,17 +22,17 @@
 				<span>Dashboard</span>
 			</a>
 		</li>
-		<li class="">
+		<!-- <li class="">
 			<a class="" href="<?php
 			switch(ENVIRONMENT){
 				case 'development': echo "http://localhost/timekeeping/"; break;
 				default: echo "http://timekeeping.payakapps.com/"; break;
 			}
 			?>">
-				<i class="fa fa-clock-o"></i>
+				<i class="fa fa-clock-o mr-2"></i>
 				<span>Timekeeping</span>
 			</a>
-		</li>	
+		</li>	 -->
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
