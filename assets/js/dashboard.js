@@ -98,7 +98,7 @@ function displayNote(data) {
     // $('#noteNotif').html(data.length);
 
     if (data.length == 0) {
-        $('#announcement').html('<h1 class="text-center text-muted font-weight-bold">No announcements</h1>');
+        $('#announcement').parent().html('<h1 class="text-center text-muted font-weight-bold">No announcements</h1>');
     } else {
         data.forEach(function(note, index) {
             if (index > 5) {

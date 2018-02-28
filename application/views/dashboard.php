@@ -2,7 +2,7 @@
     
     <div id="notif" class="position-fixed w-25 mt-2 mr-2" style="top: 0; right: 0;">
         <?php if($remaining_day < 7): ?>
-        <div class="alert alert-danger alert-lg my-4">
+        <div class="alert alert-danger border-danger my-4">
             <h4 class="alert-heading" style="overflow: auto;">
                 Subscription Notification
                 <button class="btn btn-danger btn-sm float-right" onclick="closeNotif(event)"><i class="fa fa-close"></i></button>
@@ -24,9 +24,7 @@
                 <div class="card h-100">
                     <div class="card-header h5"><i class="fa fa-tasks"></i> Today's Tasks</div>
                     <div class="card-body">
-                        <div id="taskToday" class="card-columns">
-                        
-                        </div>
+                        <div id="taskToday" class="card-columns"></div>
                     </div>
                 </div>
             </div>
