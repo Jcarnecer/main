@@ -100,6 +100,16 @@ class Migration_Add_File extends CI_Migration {
                 'type'           => 'VARCHAR',
                 'constraint'     => 255
             ],
+            'size'            => [
+
+                'type'           => 'INT',
+                'constraint'     => 7
+            ],
+            'company_id'      => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11
+            ],
             'deleted'         => [
 
                 'type'           => 'TINYINT',
@@ -121,7 +131,8 @@ class Migration_Add_File extends CI_Migration {
 
             'CONSTRAINT `file_data_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
             'CONSTRAINT `file_data_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
-            'CONSTRAINT `file_data_ibfk_3` FOREIGN KEY (`location`) REFERENCES `file_folders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+            'CONSTRAINT `file_data_ibfk_3` FOREIGN KEY (`location`) REFERENCES `file_folders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `file_data_ibfk_4` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
 
         ]);
 
@@ -129,6 +140,7 @@ class Migration_Add_File extends CI_Migration {
         $this->dbforge->add_key('created_by');
         $this->dbforge->add_key('updated_by');
         $this->dbforge->add_key('location');
+        $this->dbforge->add_key('company_id');
 
         return $this->dbforge->create_table('file_data', TRUE);
     }
