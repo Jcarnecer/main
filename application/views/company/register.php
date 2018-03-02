@@ -50,16 +50,9 @@
 					<p class="ml-3 mb-0">2. If anyone brings a claim against us related to your actions, content or information on PayakApps.Com, you will indemnify and hold us harmless from and against all damages, losses, and expenses of any kind (including reasonable legal fees and costs) related to such claim. Although we provide rules for user conduct, we do not control or direct users' actions on PayakApps.Com and are not responsible for the content or information users transmit or share on PayakApps.Com. We are not responsible for any offensive, inappropriate, obscene, unlawful or otherwise objectionable content or information you may encounter on PayakApps.Com. We are not responsible for the conduct, whether online or offline, of any user of PayakApps.Com</p>
 					<p class="ml-3 mb-0">3. We try to keep PayakApps.Com bug-free and safe, but the customer acknowledges and accepts the risk that comes from using any software as a service.  PayakApps.Com will not be responsible for delays in projects or any effects on your operations that result from misuse of the product or from force majeure.  The site is not responsible for the actions, content, information, or your or third-party data and you release us, our directors, officers, employees, and agents from any claims and damages, known and unknown arising out of or in any way connected with any claim you have against third parties.</p>
 				</div>
-				<div class="d-block ml-5 mt-3">
-					<div class="form-check ml-auto">
-						<input class="form-check-input" type="checkbox" id="termCheckbox" onclick="toggleRegister(event)">
-						<label class="form-check-label pl-2" for="termCheckbox">Accept terms and conditions.</label>
-					</div>
-				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button id="registerButton" type="submit" class="btn btn-primary" form="registerCompany" disabled>Register</button>
+				<button class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -109,9 +102,15 @@
 								<?= form_error("password", '<small class="text-danger">', '</small>') ?>
 							</div>
 						</form>
+						<div class="d-block ml-4 mt-3">
+							<div class="form-check ml-auto">
+								<input class="form-check-input" type="checkbox" id="termCheckbox" onclick="toggleRegister(event)">
+								<label class="form-check-label pl-2" for="termCheckbox">I accept the <a href="#termModal" data-toggle="modal">terms and conditions</a>.</label>
+							</div>
+						</div>
 						<div class="float-right">
 							<a class="btn" href="<?= base_url('/') ?>">Cancel</a>
-							<button class="btn custom-button" data-target="#termModal" data-toggle="modal">Register</button>
+							<button id="registerButton" type="submit" class="btn custom-button" form="registerCompany" disabled>Register</button>
 							<!-- <button class="btn custom-button" type="submit" form="registerCompany">Register</button> -->
 						</div>
 					</div>
