@@ -26,7 +26,7 @@
                             <img src="<?= base_url('assets/tutorial/dashboard.png') ?>" alt="Dashboard" class="rounded-0 card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">Dashboard</h5>
-                                <p class="card-text">Important things to remember such as announcements and task to do for today.</p>
+                                <p class="card-text">Important things to remember such as announcements and tasks to do for today.</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <img src="<?= base_url('assets/tutorial/module notif.png') ?>" alt="Account" class="rounded-0 card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">Module Notifications</h5>
-                                <p class="card-text">See every notification for every modules.</p>
+                                <p class="card-text">See notifications in one page.</p>
                             </div>
                         </div>
                     </div>
