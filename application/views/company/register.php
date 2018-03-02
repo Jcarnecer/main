@@ -1,6 +1,6 @@
 <div id="termModal" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
+		<div class="modal-content rounded-0">
 			<div class="modal-header">
 				<h5 class="modal-title">PayakApps Privacy Terms and Conditions</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
