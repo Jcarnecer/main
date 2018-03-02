@@ -156,7 +156,7 @@ class CompanyController extends BaseController
                 break;
             case 'suite':
                 $item['type']='App Suite';
-                $item['price']=59.00;
+                $item['price']=45.00;
                 break;
 		}
 
