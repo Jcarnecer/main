@@ -90,9 +90,13 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row full-page first-fold">
-        <div class="col-md-7 my-auto">
-            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid">
+    <div class="row justify-content-center full-page first-fold">
+        <div class="col-12 col-md-6 my-auto">
+            <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
+            <video class="img-fluid w-100" style="outline: none;" controls>
+                <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> 
         </div>
         <div class="col-md-5 my-auto p-5">
             <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="logo-shadow">
@@ -102,17 +106,18 @@
         </div>
     </div>
 
-    <div class="row justify-content-center plans-section py-5">
+    <!-- <div class="row justify-content-center plans-section py-5">
         <div class="col-md-12">
             <h1 class="text-center">Promotional Video</h1>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="w-100"></div>
+        <div class="col-12 col-sm-10 col-md-8">
             <video class="img-fluid w-100" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video> 
         </div>
-    </div>
+    </div> -->
 
     <div class="row products-section" id="products">
         <div class="col-md-12">
