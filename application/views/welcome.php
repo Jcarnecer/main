@@ -93,7 +93,7 @@
     <div class="row justify-content-center full-page first-fold">
         <div class="col-12 col-md-6 my-auto">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
-            <video class="img-fluid w-100" style="outline: none;" controls>
+            <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video> 
