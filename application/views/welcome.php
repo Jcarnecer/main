@@ -102,6 +102,18 @@
         </div>
     </div>
 
+    <div class="row justify-content-center plans-section py-5">
+        <div class="col-md-12">
+            <h1 class="text-center">Promotional Video</h1>
+        </div>
+        <div class="col-12 col-md-6">
+            <video class="img-fluid w-100" style="outline: none;" controls>
+                <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> 
+        </div>
+    </div>
+
     <div class="row products-section" id="products">
         <div class="col-md-12">
             <h1 class="text-center">Products</h1>
