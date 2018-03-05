@@ -19,32 +19,32 @@
 		<div class="card login-card">
 			<div class="card-header border-bottom-0">
 				<h3 class="text-center mt-3">Select Subscription</h3>
-				<span class="d-block text-center">Pay with <img class="img-fluid w-25" src="<?= base_url('assets/images/paypal.png') ?>" alt="PayPal" srcset=""> or Credit/Debit Card</span>
+				<span class="d-block text-center">Pay with <img class="img-fluid w-25" src="<?= base_url('assets/images/paypal.png') ?>" alt="PayPal" srcset=""> or <span class="font-weight-bold">Credit/Debit Card</span></span>
 			</div>
 			<div class="card-body">
 				<div class="list-group">
-					<button class="list-group-item list-group-item-action" onclick="purchase(event)"data-value="trial">
+					<button class="list-group-item list-group-item-action" onclick="purchase(event)" data-value="trial">
 						<div class="d-flex w-100">
-							<span class="font-weight-bold w-75">30 Days Trial</span>
-							<span class="font-weight-bold">FREE</span>
+							<span class="font-weight-bold w-50 mr-auto">30 Days Trial</span>
+							<span class="font-weight-bold text-right">FREE</span>
 						</div>
 					</button>
-					<button class="list-group-item list-group-item-action" onclick="purchase(event)"data-value="personal">
+					<button class="list-group-item list-group-item-action" onclick="purchase(event)" data-value="personal">
 						<div class="d-flex w-100">
-							<span class="font-weight-bold w-75">Single User</span>
-							<span class="font-weight-bold">$7<small> per month</small></span>
+							<span class="font-weight-bold w-50 mr-auto">Single User</span>
+							<span class="font-weight-bold text-right">$7.99<small> per month</small></span>
 						</div>
 					</button>
-					<button class="list-group-item list-group-item-action" onclick="purchase(event)"data-value="company">
+					<button class="list-group-item list-group-item-action" onclick="purchase(event)" data-value="company">
 						<div class="d-flex w-100">
-							<span class="font-weight-bold w-75">Company</span>
-							<span class="font-weight-bold">$29<small> per month</small></span>
+							<span class="font-weight-bold w-50 mr-auto">Company</span>
+							<span class="font-weight-bold text-right">$29.99<small> per month</small></span>
 						</div>
 					</button>
-					<button class="list-group-item list-group-item-action" onclick="purchase(event)"data-value="suite">	
+					<button class="list-group-item list-group-item-action" onclick="purchase(event)" data-value="suite">	
 						<div class="d-flex w-100">
-							<span class="font-weight-bold w-75">App Suite <small class="text-success font-weight-bold">(Best Value)</small></span>
-							<span class="font-weight-bold">$45<small> per month</small></span>
+							<span class="font-weight-bold w-50 mr-auto">App Suite <small class="text-success font-weight-bold">(Best Value)</small></span>
+							<span class="font-weight-bold">$44.99<small> per month</small></span>
 						</div>
 					</button>
 				</div>
@@ -63,7 +63,7 @@
 			<img src="assets/images/project.svg" alt="PayakApps" class="img-fluid">
 		</div>
 		<div class="col-12 col-md-8">
-			<p class="product-name">Project</p>
+			<p class="product-name font-weight-bold">Project</p>
 			<ul class="products-list d-table mx-auto">
                 <li>Dashboard</li>
                 <li>Bulletin Board</li>
@@ -87,7 +87,7 @@
 			<img src="assets/images/personal.svg" alt="PayakApps" class="img-fluid">
 		</div>
 		<div class="col-12 col-md-8">
-			<p class="product-name">Shift Management</p>
+			<p class="product-name font-weight-bold">Shift Management</p>
 			<ul class="products-list d-table mx-auto">
                 <li>Dashboard</li>
                 <li>Bulletin Board</li>
@@ -109,7 +109,7 @@
 			<img src="assets/images/hr.svg" alt="PayakApps" class="img-fluid">
 		</div>
 		<div class="col-12 col-md-8">
-			<p class="product-name">Human Resource</p>
+			<p class="product-name font-weight-bold">Human Resource</p>
 			<ul class="products-list d-table mx-auto">
                 <li>Bulletin Board</li>
                 <li>Resumé Management</li>
@@ -127,7 +127,7 @@
 			<img src="assets/images/suite.svg" alt="PayakApps" class="img-fluid">
 		</div>
 		<div class="col-12 col-md-8">
-			<p class="product-name">Suite</p>
+			<p class="product-name font-weight-bold">Suite</p>
 			<ul class="products-list d-table mx-auto">
                 <li>Dashboard</li>
                 <li>Bulletin Board</li>
@@ -178,7 +178,7 @@
 									</div>
 								</div>
 							</button>
-							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#hrContent" data-value="hr">
+							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#hrContent" data-value="hr" disabled>
 								<div class="d-flex w-100">
 									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
@@ -190,7 +190,7 @@
 									</div>
 								</div>
 							</button>
-							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#suiteContent" data-value="suite">
+							<button class="list-group-item list-group-item-action disabled p-0" onclick="openSelection(event)" data-target="#selectionModal" date-toggle="modal" data-content="#suiteContent" data-value="suite" disabled>
 								<div class="d-flex w-100">
 									<div class="products-section row align-items-center w-100 py-3">
 										<div class="col-3">
