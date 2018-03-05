@@ -90,17 +90,34 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row full-page first-fold">
-        <div class="col-md-7 my-auto">
-            <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid">
+    <div class="row justify-content-around full-page first-fold">
+        <div class="col-12 col-md-6 my-auto">
+            <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
+            <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
+                <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> 
         </div>
-        <div class="col-md-5 my-auto p-5">
-            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="logo-shadow">
+        <div class="col-md-5 my-auto p-1 p-md-5 text-center">
+            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
             <p class="first-fold-title">Keeping things simple.</p>
             <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
-            <button type="button"  class="sign-up-btn d-block" data-toggle="modal" data-target="#signUpModal">Get Started</button>
+            <button type="button"  class="sign-up-btn d-block mx-auto" data-toggle="modal" data-target="#signUpModal">Get Started</button>
         </div>
     </div>
+
+    <!-- <div class="row justify-content-center plans-section py-5">
+        <div class="col-md-12">
+            <h1 class="text-center">Promotional Video</h1>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12 col-sm-10 col-md-8">
+            <video class="img-fluid w-100" style="outline: none;" controls>
+                <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> 
+        </div>
+    </div> -->
 
     <div class="row products-section" id="products">
         <div class="col-md-12">
@@ -111,7 +128,7 @@
                 <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Project</h2>
-                <ul class="products-list d-table mx-auto">
+                <ul class="products-list d-table text-left mx-auto">
                     <li>Dashboard</li>
                     <li>Bulletin Board</li>
                     <li>Projects</li>
@@ -130,7 +147,7 @@
                 <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Shift</h2>
-                <ul class="products-list d-table mx-auto">
+                <ul class="products-list d-table text-left mx-auto">
                     <li>Dashboard</li>
                     <li>Bulletin Board</li>
                     <li>Timekeeping</li>
@@ -147,12 +164,12 @@
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="border product-details">
                 <div class="beta">
-                    Beta
+                    <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
                 <img src="assets/images/hr.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/expense-manager.png" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">HR</h2>
-                <ul class="products-list d-table mx-auto">
+                <ul class="products-list d-table text-left mx-auto">
                     <li>Dashboard</li>
                     <li>Bulletin Board</li>
                     <li>Resumé Management</li>
@@ -167,11 +184,11 @@
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="border product-details">
                 <div class="beta">
-                    Beta
+                <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
                 <img src="assets/images/suite.svg" alt="Expense Manager thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <h2 class="font-weight-bold text-center mb-3 mt-3">PayakApps</h2>
-                <ul class="products-list d-table mx-auto">
+                <ul class="products-list d-table text-left mx-auto">
                     <li>Dashboard</li>
                     <li>Bulletin Board</li>
                     <li>Projects</li>
@@ -233,7 +250,7 @@
                 <div class="recommended-banner">Best Value</div>
                 <p class="plan-name">
                     App Suite<br>
-                    <h2>$59<sup>99</sup></h2>
+                    <h2>$44<sup>99</sup></h2>
                     <span class="per-month-text">/month</span>
                 </p>
                 <ul>
@@ -275,8 +292,8 @@
             <div class="col-xs-12 col-sm-3 col-md-3">
                 <h6 class="footer-heading">Follow Us!</h6>
                 <hr class="footer-hr">
-                <a href="#" class="footer-icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                <a href="#" class="footer-icon"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
             </div>
         </div>     
     </div>
