@@ -143,20 +143,20 @@ class CompanyController extends BaseController
 
         switch($this->input->post('type')) {
             case 'trial':
-                $item['type']='Trial';
-                $item['price']=0.00;
+			$item['price']=0.00;
+			$item['type']='Trial';
                 break;
 			case 'personal':
                 $item['type']='Single User';
-                $item['price']=7.00;
+                $item['price']=7.99;
                 break;
 			case 'company':
                 $item['type']='Company';
-                $item['price']=29.00;
+                $item['price']=29.99;
                 break;
             case 'suite':
                 $item['type']='App Suite';
-                $item['price']=59.00;
+                $item['price']=44.99;
                 break;
 		}
 

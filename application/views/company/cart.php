@@ -19,7 +19,7 @@
 		<div class="card login-card">
 			<div class="card-header border-bottom-0">
 				<h3 class="text-center mt-3">Select Subscription</h3>
-				<span class="d-block text-center">Pay with <img class="img-fluid w-25" src="<?= base_url('assets/images/paypal.png') ?>" alt="PayPal" srcset=""></span>
+				<span class="d-block text-center">Pay with <img class="img-fluid w-25" src="<?= base_url('assets/images/paypal.png') ?>" alt="PayPal" srcset=""> or Credit/Debit Card</span>
 			</div>
 			<div class="card-body">
 				<div class="list-group">
@@ -44,7 +44,7 @@
 					<button class="list-group-item list-group-item-action" onclick="purchase(event)"data-value="suite">	
 						<div class="d-flex w-100">
 							<span class="font-weight-bold w-75">App Suite <small class="text-success font-weight-bold">(Best Value)</small></span>
-							<span class="font-weight-bold">$59<small> per month</small></span>
+							<span class="font-weight-bold">$45<small> per month</small></span>
 						</div>
 					</button>
 				</div>
