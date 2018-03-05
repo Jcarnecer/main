@@ -25,6 +25,17 @@
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/task/"; break;
+							default: echo "http://task.payakapps.com/"; break;
+						}
+					?>">
+				<i class="fa fa-tasks mr-2"></i>
+				<span>Projects</span>
+			</a>
+		</li>
+		<li class="">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/note/"; break;
 							default: echo "http://note.payakapps.com/"; break;
 						}
@@ -53,17 +64,6 @@
 					?>">
 				<i class="fa fa-comment mr-2"></i>
 				<span>Chat</span>
-			</a>
-		</li>
-		<li class="">
-			<a class="" href="<?php
-						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/task/"; break;
-							default: echo "http://task.payakapps.com/"; break;
-						}
-					?>">
-				<i class="fa fa-tasks mr-2"></i>
-				<span>Task</span>
 			</a>
 		</li>
 		<?php if (in_array("USER_LIST", $user->permissions) ||
