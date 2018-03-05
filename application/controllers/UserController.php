@@ -250,5 +250,29 @@ class UserController extends BaseController
 		
 		return parent::main_page("users/change-password");
 	}
+
+
+	public function reset_password($id) {
+
+		$new_password = $this->utilities->create_random_string(8);
+		$this->user->update(
+			$id,
+			['password' => $this->encryption->encrypt($new_password)]
+		);
+		if (parent::can_user("USER_UPDATE")) {
+			$current_user = parent::current_user();
+			$user = $this->user->get($id) ?? show_error(404);
+
+			return parent::main_page(
+				"users/update", [
+					"user" => $user, 
+					"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id]),
+					"new_password" => $new_password
+				]
+			);
+		} else {
+			return redirect("/");
+		}		
+	}
 }
 	
