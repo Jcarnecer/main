@@ -26,6 +26,7 @@ class UserModel extends BaseModel {
 		if ($user && $this->encryption->decrypt($user->password) === $password) {
 			unset($user->password);
 			$this->session->set_userdata("user", $user);
+			$this->user->update($user->id, ['last_login_at' => date("Y-m-d H:i:s")]);
 			return TRUE;
 		}
 		return FALSE;

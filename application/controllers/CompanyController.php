@@ -46,7 +46,7 @@ class CompanyController extends BaseController
 					"role" => "1",
 					"created_at" => date("Y-m-d H:i:s"),
 	                "last_login_at" => date("Y-m-d H:i:s"),
-	                "avatar_url" => base_url("upload/avatar/default.png")
+	                "avatar_url" => DEFAULT_AVATAR_URL
 				];
 				
 				$this->company->insert($company);
