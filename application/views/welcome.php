@@ -90,15 +90,15 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row justify-content-around full-page first-fold">
-        <div class="col-12 col-md-6 my-auto">
+    <div class="row align-items-center justify-content-around full-page first-fold py-3 py-md-0">
+        <div class="col-12 col-md-6">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
             <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video> 
         </div>
-        <div class="col-md-5 my-auto p-1 p-md-5 text-center">
+        <div class="col-md-5 text-center">
             <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
             <p class="first-fold-title">Keeping things simple.</p>
             <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
