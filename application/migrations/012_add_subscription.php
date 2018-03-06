@@ -7,17 +7,21 @@ class Migration_Add_Subscription extends CI_Migration {
     public function up() {
 
         // $this->packages();
-        // $this->modules();
+        $this->modules();
         // $this->package_details();
         $this->subscriptions();
+        $this->subscription_modules();
+        
+        $this->modules_seed();
     }
 
 
     public function down() {
 
+        $this->dbforge->drop_table('subscription_modules', TRUE);
         $this->dbforge->drop_table('subscriptions', TRUE);
         // $this->dbforge->drop_table('package_details', TRUE);
-        // $this->dbforge->drop_table('modules', TRUE);
+        $this->dbforge->drop_table('modules', TRUE);
         // $this->dbforge->drop_table('packages', TRUE);
     }
 
@@ -47,29 +51,67 @@ class Migration_Add_Subscription extends CI_Migration {
     // }
 
 
-    // public function modules() {
+    public function modules() {
 
-    //     $this->dbforge->add_field([
+        $this->dbforge->add_field([
 
-    //         'id'              => [
+            'id'              => [
 
-    //             'type'           => 'INT',
-    //             'constraint'     => 11,
-    //             'unsigned'       => TRUE,
-    //             'auto_increment' => TRUE
-    //         ],
-    //         'name'            => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'auto_increment' => TRUE
+            ],
+            'code'            => [
 
-    //             'type'           => 'VARCHAR',
-    //             'constraint'     => 50
-    //         ]
+                'type'           => 'VARCHAR',
+                'constraint'     => 16
+            ],
+            'name'            => [
 
-    //     ]);
+                'type'           => 'VARCHAR',
+                'constraint'     => 50
+            ]
 
-    //     $this->dbforge->add_key('id', TRUE);
+        ]);
 
-    //     return $this->dbforge->create_table('modules', TRUE);
-    // }
+        $this->dbforge->add_key('id', TRUE);
+
+        return $this->dbforge->create_table('modules', TRUE);
+    }
+
+
+    public function modules_seed()
+    {
+        $modules = [
+            [
+                'code' => 'PA_PROJECT',
+                'name' => 'PayakApps Project Management'
+            ],
+            [
+                'code' => 'PA_NOTE',
+                'name' => 'PayakApps Bulletin Board'
+            ],
+            [
+                'code' => 'PA_CHAT',
+                'name' => 'PayakApps Chat'
+            ],
+            [
+                'code' => 'PA_TIMEKEEP',
+                'name' => 'PayakApps Timekeeping'
+            ],
+            [
+                'code' => 'PA_RESUME',
+                'name' => 'PayakApps Resume Management'
+            ],
+            [
+                'code' => 'PA_EXPENSE',
+                'name' => 'PayakApps Expense'
+            ]
+        ];
+
+        return $this->db->insert_batch('modules', $modules);
+    }
 
 
     // public function package_details() {
@@ -142,5 +184,31 @@ class Migration_Add_Subscription extends CI_Migration {
         // $this->dbforge->add_key('package_id');
 
         $this->dbforge->create_table('subscriptions', TRUE);
+    }
+
+
+    public function subscription_modules() {
+
+        $this->dbforge->add_field([
+
+            'subscription_id'      => [
+
+                'type'           => 'VARCHAR',
+                'constraint'     => 11,
+            ],
+            'module_id'       => [
+
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE
+            ],
+
+            'CONSTRAINT `subscription_modules_ibfk_1` FOREIGN KEY (`subscription_id`) REFERENCES `subscriptions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE',
+            'CONSTRAINT `subscription_modules_ibfk_2` FOREIGN KEY (`module_id`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+        ]);
+
+        $this->dbforge->add_key(['subscription_id', 'module_id'], TRUE);
+
+        return $this->dbforge->create_table('subscription_modules', TRUE);
     }
 }
