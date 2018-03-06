@@ -103,7 +103,7 @@
             <h1 class="text-center">Products</h1>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Project</h2>
@@ -122,7 +122,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Shift</h2>
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                     Beta
                 </div>
@@ -161,7 +161,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                     Beta
                 </div>
@@ -253,7 +253,7 @@
     </div>
 </div>
 
-      <footer>
+<footer>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-3 col-md-3">
