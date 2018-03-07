@@ -160,6 +160,11 @@ h1 {
     width: 200px;
   }
 
+.feature-list li {
+  list-style: disc;
+  margin-left: 50px;
+}
+
 .plans-section {
   background: #273d6a;
   background: -moz-linear-gradient(top, #38b5ff 0%, #273d6a 100%);

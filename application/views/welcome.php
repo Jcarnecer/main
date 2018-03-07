@@ -183,6 +183,20 @@
             <button class="sign-up-btn center-block mt-5">Get Started</button>
         </div>
     </div>
+    <div class="row get-started-section pt-5 pb-5">
+        <div class="col-md-8 mx-auto mt-3">
+            <h4>Keep things simple with the PayakApps Suite.</h4>
+            <ul class="feature-list">
+                <li>Projects ® by Payakapps. Store everything in one repository. Track your team’s thought processes with the built in discussion forum.</li>
+                <li>Shifts ® by Payakapps. Manage your team’s schedule, leaves, man-hours from one console.</li>
+            </ul>
+            <h4>Coming Soon:</h4>
+            <ul class="feature-list">
+                <li>HR ® by Payakapps. An HR solution containing timekeeping and expense management. You also track the whole hiring lifecycle with its built-in resume management.</li>
+                <li>PayakApps Suite. Contains all features of the three major modules: Projects, Shifts, and HR.</li>
+            </ul>
+        </div>
+    </div>
     <div class="row plans-section text-center align-items-center" id="pricing">
         <div class="col-md-12">
             <h1 class="text-center">Plans</h1>
@@ -240,11 +254,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center">Companies using Payak Apps</h1>
-        </div>
-    </div> -->
     <div class="row get-started-section">
         <div class="col-md-12">
             <h1 class="text-center">Boost your productivity with Payak Apps!</h1>
