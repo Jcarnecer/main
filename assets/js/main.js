@@ -4,7 +4,7 @@
 // $('.full-page').height(vph);
 
 function resizeTopContent(){
-    $('.full-page').height( $(window).height() )
+    $('.full-page').height( $(window).height() - $('.navbar').height() )
 }
 
 $(document).ready(function() {

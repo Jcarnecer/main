@@ -3,12 +3,19 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 
 $route["default_controller"] = "SiteController/index";
 
+$route["companies/selection"]["GET"] = "CompanyController/show_selection";
 $route["companies/register"]["GET"] = "CompanyController/show_register";
+$route["companies/register_success"]["GET"] = "CompanyController/show_register_success";
+$route["companies/register_success"]["POST"] = "CompanyController/show_register_success";
+$route["companies/register_failed"]["GET"] = "CompanyController/show_register_failed";
+$route["companies/register_failed"]["POST"] = "CompanyController/show_register_failed";
 $route["companies/register"]["POST"] = "CompanyController/register";
+$route["companies/checkout"]["POST"] = "CompanyController/checkout";
 
 $route["users/login"]["GET"] = "UserController/show_login";
 $route["users/login"]["POST"] = "UserController/login";
 $route["users/logout"]["GET"] = "UserController/logout";
+$route["users/forgot"]["GET"] = "UserController/forgot";
 
 $route["users/profile"]["GET"] = "UserController/profile";
 $route["users/profile/update"]["POST"] = "UserController/update_profile";
@@ -20,6 +27,7 @@ $route["users/create"]["GET"] = "UserController/show_create";
 $route["users/create"]["POST"] = "UserController/create";
 $route["users/(:any)/update"]["GET"] = "UserController/show_update/$1";
 $route["users/(:any)/update"]["POST"] = "UserController/update/$1";
+$route["users/(:any)/reset"]["GET"] = "UserController/reset_password/$1";
 
 $route["migrate"] = "MigrationController/index";
 $route["migrate/(:any)"] = "MigrationController/index/$1";
