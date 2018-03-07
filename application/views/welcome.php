@@ -90,8 +90,8 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row justify-content-around full-page first-fold">
-        <div class="col-12 col-md-6 my-auto">
+    <div class="row align-items-center justify-content-around full-page first-fold py-3 py-md-0">
+        <div class="col-12 col-md-6">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
             <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
