@@ -37,28 +37,18 @@ class CompanyController extends BaseController
 			$data['user'] = $this->session->userdata('user_register');
 			$data['subscription'] = $this->session->userdata('subscription');
 
-			$subscription_modules = [];
-
 			$subscription = [
 				'id' => $this->utilities->create_random_string(),
 				'type' => $this->session->userdata('subscription')['type'],
 				'company_id' => $this->session->userdata('company_register')['id'],
+				'package_id' => $this->package->get_by('name', $this->session->userdata('subscription')['package'])['id'],
 				'start_date' => $this->session->userdata('subscription')['start_date'],
 				'expiration_date' => $this->session->userdata('subscription')['expiration_date']
 			];
 
-			foreach($this->session->userdata('subscription')['modules'] as $module)
-			{
-				$subscription_modules[] = [
-					'subscription_id' => $subscription['id'],
-					'module_id' => $module
-				];
-			}
-
 			$this->company->insert($this->session->userdata('company_register'));
 			$this->user->insert($this->session->userdata('user_register'));
 			$this->subscription->insert($subscription);
-			$this->subscription_module->insert_many($subscription_modules);
 
 			$this->session->unset_userdata('company_register');
 			$this->session->unset_userdata('user_register');
@@ -149,19 +139,15 @@ class CompanyController extends BaseController
         switch($this->input->post('package')) {
             case 'project':
 				$item['package']='Project Package';
-				$item['modules']=['PA_NOTE', 'PA_CHAT', 'PA_PROJECT'];
-                break;
-				case 'shift':
+    	        break;
+			case 'shift':
 				$item['package']='Shift Management Package';
-				$item['modules']=['PA_NOTE', 'PA_CHAT', 'PA_TIMEKEEP'];
-                break;
-				case 'hr':
+        	    break;
+			case 'hr':
                 $item['package']='Human Resource Package';
-				$item['modules']=['PA_NOTE', 'PA_CHAT', 'PA_TIMEKEEP', 'PA_EXPENSE', 'PA_RESUME'];
                 break;
-				case 'suite':
+			case 'suite':
                 $item['package']='PayakApp Suite Package';
-				$item['modules']=['PA_NOTE', 'PA_CHAT', 'PA_PROJECT', 'PA_TIMEKEEP', 'PA_EXPENSE', 'PA_RESUME'];
                 break;
         }
 

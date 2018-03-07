@@ -148,6 +148,7 @@ $autoload['model'] = [
 	"RolePermissionModel" => "role_permission",
 	"UserModel" => "user",
 	"SubscriptionModel" => "subscription",
+	"PackageModel"		=> "package",
 	"ModuleModel" => "module",
 	"SubscriptionModuleModel" => "subscription_module",
 ];
