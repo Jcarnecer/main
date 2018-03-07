@@ -90,8 +90,8 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row justify-content-around full-page first-fold">
-        <div class="col-12 col-md-6 my-auto">
+    <div class="row align-items-center justify-content-around full-page first-fold py-3 py-md-0">
+        <div class="col-12 col-md-6">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
             <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
@@ -124,7 +124,7 @@
             <h1 class="text-center">Products</h1>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Project</h2>
@@ -143,7 +143,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Shift</h2>
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                     <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
@@ -182,7 +182,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                 <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
