@@ -149,6 +149,5 @@ $autoload['model'] = [
 	"UserModel" => "user",
 	"SubscriptionModel" => "subscription",
 	"PackageModel"		=> "package",
-	"ModuleModel" => "module",
-	"SubscriptionModuleModel" => "subscription_module",
+	"ModuleModel" => "module"
 ];
