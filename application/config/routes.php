@@ -27,6 +27,7 @@ $route["users/create"]["GET"] = "UserController/show_create";
 $route["users/create"]["POST"] = "UserController/create";
 $route["users/(:any)/update"]["GET"] = "UserController/show_update/$1";
 $route["users/(:any)/update"]["POST"] = "UserController/update/$1";
+$route["users/(:any)/reset"]["GET"] = "UserController/reset_password/$1";
 
 $route["migrate"] = "MigrationController/index";
 $route["migrate/(:any)"] = "MigrationController/index/$1";

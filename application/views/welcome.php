@@ -98,8 +98,8 @@
                 Your browser does not support the video tag.
             </video> 
         </div>
-        <div class="col-md-5 text-center">
-            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
+        <div class="col-md-5 my-auto p-1 p-md-5 text-center">
+            <img src="assets/images/payak-logo-blue.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
             <p class="first-fold-title">Keeping things simple.</p>
             <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
             <button type="button"  class="sign-up-btn d-block mx-auto" data-toggle="modal" data-target="#signUpModal">Get Started</button>

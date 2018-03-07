@@ -64,6 +64,27 @@
 					</form>
 				</div>
 			</div>
+			<div class="card mt-3">
+				<div class="card-header">Reset Password</div>
+				<div class="card-body">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label text-right">New Password</label>
+						<div class="col-sm-4">
+							<?php if(!isset($new_password))
+								$new_password = "";
+							?>
+							<input class="form-control" type="text" value="<?= $new_password ? $new_password : null?>" readonly="true"/>
+							<small class="text-danger">Please advise user to change his password right after logging in using this password.</small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-8">
+							<a class="btn btn-secondary" href="<?= base_url("users/" . $user['id'] . "/reset") ?>">Reset Password</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
