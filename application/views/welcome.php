@@ -278,19 +278,19 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Help</h6>
+                <h6 class="footer-heading">Contact Us</h6>
                 <hr class="footer-hr">
-                <a href="#" class="footer-content">Report a problem</a><br>
-                <a href="#" class="footer-content">Contact us</a>
+                <a href="mailto:info@payakapps.com" class="footer-content">Learn more</a><br>
+                <a href="mailto:support@payakapps.com" class="footer-content">Support</a>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Legal Stuff</h6>
+                <h6 class="footer-heading">Legal</h6>
                 <hr class="footer-hr">
                 <a href="#" class="footer-content">Privacy Policy</a><br>
                 <a href="#" class="footer-content">Terms and Conditions</a>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Follow Us!</h6>
+                <h6 class="footer-heading">Follow Us</h6>
                 <hr class="footer-hr">
                 <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
