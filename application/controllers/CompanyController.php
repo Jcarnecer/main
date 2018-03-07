@@ -81,7 +81,7 @@ class CompanyController extends BaseController
 			$this->form_validation->set_rules("name", "company name", "trim|required|min_length[5]|max_length[20]|unique_company_name");
 			$this->form_validation->set_rules("first_name", "first name", "trim|required");
 			$this->form_validation->set_rules("last_name", "last name", "trim|required");
-			$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|unique_email_address");
+			$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|unique_email_address|callback_email_check");
 			$this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|max_length[20]");
 
 			if ($this->form_validation->run()) {
@@ -112,6 +112,18 @@ class CompanyController extends BaseController
 		} else {
 			return redirect("/");
 		}			
+	}
+
+
+	public function email_check($str) {
+
+		$email = explode('@', $str);
+		if($email[1] == 'gmail.com' || $email[1] == 'yahoo.com') {
+			$this->form_validation->set_message('email_check', 'The {field} can not contain "gmail.com" or "yahoo.com".<br> Company domain must be used.');
+           	return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 
 
