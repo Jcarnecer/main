@@ -22,9 +22,9 @@
                             <dt class="col-4">Price</dt>
                             <dd class="col-8">$ <?= number_format($subscription['price'], 2) ?></dd>
                             <dt class="col-4">Starting Date</dt>
-                            <dd class="col-8"><?= date('d F Y') ?></dd>
+                            <dd class="col-8"><?= date_format(date_create($subscription['start_date']), 'd F Y') ?></dd>
                             <dt class="col-4">Expiration Date</dt>
-                            <dd class="col-8"><?= ((new DateTime('now'))->add(new DateInterval('P30D')))->format('j F Y') ?></dd>
+                            <dd class="col-8"><?= date_format(date_create($subscription['expiration_date']), 'd F Y') ?></dd>
 							<div class="w-100 mb-3"></div>
                             <dt class="col-4">First Name</dt>
                             <dd class="col-8"><?= $user['first_name'] ?></dd>

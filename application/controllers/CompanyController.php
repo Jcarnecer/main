@@ -37,8 +37,18 @@ class CompanyController extends BaseController
 			$data['user'] = $this->session->userdata('user_register');
 			$data['subscription'] = $this->session->userdata('subscription');
 
+			$subscription = [
+				'id' => $this->utilities->create_random_string(),
+				'type' => $this->session->userdata('subscription')['type'],
+				'company_id' => $this->session->userdata('company_register')['id'],
+				'package_id' => $this->package->get_by('name', $this->session->userdata('subscription')['package'])['id'],
+				'start_date' => $this->session->userdata('subscription')['start_date'],
+				'expiration_date' => $this->session->userdata('subscription')['expiration_date']
+			];
+
 			$this->company->insert($this->session->userdata('company_register'));
 			$this->user->insert($this->session->userdata('user_register'));
+			$this->subscription->insert($subscription);
 
 			$this->session->unset_userdata('company_register');
 			$this->session->unset_userdata('user_register');
@@ -128,23 +138,23 @@ class CompanyController extends BaseController
 
         switch($this->input->post('package')) {
             case 'project':
-                $item['package']='Project Package';
-                break;
-            case 'shift':
-                $item['package']='Shift Management Package';
-                break;
-            case 'hr':
+				$item['package']='Project Package';
+    	        break;
+			case 'shift':
+				$item['package']='Shift Management Package';
+        	    break;
+			case 'hr':
                 $item['package']='Human Resource Package';
                 break;
-            case 'suite':
+			case 'suite':
                 $item['package']='PayakApp Suite Package';
                 break;
         }
 
         switch($this->input->post('type')) {
             case 'trial':
-			$item['price']=0.00;
-			$item['type']='Trial';
+				$item['price']=0.00;
+				$item['type']='Trial';
                 break;
 			case 'personal':
                 $item['type']='Single User';
@@ -159,6 +169,9 @@ class CompanyController extends BaseController
                 $item['price']=44.99;
                 break;
 		}
+
+		$item['start_date']=date('Y-m-d');
+		$item['expiration_date']=date_format(date_add(date_create(date('Y-m-d')), date_interval_create_from_date_string('30 days')), 'Y-m-d');
 
 		$this->session->set_userdata('subscription', $item);
 		
