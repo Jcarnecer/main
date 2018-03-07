@@ -75,7 +75,7 @@ class UserController extends BaseController
 
 			$this->form_validation->set_rules("first_name", "first name", "trim|required");
 			$this->form_validation->set_rules("last_name", "last name", "trim|required");
-			$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|is_unique[users.email_address]");
+			$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email|is_unique[users.email_address]|callback_user_email_check");
 			$this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|max_length[20]");
 			$this->form_validation->set_rules("role", "role", "trim|required");
 
@@ -102,6 +102,19 @@ class UserController extends BaseController
 			);
 		} else {
 			return redirect("/");
+		}
+	}
+
+	public function user_email_check($str) {
+
+		$email = explode('@', $str);
+		$root_email = $this->user->get_by(['company_id' => $this->session->user->company_id, 'role' => '1'])['email_address'];
+		$domain = explode('@', $root_email);
+		if($email[1] != $domain[1]) {
+			$this->form_validation->set_message('user_email_check', 'Company domain must be used. ("' . $domain[1] . '")');
+           	return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 
