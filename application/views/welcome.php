@@ -93,10 +93,13 @@
     <div class="row align-items-center justify-content-around full-page first-fold py-3 py-md-0">
         <div class="col-12 col-md-6">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
-            <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
+            <!-- <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
                 Your browser does not support the video tag.
-            </video> 
+            </video>  -->
+            <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/NdDmCtvDPho?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
         <div class="col-md-5 my-auto p-1 p-md-5 text-center">
             <img src="assets/images/payak-logo-blue.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
@@ -280,7 +283,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3">
                 <h6 class="footer-heading">Contact Us</h6>
                 <hr class="footer-hr">
-                <a href="mailto:info@payakapps.com" class="footer-content">Learn more</a><br>
+                <a href="mailto:information@payakapps.com" class="footer-content">Learn more</a><br>
                 <a href="mailto:support@payakapps.com" class="footer-content">Support</a>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3">
