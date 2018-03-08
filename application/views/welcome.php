@@ -98,7 +98,7 @@
                 Your browser does not support the video tag.
             </video>  -->
             <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/NdDmCtvDPho?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/NdDmCtvDPho?rel=0&autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
         <div class="col-md-5 my-auto p-1 p-md-5 text-center">
