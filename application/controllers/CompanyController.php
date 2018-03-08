@@ -119,7 +119,7 @@ class CompanyController extends BaseController
 
 		$email = explode('@', $str);
 		if($email[1] == 'gmail.com' || $email[1] == 'yahoo.com') {
-			$this->form_validation->set_message('email_check', 'The {field} can not contain "gmail.com" or "yahoo.com".<br> Company domain must be used.');
+			$this->form_validation->set_message('email_check', 'The {field} is already reserved.');
            	return FALSE;
 		} else {
 			return TRUE;
