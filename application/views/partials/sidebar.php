@@ -11,6 +11,12 @@
 
 	<ul class="sidebar-menu">		
 		<li class="">
+			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
+				<i class="fa fa-star mr-2"></i>
+				<span>Get Started</span>
+			</a>
+		</li>
+		<li class="">
 			<a class="" href="<?= base_url('/') ?>">
 				<i class="fa fa-dashboard mr-2"></i>
 				<span>Dashboard</span>
@@ -18,15 +24,37 @@
 		</li>
 		<li class="">
 			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/task/"; break;
+							default: echo "http://task.payakapps.com/"; break;
+						}
+					?>">
+				<i class="fa fa-tasks mr-2"></i>
+				<span>Projects</span>
+			</a>
+		</li>
+		<li class="">
+			<a class="" href="<?php
+						switch(ENVIRONMENT){
+							case 'development': echo "http://localhost/note/"; break;
+							default: echo "http://note.payakapps.com/"; break;
+						}
+					?>">
+				<i class="fa fa-sticky-note mr-2"></i>
+				<span>Bulletin Board</span>
+			</a>
+		</li>
+		<!-- <li class="">
+			<a class="" href="<?php
 			switch(ENVIRONMENT){
 				case 'development': echo "http://localhost/timekeeping/"; break;
 				default: echo "http://timekeeping.payakapps.com/"; break;
 			}
 			?>">
-				<i class="fa fa-clock-o"></i>
+				<i class="fa fa-clock-o mr-2"></i>
 				<span>Timekeeping</span>
 			</a>
-		</li>	
+		</li>	 -->
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
@@ -38,29 +66,6 @@
 				<span>Chat</span>
 			</a>
 		</li>
-		<li class="">
-			<a class="" href="<?php
-						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/note/"; break;
-							default: echo "http://note.payakapps.com/"; break;
-						}
-					?>">
-				<i class="fa fa-sticky-note mr-2"></i>
-				<span>Note</span>
-			</a>
-		</li>
-		<li class="">
-			<a class="" href="<?php
-						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/task/"; break;
-							default: echo "http://task.payakapps.com/"; break;
-						}
-					?>">
-				<i class="fa fa-tasks mr-2"></i>
-				<span>Task</span>
-			</a>
-		</li>
-		
 		<?php if (in_array("USER_LIST", $user->permissions) ||
 				  in_array("USER_VIEW", $user->permissions) ||
 				  in_array("USER_CREATE", $user->permissions) ||
@@ -73,7 +78,7 @@
 		<li class="sub-menu">
 			<a data-toggle="collapse" href="#UIElementsSub" aria-expanded="false" aria-controls="UIElementsSub" >
 				<i class="fa fa-users mr-2"></i>
-				<span>Access</span>
+				<span>Account Management</span>
 			</a>
 			<ul class="sub collapse" id="UIElementsSub">
 				<?php if (in_array("USER_LIST", $user->permissions)): ?>
@@ -85,7 +90,6 @@
 			</ul>
 		</li>
 		<?php endif; ?>
-		<li class="sub-menu">
 	</ul>
 	<!-- sidebar menu end-->
 </div>
