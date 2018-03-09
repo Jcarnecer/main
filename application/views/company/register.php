@@ -92,7 +92,9 @@
 								<?= form_error("last_name", '<small class="text-danger">', '</small>') ?>
 							</div>
 							<div class="form-group">
-								<label>E-mail Address</label>
+								<label>E-mail Address
+								<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="The same company domain as this email must be used in all other account emails."></i>
+								</label>
 								<input class="form-control" type="text" name="email_address" placeholder="E-mail Address" value="<?= set_value("email_address") ?>" />
 								<?= form_error("email_address", '<small class="text-danger">', '</small>') ?>
 							</div>
