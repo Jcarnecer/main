@@ -90,16 +90,19 @@
   </div>
 </div> -->
 <div class="container-fluid">
-    <div class="row justify-content-around full-page first-fold">
-        <div class="col-12 col-md-6 my-auto">
+    <div class="row align-items-center justify-content-around full-page first-fold py-3 py-md-0">
+        <div class="col-12 col-md-6">
             <!-- <img src="assets/images/home_image.png" alt="Home image thumbnail" class="home-thumb mx-auto d-block img-fluid"> -->
-            <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
+            <!-- <video class="img-fluid w-100" poster="<?= base_url('assets/videos/promotion-poster.png') ?>" style="outline: none;" controls>
                 <source src="<?= base_url('assets/videos/promotion.mp4') ?>" type="video/mp4">
                 Your browser does not support the video tag.
-            </video> 
+            </video>  -->
+            <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/NdDmCtvDPho?rel=0&autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
         <div class="col-md-5 my-auto p-1 p-md-5 text-center">
-            <img src="assets/images/payak-logo-white-90.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
+            <img src="assets/images/payak-logo-blue.png" alt="Payak logo" class="d-block mx-auto logo-shadow">
             <p class="first-fold-title">Keeping things simple.</p>
             <!-- <p>The no-frills business productivity suite built for fast-growing businesses.</p> -->
             <button type="button"  class="sign-up-btn d-block mx-auto" data-toggle="modal" data-target="#signUpModal">Get Started</button>
@@ -124,7 +127,7 @@
             <h1 class="text-center">Products</h1>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/project.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/hire-tracker.png" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Project</h2>
@@ -143,7 +146,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <img src="assets/images/personal.svg" alt="Hire Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid">
                 <!-- <img src="assets/images/time-tracker.png" alt="Time Tracker thumbnail" class="product-thumb mx-auto d-block img-fluid"> -->
                 <h2 class="font-weight-bold text-center mb-3 mt-3">Shift</h2>
@@ -162,7 +165,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                     <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
@@ -182,7 +185,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="border product-details">
+            <div class="border product-details mt-3">
                 <div class="beta">
                 <small class="font-weight-bold" style="font-size:0.7rem !important;">Coming Soon</small>
                 </div>
@@ -202,6 +205,20 @@
         </div>
         <div class="col-md-12">
             <button class="sign-up-btn center-block mt-5">Get Started</button>
+        </div>
+    </div>
+    <div class="row get-started-section pt-5 pb-5">
+        <div class="col-md-8 mx-auto mt-3">
+            <h4>Keep things simple with the PayakApps Suite.</h4>
+            <ul class="feature-list">
+                <li>Projects ® by Payakapps. Store everything in one repository. Track your team’s thought processes with the built in discussion forum.</li>
+                <li>Shifts ® by Payakapps. Manage your team’s schedule, leaves, man-hours from one console.</li>
+            </ul>
+            <h4>Coming Soon:</h4>
+            <ul class="feature-list">
+                <li>HR ® by Payakapps. An HR solution containing timekeeping and expense management. You also track the whole hiring lifecycle with its built-in resume management.</li>
+                <li>PayakApps Suite. Contains all features of the three major modules: Projects, Shifts, and HR.</li>
+            </ul>
         </div>
     </div>
     <div class="row plans-section text-center align-items-center" id="pricing">
@@ -261,11 +278,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center">Companies using Payak Apps</h1>
-        </div>
-    </div> -->
     <div class="row get-started-section">
         <div class="col-md-12">
             <h1 class="text-center">Boost your productivity with Payak Apps!</h1>
@@ -278,19 +290,19 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Help</h6>
+                <h6 class="footer-heading">Contact Us</h6>
                 <hr class="footer-hr">
-                <a href="#" class="footer-content">Report a problem</a><br>
-                <a href="#" class="footer-content">Contact us</a>
+                <a href="mailto:information@payakapps.com" class="footer-content">Learn more</a><br>
+                <a href="mailto:support@payakapps.com" class="footer-content">Support</a>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Legal Stuff</h6>
+                <h6 class="footer-heading">Legal</h6>
                 <hr class="footer-hr">
                 <a href="#" class="footer-content">Privacy Policy</a><br>
                 <a href="#" class="footer-content">Terms and Conditions</a>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3">
-                <h6 class="footer-heading">Follow Us!</h6>
+                <h6 class="footer-heading">Follow Us</h6>
                 <hr class="footer-hr">
                 <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 <a href="https://facebook.com/PayakApps" class="footer-icon"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
