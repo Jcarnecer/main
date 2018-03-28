@@ -288,6 +288,94 @@ class UserController extends BaseController
 		}		
 	}
 
+	public function sendLinkForPassReset()
+	{
+		$userEmail = $this->input->post('email');
+		$userData = $this->user->get_by('email_address', $userEmail);
+
+		if (!$userData) {
+			// user does not exist
+			echo 1;
+		} else {
+			if ($this->sendEmail($userData)) {
+				// email is sent
+				echo 0;
+			} else {
+				// email not sent
+				echo 2;
+			}
+		}
+	}
+
+	public function setNewPassword($userid)
+	{
+		if (isset($_COOKIE['userId'])){
+			setcookie('userId', "", time() - 3600);
+		}
+		
+		setcookie('userId', $userid, time() + 500, "/");
+
+		return parent::guest_page("users/password-reset-form");
+		
+	}
+
+	public function setPassword() {
+		$userid = base64_decode(str_replace("%3D", "=", $this->input->post('userId')));
+		$newpass =  $this->encryption->encrypt($this->input->post('password'));
+		
+		if (
+			!$this->user->update(
+				$userid,
+				['password' => $newpass]
+			)) {
+			echo 1;
+		} else {
+			echo 0;
+		}
+	}
+
+	public function sendEmail($userData)
+	{
+		$this->load->library('email');
+
+		$senderEmail = 'mzbguro@gmail.com';
+		$senderPassword = 'a4140140!';
+		$userId = base64_encode($userData['id']);
+		$href = base_url('users/set_new_password/' . $userId);
+		$resetLinkStr = "<a href=\"$href\" target=\"_blank\">click here</a>";
+
+		$body = "<h2>Password reset instructions</h2>";
+		$body .= "<p>A password reset was iniated on your account</p>";
+		$body .= "<h3>If you want to reset your password, " . $resetLinkStr . "</h3>";
+		$body .= "<p><small>Ignore this message if you do not want your password reset.</small></p>";
+		$body .= "<p><small style=\"color:pink;\">If you think someone else is wants to change your password, contact your administrator</small></p>";
+
+		$config = array(
+			'charset' => 'utf-8',
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.gmail.com',
+			'smtp_port' => 465,
+			'smtp_user' => $senderEmail,
+			'smtp_pass' => $senderPassword,
+			'mailtype' => 'html',
+			'newline' => "\r\n",
+		);
+
+		$this->email->initialize($config);
+
+		$this->email->from($senderEmail, 'Payakapps Team');
+		$this->email->to($userData['email_address']);
+		$this->email->subject('Payakapps Password Reset');
+		$this->email->message($body);
+
+		if (!$this->email->send()) {
+			echo $this->email->print_debugger();
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function getUserStats()
 	{
 		$this->load->model('UserStatsModel', 'user_stats');
