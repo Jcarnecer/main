@@ -287,5 +287,46 @@ class UserController extends BaseController
 			return redirect("/");
 		}		
 	}
+
+	public function getUserStats()
+	{
+		$this->load->model('UserStatsModel', 'user_stats');
+
+		$totals = $this->user_stats->getTotals();
+
+		$distribution = $this->user_stats->getDistribution();
+
+		$distribution_r->cols[] = array(
+			"id" => "",
+			"label" => "Type",
+			"pattern" => "",
+			"type" => "string",
+		);
+		$distribution_r->cols[] = array(
+			"id" => "",
+			"label" => "Total",
+			"pattern" => "",
+			"type" => "number",
+		);
+
+		foreach ($distribution as $cd) {
+			$distribution_r->rows[]["c"] = array(
+				array(
+					"v" => "$cd->type",
+					"f" => null,
+				),
+				array(
+					"v" => (int) $cd->users,
+					"f" => null,
+				),
+			);
+		}
+
+		$stats = array(
+			'distribution' => $distribution_r,
+			'totals' => $totals,
+		);
+		echo json_encode($stats);
+	}
 }
 	
