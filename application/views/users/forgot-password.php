@@ -23,7 +23,7 @@
 										</div>
 										<button id="submit_btn" type="submit" value="submit" class="btn btn-primary float-right" disabled>
 											<span id="submitDefaultText_span">Send Instructions</span>
-											<span id="sendingText_span" style="display:none;"><i class="fas fa-spinner fa-pulse"></i> Sending...</span>
+											<span id="sendingText_span" style="display:none;"><i class="fa fa-spinner fa-pulse"></i> Sending...</span>
 										</button>
 									</form>
 								</div>
@@ -60,7 +60,7 @@
 			</div>
 			<div class="modal-footer">
 				<a href="<?=base_url('users/login');?>" class="btn btn-secondary">Return to Login Page</a>
-				<a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="btn btn-danger"><i class="fas fa-envelope"></i> Open Gmail</a>
+				<a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="btn btn-danger"><i class="fa fa-envelope"></i> Open Gmail</a>
 			</div>
 		</div>
 	</div>
