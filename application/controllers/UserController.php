@@ -1,24 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserController extends BaseController
-{
+class UserController extends BaseController {
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 	}
 
+	private function createMsg($code, $message = array()) {
+		$opMsg['code'] = $code;
+		$opMsg['msg'] = $message;
 
-	public function show_login()
-	{
+		return $opMsg;
+	}
+
+	public function show_login() {
 		if (!parent::current_user()) {
 			return parent::guest_page("users/login");
 		} else {
 			return redirect("/");
 		}
 	}
-
 
 	public function login() {
 		if (!parent::current_user()) {
@@ -32,21 +34,16 @@ class UserController extends BaseController
 		return redirect("/");
 	}
 
-
 	public function forgot() {
 		return parent::guest_page("users/forgot-password");
 	}
 
-
-	public function logout()
-	{
+	public function logout() {
 		$this->session->unset_userdata("user");
 		return redirect("/");
 	}
 
-
-	public function index()
-	{
+	public function index() {
 		if (parent::can_user("USER_LIST")) {
 			return parent::main_page("users/index");
 		} else {
@@ -54,9 +51,7 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function show_create()
-	{
+	public function show_create() {
 		if (parent::can_user("USER_CREATE")) {
 			$current_user = parent::current_user();
 			return parent::main_page("users/create", [
@@ -67,9 +62,7 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function create()
-	{
+	public function create() {
 		if (parent::can_user("USER_CREATE")) {
 			$current_user = parent::current_user();
 
@@ -106,7 +99,6 @@ class UserController extends BaseController
 	}
 
 	public function user_email_check($str) {
-
 		$email = explode('@', $str);
 		$root_email = $this->user->get_by(['company_id' => $this->session->user->company_id, 'role' => '1'])['email_address'];
 		$domain = explode('@', $root_email);
@@ -118,16 +110,14 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function show_update($id)
-	{
+	public function show_update($id) {
 		if (parent::can_user("USER_UPDATE")) {
 			$current_user = parent::current_user();
 			$user = $this->user->get($id) ?? show_error(404);
 
 			return parent::main_page(
 				"users/update", [
-					"user" => $user, 
+					"user" => $user,
 					"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
 				]
 			);
@@ -136,9 +126,7 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function update($id)
-	{	
+	public function update($id) {
 		if (parent::can_user("USER_UPDATE")) {
 			$current_user = parent::current_user();
 			$user = $this->user->get($id) ?? show_error(404);
@@ -146,7 +134,7 @@ class UserController extends BaseController
 			$this->form_validation->set_rules("first_name", "first name", "trim|required");
 			$this->form_validation->set_rules("last_name", "last name", "trim|required");
 			$this->form_validation->set_rules("role", "role", "trim|required");
-			
+
 			if ($user["email_address"] === $this->input->post("email_address")) {
 				$this->form_validation->set_rules("email_address", "e-mail address", "trim|required|valid_email");
 			} else {
@@ -166,7 +154,7 @@ class UserController extends BaseController
 
 			return parent::main_page(
 				"users/update", [
-					"user" => $user, 
+					"user" => $user,
 					"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id])
 				]
 			);
@@ -175,9 +163,7 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function profile()
-	{
+	public function profile() {
 		if (parent::current_user()) {
 			return parent::main_page('users/profile');
 		} else {
@@ -185,11 +171,9 @@ class UserController extends BaseController
 		}
 	}
 
-
-	public function update_profile()
-	{
+	public function update_profile() {
 		$user_id = $this->session->user->id;
-		
+
 		if($this->input->server("REQUEST_METHOD") === "POST") {
 			$data = [
 				"first_name" => $this->input->post("first_name"),
@@ -205,27 +189,23 @@ class UserController extends BaseController
 		redirect("users/profile");
 	}
 
-
-	public function update_avatar()
-	{
+	public function update_avatar() {
 		$current_user = parent::current_user();
 		$this->aws->upload_avatar($current_user->id);
 		return redirect("users/profile");
 	}
 
-
-	public function change_password()
-	{
+	public function change_password() {
 		$user_id = $this->session->user->id;
 
 		if($this->input->server("REQUEST_METHOD") === "POST") {
 
 			$this->form_validation->set_rules([
 				[
-					"field" => "password", 
+					"field" => "password",
 					"label" => "password",
 					"rules" => [
-						"required", 
+						"required",
 						[
 							"password_check",
 							function($password) {
@@ -239,12 +219,12 @@ class UserController extends BaseController
 
 				],
 				[
-					"field" => "new_password", 
+					"field" => "new_password",
 					"label" => "new password",
 					"rules" => "required|differs[password]"
 				],
 				[
-					"field" => "confirm_password", 
+					"field" => "confirm_password",
 					"label" => "confirm password",
 					"rules" => "required|matches[new_password]"
 				]
@@ -253,20 +233,18 @@ class UserController extends BaseController
 
 			if ($this->form_validation->run()) {
 				$this->user->update(
-					$user_id, 
+					$user_id,
 					['password' => $this->encryption->encrypt($this->input->post("new_password"))]
 				);
 				redirect('users/profile');
 			}
-			
+
 		}
-		
+
 		return parent::main_page("users/change-password");
 	}
 
-
 	public function reset_password($id) {
-
 		$new_password = $this->utilities->create_random_string(8);
 		$this->user->update(
 			$id,
@@ -278,77 +256,190 @@ class UserController extends BaseController
 
 			return parent::main_page(
 				"users/update", [
-					"user" => $user, 
+					"user" => $user,
 					"roles" =>  $this->role->get_many_by(["company_id" => $current_user->company_id]),
 					"new_password" => $new_password
 				]
 			);
 		} else {
 			return redirect("/");
-		}		
+		}
 	}
 
-	public function sendLinkForPassReset()
-	{
+	public function sendLinkForPassReset() {
 		$userEmail = $this->input->post('email');
-		$userData = $this->user->get_by('email_address', $userEmail);
 
-		if (!$userData) {
-			// user does not exist
-			echo 1;
+		$this->form_validation->set_rules(
+			'email', 
+			'Email',
+			'trim|required|min_length[8]|max_length[254]|valid_email',
+			array(
+				'required' => 'Please provide an email.',
+				'min_length' => 'You must provide at least eight characters',
+				'valid_email' => 'Please provide the format: example@email.com'
+			)
+		);
+
+		if ($this->form_validation->run() == FALSE) {
+			// invalid input
+			echo json_encode($this->createMsg(1, [trim(validation_errors())]));
 		} else {
-			if ($this->sendEmail($userData)) {
-				// email is sent
-				echo 0;
+			$userData = $this->user->get_by('email_address', $userEmail);
+			if (!$userData) {
+				// user is not found
+				echo json_encode($this->createMsg(2, ['We couldn\'t find a user with that email address.']));
 			} else {
-				// email not sent
-				echo 2;
+				$this->load->model('PassResetKeysModel', 'PassReset');
+				$resetKey = [
+					'id' => $this->utilities->create_random_string(),
+					'userid' => $userData['id'],
+					'request_date' => date("Y-m-d H:i:s"),
+					'request_expiry' => date("Y-m-d H:i:s"), // @todo: add expiry time
+				];
+
+				if ($this->sendResetLink($resetKey['id'], $userData['email_address'])) { // for deployment
+				// if (TRUE) { // for testing
+					$this->PassReset->insert($resetKey);
+					$href = base_url('users/set_new_password/' . $resetKey['id']);
+					// email is sent
+					echo json_encode($this->createMsg(0, ['Success', $href]));
+				} else {
+					// email not sent
+					echo json_encode($this->createMsg(3, ['Cannot access SMTP Service.']));
+				}
 			}
 		}
 	}
 
-	public function setNewPassword($userid)
-	{
-		if (isset($_COOKIE['userId'])){
-			setcookie('userId', "", time() - 3600);
-		}
+	public function setNewPassword($resetkey) {
+		$this->load->model('PassResetKeysModel', 'PassReset');
 		
-		setcookie('userId', $userid, time() + 500, "/");
+		// check if the key is expired
+		$userId = $this->PassReset->getKeyData($resetkey);
 
-		return parent::guest_page("users/password-reset-form");
-		
+		if ($userId) {
+			if (isset($_COOKIE['userId'])){
+				setcookie('userId', "", time() - 3600);
+			}
+			
+			setcookie('userId', $userId, time() + 500, "/");
+			
+			return parent::guest_page("users/password-reset-form");
+		} else {
+			redirect('users/login');
+		}
+	}
+
+	public function cancelPassReset($resetKey) {
+		$this->load->model('PassResetKeysModel', 'PassReset');
+
+		$userId = $this->PassReset->getKeyData($resetKey);
+
+		if ($userId) {
+			$keys = $this->PassReset->get_many_by('userid', $userId);
+
+			$keysToDelete = array();
+			foreach ($keys as $key) {
+				$keysToDelete[] = $key['id'];
+			}
+
+			if (!$this->PassReset->delete_many($keysToDelete)) {
+				$data['msg'] = 'No keys associated'; 
+			} else {
+				$data['msg'] = "Success";
+			}
+		}
+
+		$data['header'] = "Password Reset Canceled";
+		$data['instructions'] = null;
+		$data['status'] = "Password Reset request has been canceled"; 
+		$data['details'] = array(
+			"Your password was not reset and the request was voided.",
+			"If you think someone wants to get into your account without your permission, contact your admin."
+		);
+
+		return parent::guest_page("users/blank_page", $data);
 	}
 
 	public function setPassword() {
-		$userid = base64_decode(str_replace("%3D", "=", $this->input->post('userId')));
-		$newpass =  $this->encryption->encrypt($this->input->post('password'));
-		
-		if (
-			!$this->user->update(
-				$userid,
-				['password' => $newpass]
-			)) {
-			echo 1;
+		$userid = $this->input->post('userId');
+		$newpass =  $this->input->post('password');
+		$confpass =  $this->input->post('confpass');
+
+		$rules = array(
+			array(
+				'field' => 'password', 
+				'label' => 'Password',
+				'rules' => 'trim|required|min_length[8]|max_length[254]',
+				'errors' => array(
+					'required' => 'Passwords must match.',
+					'min_length' => 'You must provide at least eight characters'
+				)
+			),
+			array(
+				'field' => 'confpass', 
+				'label' => 'Password confirmation',
+				'rules' => 'trim|required|min_length[8]|max_length[254]|matches[password]',
+				'errors' => array(
+					'required' => 'Passwords must match.',
+					'min_length' => 'You must provide at least eight characters.',
+					'matches' => 'Passwords must match.'
+				)
+			)
+		);
+
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == FALSE) {
+			// errors in the input
+			echo json_encode($this->createMsg(1, [trim(validation_errors())]));
 		} else {
-			echo 0;
+			if (!$this->user->update($userid, ['password' => $this->encryption->encrypt($newpass)])) {
+				// update not successful
+				echo json_encode($this->createMsg(2, ['Password update not successful']));
+			} else {
+				$this->load->model('PassResetKeysModel', 'PassReset');
+
+				$keys = $this->PassReset->get_many_by('userid', $userid);
+
+				$keysToDelete = array();
+				foreach ($keys as $key) {
+					$keysToDelete[] = $key['id'];
+				}
+
+				$msg = array();
+
+				// delete assoc keys
+				if (!$this->PassReset->delete_many($keysToDelete)) {
+					$msg[] = 'No keys associated'; 
+				}
+				
+				// clear cookie
+				if (isset($_COOKIE['userId'])){
+					setcookie('userId', "", time() - 3600);
+				}
+
+				$msg[] = 'Success';
+				echo json_encode($this->createMsg(0, $msg));
+			}
 		}
 	}
 
-	public function sendEmail($userData)
-	{
+	public function sendResetLink($keyId, $userEmailAddress) {
 		$this->load->library('email');
 
 		$senderEmail = 'mzbguro@gmail.com';
 		$senderPassword = 'a4140140!';
-		$userId = base64_encode($userData['id']);
-		$href = base_url('users/set_new_password/' . $userId);
-		$resetLinkStr = "<a href=\"$href\" target=\"_blank\">click here</a>";
+		$newPasshref = base_url('users/set_new_password/' . $keyId);
+		$resetLinkStr = "<a href=\"$newPasshref\" target=\"_blank\">click here</a>";
+		$cancelResethref = base_url('users/cancel_reset/' . $keyId);
+		$cancelLinkStr = "<a href=\"$cancelResethref\" target=\"_blank\">click here</a>";
 
 		$body = "<h2>Password reset instructions</h2>";
 		$body .= "<p>A password reset was iniated on your account</p>";
-		$body .= "<h3>If you want to reset your password, " . $resetLinkStr . "</h3>";
+		$body .= "<h3>If you want to reset your password, " . $resetLinkStr . ".</h3>";
 		$body .= "<p><small>Ignore this message if you do not want your password reset.</small></p>";
-		$body .= "<p><small style=\"color:pink;\">If you think someone else is wants to change your password, contact your administrator</small></p>";
+		$body .= "<p><small style=\"color:pink;\">If you think someone else is wants to change your password, " . $cancelLinkStr . ".</small></p>";
 
 		$config = array(
 			'charset' => 'utf-8',
@@ -357,6 +448,7 @@ class UserController extends BaseController
 			'smtp_port' => 465,
 			'smtp_user' => $senderEmail,
 			'smtp_pass' => $senderPassword,
+			// 'smtp_timeout' => 1,
 			'mailtype' => 'html',
 			'newline' => "\r\n",
 		);
@@ -364,7 +456,7 @@ class UserController extends BaseController
 		$this->email->initialize($config);
 
 		$this->email->from($senderEmail, 'Payakapps Team');
-		$this->email->to($userData['email_address']);
+		$this->email->to($userEmailAddress);
 		$this->email->subject('Payakapps Password Reset');
 		$this->email->message($body);
 
@@ -376,8 +468,7 @@ class UserController extends BaseController
 		}
 	}
 
-	public function getUserStats()
-	{
+	public function getUserStats() {
 		$this->load->model('UserStatsModel', 'user_stats');
 
 		$totals = $this->user_stats->getTotals();
@@ -417,4 +508,3 @@ class UserController extends BaseController
 		echo json_encode($stats);
 	}
 }
-	

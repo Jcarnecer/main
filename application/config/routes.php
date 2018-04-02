@@ -24,6 +24,7 @@ $route["users/profile/change-password"] = "UserController/change_password";
 
 $route["users/sendLinkForPassReset"]["POST"] = "UserController/sendLinkForPassReset";
 $route["users/set_new_password/(:any)"]["GET"] = "UserController/setNewPassword/$1";
+$route["users/cancel_reset/(:any)"]["GET"] = "UserController/cancelPassReset/$1";
 $route["users/setPassword"]["POST"] = "UserController/setPassword";
 
 $route["users"]["GET"] = "UserController/index";

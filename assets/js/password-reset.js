@@ -36,30 +36,28 @@ $(document).ready(
 								email: userEmail
 							})
 							.done(function (data) {
-								if (data != 0) {
+								data = JSON.parse(data);
+
+								if (data.code != 0) {
 									$('#userEmail_input').addClass('is-invalid');
 									$('#emailHelp')
 										.removeClass('text-muted')
 										.addClass('text-danger');
-									switch (data) {
-										case '1':
-											$('#emailHelp').text('We couldn\'t find an account with that email.');
-											break;
-										case '2':
-											$('#emailHelp').text('Cannot access SMTP Service.');
-											break;
-										default:
-											$('#emailHelp').text('An Error has occured.');
+									$('#emailHelp').text('');
+									
+									for (var i = 0; i < data.msg.length; i++) {
+										$('#emailHelp').append(data.msg[i]);;
 									}
+									
 									$('#sendingText_span').fadeOut('fast',
 										function (e) {
 											$('#submitDefaultText_span').fadeIn('fast');
 										}
 									);
-								} else if (data == 0) {
+								} else if (data.code == 0) {
 									$('#promptModal').modal({ backdrop: 'static', keyboard: false });
 									$('#promptModal').modal('show');
-									var successText = "Sent <i class=\"fas fa-check\"></i>"
+									var successText = "Sent <i class=\"fa fa-check\"></i>"
 									$('#submit_btn').removeClass('btn-primary')
 										.html(successText)
 										.addClass('btn-success');
@@ -67,7 +65,7 @@ $(document).ready(
 
 							})
 							.fail(function () {
-								console.log('something is wrong')
+								console.log('Could not connect to server.');
 							});
 					}
 				)
@@ -84,20 +82,16 @@ $(document).ready(
 			}
 		);
 		
-		console.log(document.cookie);
-
-		function getCookie(name) {
-			
+		function getCookie(cookie_name) {
 			var cookie_array = document.cookie.split('; ');
 			var cookie_value = false;
-			for (var i = 0; i < cookie_array.length; i++) {
-				if (cookie_array[i].includes(name)) {
+			for (var i = 0; i < cookie_array.length; i++){
+				if (cookie_array[i].includes(cookie_name)){
 					cookie_value = cookie_array[i].split('=')[1];
 				}
 			}
 			return cookie_value;
 		}
-
 
 		$('#resetPasswordForm').submit(
 			function (e) {
@@ -120,21 +114,24 @@ $(document).ready(
 				$.post("users/setPassword",
 					{
 						password: newpass,
+						confpass: confpass,
 						userId: getCookie('userId')
 					})
 					.done(function (data) {
-						switch (data) {
-							case '0':
-								$('#promptModal').modal({ backdrop: 'static', keyboard: false })	;
-								$('#promptModal').modal('show');
-								$('#for-reset-view_div').fadeOut('fast');
-								$('#reset-done').fadeIn('slow');
-							break;
-							case '1':
-								// @todo: an error has occured
-							break;
-							default:
-								// @todo: default error handling
+						data = JSON.parse(data);
+						if (data.code == 0) {
+							$('#promptModal').modal({ backdrop: 'static', keyboard: false });
+							$('#promptModal').modal('show');
+							$('#for-reset-view_div').fadeOut('fast');
+							$('#reset-done').fadeIn('slow');
+						} else {
+							$('#errorAlert_div').empty();
+							for (var i = 0; i < data.msg.length; i++) {
+								$('#errorAlert_div').append(data.msg[i]);;
+							}
+							$('#errorAlert_div').fadeIn('fast');
+							
+							$('#changePass_btn').attr('disabled', true);
 						}
 					})
 					.fail(function () {

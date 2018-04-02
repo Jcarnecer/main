@@ -12,16 +12,14 @@
 					<div class="card-body">
 						<div id="for-reset-view_div">
 							<p>Nominate a new password below:</p>
- 							<form id="resetPasswordForm" method="POST" autocomplete="nope">
- 								<?php if ($this->session->flashdata("message")): ?>
-									<div class="form-group">
-										<div class="col">
-											<div class="alert alert-danger text-center">
-												<?=$this->session->flashdata("message")?>
-											</div>
-										</div>
+							<div class="form-group">
+								<div class="col">
+									<div id="errorAlert_div" class="alert alert-danger text-center" style="display:none;">
+ 										<p>An error has occured</p>
 									</div>
-								<?php endif;?>
+								</div>
+							</div>
+ 							<form id="resetPasswordForm" method="POST" autocomplete="nope">
 								<div class="form-group">
 									<label for="newPassword_input">New Password</label>
 									<input class="form-control" type="password" id="newPassword_input" name="newPassword" placeholder="New Password" autocomplete="nope" />
@@ -37,7 +35,7 @@
 						</div>
 						<div id="reset-done" class="row" style="display:none;">
  							<div class="col text-center text-success">
-								<i class="far fa-check-circle fa-10x"></i>
+								<i class="fa fa-check-circle fa-10x"></i>
 								<br>
 								<p class="font-weight-bold mt-3">Success</p>
 							</div>
