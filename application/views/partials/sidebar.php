@@ -91,6 +91,12 @@
 				<span>Guide</span>
 			</a>
 		</li>
+		<li class="">
+            <a class="" href="<?= LOGOUT_URL ?>">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span>Logout</span>
+            </a>
+        </li>
 	</ul>
 	<!-- sidebar menu end-->
 </div>
