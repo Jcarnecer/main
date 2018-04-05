@@ -10,12 +10,7 @@
 	</div>
 
 	<ul class="sidebar-menu">		
-		<li class="">
-			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
-				<i class="fa fa-star mr-2"></i>
-				<span>Get Started</span>
-			</a>
-		</li>
+		
 		<li class="">
 			<a class="" href="<?= base_url('/') ?>">
 				<i class="fa fa-dashboard mr-2"></i>
@@ -90,6 +85,12 @@
 			</ul>
 		</li>
 		<?php endif; ?>
+		<li class="">
+			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
+				<i class="fa fa-star mr-2"></i>
+				<span>Guide</span>
+			</a>
+		</li>
 	</ul>
 	<!-- sidebar menu end-->
 </div>
