@@ -51,3 +51,6 @@ $route["api/dev/companies/roles"]["GET"] = "APIController/get_company_roles";
 
 $route["404_override"] = "";
 $route["translate_uri_dashes"] = false;
+
+
+$route['testing'] = "PaymentController/overdue_payment";

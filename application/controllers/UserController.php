@@ -426,46 +426,21 @@ class UserController extends BaseController {
 	}
 
 	public function sendResetLink($keyId, $userEmailAddress) {
-		$this->load->library('email');
-
-		$senderEmail = 'mzbguro@gmail.com';
-		$senderPassword = 'a4140140!';
+		
 		$newPasshref = base_url('users/set_new_password/' . $keyId);
 		$resetLinkStr = "<a href=\"$newPasshref\" target=\"_blank\">click here</a>";
 		$cancelResethref = base_url('users/cancel_reset/' . $keyId);
 		$cancelLinkStr = "<a href=\"$cancelResethref\" target=\"_blank\">click here</a>";
+
+		$subject = 'Payakapps Password Reset';
 
 		$body = "<h2>Password reset instructions</h2>";
 		$body .= "<p>A password reset was iniated on your account</p>";
 		$body .= "<h3>If you want to reset your password, " . $resetLinkStr . ".</h3>";
 		$body .= "<p><small>Ignore this message if you do not want your password reset.</small></p>";
 		$body .= "<p><small style=\"color:pink;\">If you think someone else is wants to change your password, " . $cancelLinkStr . ".</small></p>";
-
-		$config = array(
-			'charset' => 'utf-8',
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.gmail.com',
-			'smtp_port' => 465,
-			'smtp_user' => $senderEmail,
-			'smtp_pass' => $senderPassword,
-			// 'smtp_timeout' => 1,
-			'mailtype' => 'html',
-			'newline' => "\r\n",
-		);
-
-		$this->email->initialize($config);
-
-		$this->email->from($senderEmail, 'Payakapps Team');
-		$this->email->to($userEmailAddress);
-		$this->email->subject('Payakapps Password Reset');
-		$this->email->message($body);
-
-		if (!$this->email->send()) {
-			echo $this->email->print_debugger();
-			return false;
-		} else {
-			return true;
-		}
+		
+		parent::send_email($userEmailAddress, $subject, $message);
 	}
 
 	public function getUserStats() {
