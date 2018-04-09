@@ -10,7 +10,7 @@
 				</li>
 			</ol>
 
-			<?php if ($user->role = 1 && $user->company_id = "astridtech"): ?>
+			<?php if ($user->role == 1 && $user->company_id == "astridtech"): ?>
 			<div class="row">
 				<div class="col-xl-9 col-lg-9 col-md-8">
 					<div class="card card-user card-stats">
