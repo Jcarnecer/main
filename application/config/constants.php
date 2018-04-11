@@ -84,4 +84,7 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-defined('DEFAULT_AVATAR_URL') OR define('DEFAULT_AVATAR_URL', 'https://s3-ap-southeast-1.amazonaws.com/payakapps.com/avatar/default.png');
+defined('DEFAULT_AVATAR_URL') OR define('DEFAULT_AVATAR_URL', 'https://s3-ap-southeast-1.amazonaws.com/payakapps.com/avatar/default.png'); 
+
+define('LOGIN_URL', ENVIRONMENT === "development" ? "http://localhost/main/users/login" : "http://payakapps.com/users/login");
+define('LOGOUT_URL', ENVIRONMENT === "development" ? "http://localhost/main/users/logout" : "http://payakapps.com/users/logout");
