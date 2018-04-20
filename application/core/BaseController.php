@@ -63,13 +63,20 @@ class BaseController extends CI_Controller {
 	}
 
 
-	public function send_email($userEmailAddress, $subject, $message) {
+	/*
+	 * @parameters
+	 *    $type - type of email transaction	
+	 *    $data - data needed for the email transaction (may vary per transaction)
+	 *    $data['userEmailAddress'] - required data
+	 */
+	public function send_email($type, $data) {
 		$this->load->library('email');
 
 		$senderEmail = 'mzbguro@gmail.com';
 		$senderPassword = 'a4140140!';
+		$email_details = [];
 
-		$config = array(
+		$config = [
 			'charset' => 'utf-8',
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.gmail.com',
@@ -79,14 +86,20 @@ class BaseController extends CI_Controller {
 			// 'smtp_timeout' => 1,
 			'mailtype' => 'html',
 			'newline' => "\r\n",
-		);
+		];
 
 		$this->email->initialize($config);
 
+		// switch for email templates. depending on the type of email transaction to process
+		switch($type){
+			case 'password_reset': $email_details = $this->email_templates->password_reset($data['keyId']); break;
+			case 'overdue_account': $email_details = $this->email_templates->overdue_account($data['days']); break;
+		}
+
 		$this->email->from($senderEmail, 'Payakapps Team');
-		$this->email->to($userEmailAddress);
-		$this->email->subject($subject);
-		$this->email->message($message);
+		$this->email->to($data['userEmailAddress']);
+		$this->email->subject($email_details['subject']);
+		$this->email->message($email_details['body']);
 
 		if (!$this->email->send()) {
 			echo $this->email->print_debugger();

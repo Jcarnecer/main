@@ -72,12 +72,19 @@ class PaymentController extends BaseController
         foreach ($overdue_accounts as $account) {
             $root_account = $this->user->get_by(['company_id' => $account['company_id'], 'role' => '1']);
             // templates to be changed.. suggestion: move the subject and body of the email to the base controller.
-            $subject = 'Payakapps Subscription';
+            // $subject = 'Payakapps Subscription';
 
-            $body = "<h2>Your PayakApps Subscription has expired.</h2>";
-            $body .= "<p>Your account is past due.</p>";
+            // $body = "<h2>Your PayakApps Subscription has expired.</h2>";
+            // $body .= "<p>Your account is past due.</p>";
             
-            parent::send_email('jm.nz0723@gmail.com', $subject, $body);
+
+            $data = [
+
+                'userEmailAddress' => 'jm.nz0723@gmail.com',
+                'days'             => 1
+            ];
+
+            parent::send_email('overdue_account', $data);
         }
     }
 }

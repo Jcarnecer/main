@@ -67,6 +67,7 @@ $autoload['libraries'] = [
     "session",
     "upload",
     "utilities",
+    "email_templates"
 ];
 
 /*
