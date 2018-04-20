@@ -30,10 +30,10 @@ switch (ENVIRONMENT) {
         $config['base_url'] = 'http://localhost/main/';
         break;
     case 'testing':
-        $config['base_url'] = 'http://stage.payakkaps.com/';
+        $config['base_url'] = 'https://stage.payakkaps.com/';
         break;
     case 'production':
-        $config['base_url'] = 'http://payakapps.com/';
+        $config['base_url'] = 'https://payakapps.com/';
         break;
 }
 
