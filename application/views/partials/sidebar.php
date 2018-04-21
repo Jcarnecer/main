@@ -21,7 +21,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/task/"; break;
-							default: echo "http://task.payakapps.com/"; break;
+							default: echo "https://task.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-tasks mr-2"></i>
@@ -32,7 +32,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/note/"; break;
-							default: echo "http://note.payakapps.com/"; break;
+							default: echo "https://note.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-sticky-note mr-2"></i>
@@ -43,7 +43,7 @@
 			<a class="" href="<?php
 			switch(ENVIRONMENT){
 				case 'development': echo "http://localhost/timekeeping/"; break;
-				default: echo "http://timekeeping.payakapps.com/"; break;
+				default: echo "https://timekeeping.payakapps.com/"; break;
 			}
 			?>">
 				<i class="fa fa-clock-o mr-2"></i>
@@ -54,7 +54,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/chat/"; break;
-							default: echo "http://chat.payakapps.com/"; break;
+							default: echo "https://chat.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-comment mr-2"></i>

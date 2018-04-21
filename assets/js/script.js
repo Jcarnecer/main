@@ -1,9 +1,9 @@
 var baseUrl;
 
-if (window.location.origin === "http://payakapps.com") {
-    baseUrl = "http://payakapps.com";
-} else if (window.location.origin === "http://stage.payakapps.com") {
-    baseUrl = "http://stage.payakapps.com";
+if (window.location.origin === "https://payakapps.com") {
+    baseUrl = "https://payakapps.com";
+} else if (window.location.origin === "https://stage.payakapps.com") {
+    baseUrl = "https://stage.payakapps.com";
 } else {
     baseUrl = "http://localhost/main";
 }
