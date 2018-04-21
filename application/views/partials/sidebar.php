@@ -10,12 +10,7 @@
 	</div>
 
 	<ul class="sidebar-menu">		
-		<li class="">
-			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
-				<i class="fa fa-star mr-2"></i>
-				<span>Get Started</span>
-			</a>
-		</li>
+		
 		<li class="">
 			<a class="" href="<?= base_url('/') ?>">
 				<i class="fa fa-dashboard mr-2"></i>
@@ -26,7 +21,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/task/"; break;
-							default: echo "http://task.payakapps.com/"; break;
+							default: echo "https://task.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-tasks mr-2"></i>
@@ -37,7 +32,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/note/"; break;
-							default: echo "http://note.payakapps.com/"; break;
+							default: echo "https://note.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-sticky-note mr-2"></i>
@@ -48,7 +43,7 @@
 			<a class="" href="<?php
 			switch(ENVIRONMENT){
 				case 'development': echo "http://localhost/timekeeping/"; break;
-				default: echo "http://timekeeping.payakapps.com/"; break;
+				default: echo "https://timekeeping.payakapps.com/"; break;
 			}
 			?>">
 				<i class="fa fa-clock-o mr-2"></i>
@@ -59,7 +54,7 @@
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
 							case 'development': echo "http://localhost/chat/"; break;
-							default: echo "http://chat.payakapps.com/"; break;
+							default: echo "https://chat.payakapps.com/"; break;
 						}
 					?>">
 				<i class="fa fa-comment mr-2"></i>
@@ -90,29 +85,41 @@
 			</ul>
 		</li>
 		<?php endif; ?>
+		<li class="">
+			<a class="text-warning font-weight-bold" href="#tutorialModal" data-toggle="modal">
+				<i class="fa fa-star mr-2"></i>
+				<span>Guide</span>
+			</a>
+		</li>
+		<li class="">
+            <a class="" href="<?= LOGOUT_URL ?>">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span>Logout</span>
+            </a>
+        </li>
 	</ul>
 	<!-- sidebar menu end-->
 </div>
 <div class="main-content d-flex flex-column h-100">
 	<div class="topbar w-100" style="margin-bottom: -20px;">
-		<nav class="navbar navbar-custom navbar-expand-lg">
-			<div id="nav-icon-open" class="custom-toggle hidden-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
+        <nav class="navbar navbar-custom navbar-expand-lg">
+            <div id="nav-icon-open" class="custom-toggle hidden-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 			<a class="navbar-brand" href="#">PayakApps</a>
 			
 			<ul class="navbar-nav flex-row ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-						<?= $user->first_name . " " . $user->last_name ?>
+						<img class="img-avatar mr-2" src="<?= $user->avatar_url ?>"><?= $user->first_name . " " . $user->last_name ?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="<?= base_url('users/profile') ?>">My Profile</a>
 						<a class="dropdown-item" href="<?= base_url("users/profile/change-password") ?>">My Password</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<?= base_url("users/logout") ?>">Logout</a>
+						<a class="dropdown-item" href="<?= LOGOUT_URL ?>">Logout</a>
 					</div>
 				</li>
 				<!--

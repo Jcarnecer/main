@@ -1,5 +1,5 @@
 <?php
-defined("BASEPATH") OR exit("No direct script access allowed");
+defined("BASEPATH") or exit("No direct script access allowed");
 
 $route["default_controller"] = "SiteController/index";
 
@@ -22,12 +22,18 @@ $route["users/profile/update"]["POST"] = "UserController/update_profile";
 $route["users/profile/update-avatar"]["POST"] = "UserController/update_avatar";
 $route["users/profile/change-password"] = "UserController/change_password";
 
+$route["users/sendLinkForPassReset"]["POST"] = "UserController/sendLinkForPassReset";
+$route["users/set_new_password/(:any)"]["GET"] = "UserController/setNewPassword/$1";
+$route["users/cancel_reset/(:any)"]["GET"] = "UserController/cancelPassReset/$1";
+$route["users/setPassword"]["POST"] = "UserController/setPassword";
+
 $route["users"]["GET"] = "UserController/index";
 $route["users/create"]["GET"] = "UserController/show_create";
 $route["users/create"]["POST"] = "UserController/create";
 $route["users/(:any)/update"]["GET"] = "UserController/show_update/$1";
 $route["users/(:any)/update"]["POST"] = "UserController/update/$1";
 $route["users/(:any)/reset"]["GET"] = "UserController/reset_password/$1";
+$route["users/getUserStats"]["GET"] = "UserController/getUserStats";
 
 $route["migrate"] = "MigrationController/index";
 $route["migrate/(:any)"] = "MigrationController/index/$1";
@@ -44,4 +50,4 @@ $route["api/dev/companies/users"]["GET"] = "APIController/get_company_users";
 $route["api/dev/companies/roles"]["GET"] = "APIController/get_company_roles";
 
 $route["404_override"] = "";
-$route["translate_uri_dashes"] = FALSE;
+$route["translate_uri_dashes"] = false;
