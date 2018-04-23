@@ -40,17 +40,67 @@ class Email_templates
 	public function overdue_account($days) {
 		
 		// create a switch case for varying days
-
 		$subject = 'Payakapps Subscription';
 
-        $body = "<h2>Your PayakApps Subscription has expired.</h2>";
-        $body .= "<p>Your account is past due.</p>";
+		switch($days) {
 
-        $data = [
+			case 1: // advising their subscription is past due
+		        $body = "<h2>Your PayakApps Subscription has expired.</h2>";
+		        $body .= "<p>Your account is past due.</p>";
+
+		    	break;
+
+		    case 8: // remind about payment issue
+		        $body = "<h2>Your PayakApps Subscription has expired.</h2>";
+		        $body .= "<p>Your account is past due.</p>";
+
+		        break;
+
+	        case 15: // danger of suspension
+	        case 22: //
+	        	$body = "<h2>Your PayakApps Subscription has expired.</h2>";
+		        $body .= "<p>Your account is past due.</p>";
+
+		        break;
+
+		    case 30: // subscription has been suspended
+		    	$body = "<h2>Your PayakApps Subscription has expired.</h2>";
+		        $body .= "<p>Your account is past due.</p>";
+
+		        break;
+
+		    case 35: // 
+		    case 42: // advise them their subscription remains suspended
+		    case 49: //
+		    case 60: //
+		    	$body = "<h2>Your PayakApps Subscription has expired.</h2>";
+		        $body .= "<p>Your account is past due.</p>";
+
+		        break;
+    	}
+
+    	$data = [
         	'subject' => $subject,
         	'body'	  => $body
         ];
 
         return $data;
+	}
+
+
+	public function subscription_reactivated($keyId) {
+
+		$subject = 'Payakapps Password Reset';
+
+		$body = "<h2>Password reset instructions</h2>";
+		$body .= "<p>Your subscription has been reactivated</p>";
+		
+
+		$data = [
+			'subject' 	=> $subject,
+			'body'		=> $body
+		];
+
+		return $data;
 	}
 }

@@ -81,10 +81,20 @@ class PaymentController extends BaseController
             $data = [
 
                 'userEmailAddress' => 'jm.nz0723@gmail.com',
-                'days'             => 1
+                'days'             => date_diff(date_create(date("Y-m-d")), date_create($account['expiration_date']))
             ];
-
-            parent::send_email('overdue_account', $data);
+            switch($data['days']){
+                case 1:
+                case 8:
+                case 15:
+                case 22:
+                case 30:
+                case 35:
+                case 42:
+                case 49:
+                case 60:
+                    parent::send_email('overdue_account', $data);
+            }
         }
     }
 }

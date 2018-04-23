@@ -94,6 +94,7 @@ class BaseController extends CI_Controller {
 		switch($type){
 			case 'password_reset': $email_details = $this->email_templates->password_reset($data['keyId']); break;
 			case 'overdue_account': $email_details = $this->email_templates->overdue_account($data['days']); break;
+			case 'subscription_reactivated': $email_details = $this->email_templates->subscription_reactivated(); break;
 		}
 
 		$this->email->from($senderEmail, 'Payakapps Team');
