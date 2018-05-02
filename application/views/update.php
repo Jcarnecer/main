@@ -38,13 +38,13 @@
 					</a>
 				</li>
 				<li class="">
-					<a class="" href="http://chat.payakapps.com">
+					<a class="" href="https://chat.payakapps.com">
 						<i class="fa fa-dashboard"></i>
 						<span>Chat Module</span>
 					</a>
 				</li>
 				<li class="">
-					<a class="" href="http://localhost/task/tasks">
+					<a class="" href="https://localhost/task/tasks">
 						<i class="fa fa-dashboard"></i>
 						<span>Task Module</span>
 					</a>

@@ -12,7 +12,7 @@ class BaseController extends CI_Controller {
 	public function main_page(
 		$view, 
 		$data = [], 
-		$title = "PayakApps"
+		$title = "Payak Apps. Integrated Productivity Suite."
 	) {
 		$user = $this->current_user();
 

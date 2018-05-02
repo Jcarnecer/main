@@ -20,7 +20,7 @@
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/task/"; break;
+							case 'development': echo "https://localhost/task/"; break;
 							default: echo "https://task.payakapps.com/"; break;
 						}
 					?>">
@@ -31,7 +31,7 @@
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/note/"; break;
+							case 'development': echo "https://localhost/note/"; break;
 							default: echo "https://note.payakapps.com/"; break;
 						}
 					?>">
@@ -42,7 +42,7 @@
 		<!-- <li class="">
 			<a class="" href="<?php
 			switch(ENVIRONMENT){
-				case 'development': echo "http://localhost/timekeeping/"; break;
+				case 'development': echo "https://localhost/timekeeping/"; break;
 				default: echo "https://timekeeping.payakapps.com/"; break;
 			}
 			?>">
@@ -53,7 +53,7 @@
 		<li class="">
 			<a class="" href="<?php
 						switch(ENVIRONMENT){
-							case 'development': echo "http://localhost/chat/"; break;
+							case 'development': echo "https://localhost/chat/"; break;
 							default: echo "https://chat.payakapps.com/"; break;
 						}
 					?>">

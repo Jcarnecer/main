@@ -14,21 +14,26 @@
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5)
 }
 
-.card,
+.card {
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3);
+}
+
+.card 
 .card-header,
 .card-footer {
     border-radius: 0px !important;
 }
 
-.note-card,
-.task-card {
-    transition-duration: 0.2s;
+.card-theme-task {
+    background-color: rgba(255, 200, 87, 0.66);
 }
 
-.note-card:hover,
-.task-card:hover {
-    /* margin-top: -3px; */
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1)
+.card-theme-chat {
+    background-color: rgba(238, 99, 82, 0.66);
+}
+
+.card-theme-file {
+    background-color: rgb(89, 205, 104, 0.66);
 }
 
 .card-user {
