@@ -77,7 +77,7 @@ function clock(time=null) {
 }
 
 function getUrl(app) {
-    return baseUrl === 'https://payakapps.com' || baseUrl === 'https://stage.payakapps.com' ? `https://${app}.payakapps.com/` : `http://localhost/${app}/`;
+    return baseUrl === 'https://payakapps.com' || baseUrl === 'https://stage.payakapps.com' ? `https://${app}.payakapps.com/` : `https://localhost/${app}/`;
 }
 
 function displayTask(data) {

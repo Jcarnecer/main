@@ -39,25 +39,25 @@
             </div>
         </div>
 
-        <div class="card-columns w-100 my-3">
+        <div class="card-deck my-3 ">
             <!-- <div class="card" onclick="goto('chat')">
                 <div class="card-body">
                     <h4><i class="fa fa-comments"></i> Chat</h4>
                 </div>
             </div> -->
-            <div class="card app-card" onclick="goto('task')">
+            <div class="card app-card card-theme-task" onclick="goto('task')">
                 <div class="card-body">
-                    <h5><i class="fa fa-tasks mr-2"></i>Task <span id="taskNotif" class="badge badge-dark float-right"></span></h5>
+                    <h5><i class="fa fa-tasks"></i> Task <span id="taskNotif" class="badge badge-dark float-right"></span></h5>
                 </div>
             </div>
-            <div class="card app-card" onclick="goto('chat')">
+            <div class="card app-card card-theme-chat" onclick="goto('chat')">
                 <div class="card-body">
-                    <h5><i class="fa fa-comment"></i> Chat</h5>
+                    <h5><i class="fa fa-comment"></i> Chat </h5>
                 </div>
             </div>
-            <div class="card app-card" onclick="goto('file')">
+            <div class="card app-card card-theme-file" onclick="goto('file')">
                 <div class="card-body">
-                    <h5><i class="fa fa-sticky-note mr-2"></i>File <span id="noteNotif" class="badge badge-dark float-right"></span></h5>
+                    <h5><i class="fa fa-sticky-note"></i> File <span id="noteNotif" class="badge badge-dark float-right"></span></h5>
                 </div>
             </div>
         </div>

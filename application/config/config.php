@@ -27,7 +27,7 @@ date_default_timezone_set('Asia/Manila');
 
 switch (ENVIRONMENT) {
     case 'development':
-        $config['base_url'] = 'http://localhost/main/';
+        $config['base_url'] = 'https://localhost/main/';
         break;
     case 'testing':
         $config['base_url'] = 'https://stage.payakkaps.com/';

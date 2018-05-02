@@ -5,7 +5,7 @@ if (window.location.origin === "https://payakapps.com") {
 } else if (window.location.origin === "https://stage.payakapps.com") {
     baseUrl = "https://stage.payakapps.com";
 } else {
-    baseUrl = "http://localhost/main";
+    baseUrl = "https://localhost/main";
 }
 
 var apiUrl = baseUrl + "/api/dev";
