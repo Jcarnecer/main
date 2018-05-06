@@ -428,8 +428,9 @@ class UserController extends BaseController {
 	public function sendResetLink($keyId, $userEmailAddress) {
 		$this->load->library('email');
 
-		$senderEmail = 'mzbguro@gmail.com';
-		$senderPassword = 'a4140140!';
+		$senderEmail = 'support@astridtechnologies.com';
+		$senderAlias = 'support@payakapps.com';
+		$senderPassword = 'astridtech1';
 		$newPasshref = base_url('users/set_new_password/' . $keyId);
 		$resetLinkStr = "<a href=\"$newPasshref\" target=\"_blank\">click here</a>";
 		$cancelResethref = base_url('users/cancel_reset/' . $keyId);
@@ -455,9 +456,9 @@ class UserController extends BaseController {
 
 		$this->email->initialize($config);
 
-		$this->email->from($senderEmail, 'Payakapps Team');
+		$this->email->from($senderAlias, 'Payakapps Support');
 		$this->email->to($userEmailAddress);
-		$this->email->subject('Payakapps Password Reset');
+		$this->email->subject('Payakapps Account Password Reset');
 		$this->email->message($body);
 
 		if (!$this->email->send()) {
